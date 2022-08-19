@@ -1,0 +1,89 @@
+.typography {
+    font-style: normal;
+  
+    &-h1 {
+      font-family: 'Libre Baskerville';
+      font-size: 48px;
+      line-height: 56px;
+      font-weight: 400;
+    }
+    &-h2 {
+      font-family: 'Libre Baskerville';
+      font-size: 38px;
+      line-height: 48px;
+      font-weight: 400;
+    }
+    &-h3 {
+      font-family: 'Libre Baskerville';
+      font-size: 28px;
+      line-height: 36px;
+      font-weight: 400;
+    }
+    &-h4 {
+      font-family: 'Libre Baskerville';
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 500;
+    }
+    &-h5 {
+      font-family: 'Libre Baskerville';
+      font-size: 22px;
+      line-height: 28px;
+      font-weight: 500;
+    }
+    &-h6 {
+      font-family: 'Libre Baskerville';
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+    }
+    &-subtitle1 {
+      font-family: 'Avenir';
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 400;
+    }
+    &-subtitle2 {
+      font-family: 'Avenir';
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 800;
+    }
+    &-body1 {
+      font-family: 'Avenir';
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 400;
+    }
+    &-body2 {
+      font-family: 'Avenir';
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 400;
+    }
+    &-button1 {
+      font-family: 'Avenir';
+      font-size: 40px;
+      line-height: 48px;
+      font-weight:100;
+    }
+    &-button2 {
+      font-family: 'Avenir';
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 500;
+    }
+    &-caption {
+      font-family: 'Avenir';
+      font-size: 12px;
+      line-height: 16px;
+      font-weight:100;
+    }
+  
+    &.ellipsis {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  
