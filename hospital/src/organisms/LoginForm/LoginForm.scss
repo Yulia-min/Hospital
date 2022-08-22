@@ -1,0 +1,16 @@
+@import '/src/style/style.scss';
+
+.modal-title{
+    color: $core_100;
+}
+
+.modal-description{
+    margin-top: 15px;
+    color: $core_60;
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

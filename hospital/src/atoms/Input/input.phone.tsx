@@ -4,6 +4,16 @@ import { InputType } from './InputType'
 
 export const Phone = ({ value, onChange }: InputType) => {
   return (
-    <PhoneInput country={'us'} value={value} onChange={onChange} placeholder="(XXX) XXX-XXXX" />
+    <PhoneInput
+      country={'us'}
+      inputProps={{
+        name: 'phone',
+        required: true,
+        autoFocus: true
+      }}
+      value={value}
+      onChange={onChange}
+      placeholder="(XXX) XXX-XXXX"
+    />
   )
 }

@@ -1,9 +1,10 @@
+import classNames from 'classnames'
 import './Button.scss'
 import { ButtonType } from './ButtonType'
 
-export const Button = ({ variant, disabled, children, onClick }: ButtonType) => {
+export const Button = ({ variant, disabled, children, onClick, className}: ButtonType) => {
   return (
-    <button className={variant} onClick={onClick} disabled={disabled}>
+    <button className={classNames(variant, className)} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   )
