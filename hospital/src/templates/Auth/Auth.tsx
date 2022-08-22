@@ -26,7 +26,7 @@ export const Auth = () => {
   }
 
   const formatPhoneNumber = (phoneNumberString: string) => {
-    const inintialString = phoneNumberString.slice(1)
+    const inintialString = phoneNumberString?.slice(1)
     const cleaned = ('' + inintialString).replace(/\D/g, '')
     const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
     if (match) {
@@ -44,14 +44,12 @@ export const Auth = () => {
       visible
       firstTitle="Security Is Very Important To Us."
       secondTitle={`We will now send secure verification correspondence to your cell phone number at ${formatPhoneNumber(
-        location.phone
+        location?.phone
       )}`}
       onFinish={onFinish}
       form={form}
     >
-      <Form.Item name="validation_code">
-        <Input.Code onChange={onChange} />
-      </Form.Item>
+      <Input.Code name="validation_code" onChange={onChange} />
       <div className="auth-button-wrapper">
         <Form.Item>
           <Button className="resend-button" variant="secondary">

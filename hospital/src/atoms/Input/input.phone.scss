@@ -1,0 +1,20 @@
+@import '/src/style/style.scss';
+
+.phone-wrapper{
+    .react-tel-input{
+        width: 328px;
+    }
+
+    .react-tel-input .form-control{
+        height: 56px;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid $core_50;
+    }
+
+    .react-tel-input .flag-dropdown{
+        border: none;
+        background: none;
+    }
+      
+}

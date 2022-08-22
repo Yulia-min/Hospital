@@ -1,7 +1,6 @@
 import { Default } from './input.default'
 import { Phone } from './input.phone'
 import { Code } from './input.code'
-import './Input.scss'
 import { InputType } from './InputType'
 import { TextArea } from './input.textArea'
 

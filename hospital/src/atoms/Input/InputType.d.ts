@@ -3,4 +3,5 @@ export type InputType = {
   onChange: (value: any) => void
   className?: string
   label?: string
+  name?: string
 }

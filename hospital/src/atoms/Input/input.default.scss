@@ -1,0 +1,42 @@
+@import '/src/style/style.scss';
+
+.default-input{
+    background: $white;
+    border: 1px solid $core_50;
+    border-radius: 2px;
+    width: 328px;
+    height: 56px;
+    outline: none;
+
+        &:focus{
+        background: $white;
+        border: 2px solid $primary_80;
+        border-radius: 2px;
+
+        &::placeholder{
+            color: $core_100;
+        }
+    }
+}
+
+.placeholder {
+    color: $core_70;
+    background: $white;
+    left: 20px;
+    font-size: 16px;
+    line-height: 20px;
+    position: absolute;
+    transition: transform 200ms, color 200ms;
+    top: 15px;
+}
+  
+.default-input:focus ~ .placeholder,
+.default-input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-25px) translateX(10px) scale(0.75);
+}
+
+.default-input:focus ~ .placeholder {
+    color: $primary_80;
+    font-size: 14px;
+    padding: 0 5px;
+}

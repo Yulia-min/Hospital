@@ -1,0 +1,28 @@
+@import '/src/style/style.scss';
+
+.text-field-input{
+    background: url("../../public/Arrow.svg") no-repeat 340px 90px;
+    border: 1px solid $core_50;
+    border-radius: 2px; 
+    width: 376px;
+    resize: none;
+    padding-right: 40px;
+  
+    &::placeholder{
+      position: absolute;
+      bottom: 10px;
+      font-family: 'Avenir';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: $core_50;
+    }
+  
+    &:focus{
+      background: url("../../public/ActiveArrow.svg") no-repeat 340px 90px;
+      &::placeholder{
+        color: $core_100;
+      }
+    }
+  }

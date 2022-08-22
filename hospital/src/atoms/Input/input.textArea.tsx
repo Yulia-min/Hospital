@@ -1,9 +1,10 @@
-import { Input } from 'antd'
+import { Form, Input } from 'antd'
 import { InputType } from './InputType'
+import './input.textArea.scss'
 
-export const TextArea = ({ value, onChange, label }: InputType) => {
+export const TextArea = ({ value, onChange, label, name }: InputType) => {
   return (
-    <div className="text-field-wrapper">
+    <Form.Item name={name}>
       <Input.TextArea
         value={value}
         onChange={onChange}
@@ -11,6 +12,6 @@ export const TextArea = ({ value, onChange, label }: InputType) => {
         placeholder={label}
         rows={5}
       />
-    </div>
+    </Form.Item>
   )
 }

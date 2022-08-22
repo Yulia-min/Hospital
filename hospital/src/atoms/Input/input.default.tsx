@@ -1,9 +1,10 @@
-import { Input } from 'antd'
+import { Form, Input } from 'antd'
 import { InputType } from './InputType'
+import './input.default.scss'
 
-export const Default = ({ value, onChange, label }: InputType) => {
+export const Default = ({ value, onChange, label, name }: InputType) => {
   return (
-    <div className="input-wrapper">
+    <Form.Item name={name}>
       <Input
         value={value}
         onChange={onChange}
@@ -14,6 +15,6 @@ export const Default = ({ value, onChange, label }: InputType) => {
       <label htmlFor="field" className="placeholder">
         {label}
       </label>
-    </div>
+    </Form.Item>
   )
 }

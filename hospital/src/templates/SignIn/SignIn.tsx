@@ -1,7 +1,7 @@
 import { Form } from 'antd'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Input } from 'src/atoms'
+import { Button, Input, Select } from 'src/atoms'
 import { requestSignIn } from 'src/constants/Api/SignIn/SignIn'
 import { FormDataSignIn } from 'src/constants/Api/SignIn/SignIn.d'
 import { LoginForm } from 'src/organisms'
@@ -33,6 +33,41 @@ export const SignIn = () => {
       navigate('/auth', { state: { phone: values.phone_number } })
     })
   }
+
+  const options=[
+    {
+      value: 'aaa',
+      label: 'sss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    },
+    {
+      value: 'aasa',
+      label: 'ssss'
+    }
+  ]
   return (
     <LoginForm
       visible
@@ -41,9 +76,7 @@ export const SignIn = () => {
       onFinish={onFinish}
       form={form}
     >
-      <Form.Item name="phone_number">
-        <Input.Phone value={phone} onChange={onChange} />
-      </Form.Item>
+      <Input.Phone name="phone_number" value={phone} onChange={onChange} />
       <div className="login-button-wrapper">
         <Form.Item>
           <Button variant="primary">Next</Button>
