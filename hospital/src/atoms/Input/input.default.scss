@@ -1,42 +1,43 @@
 @import '/src/style/style.scss';
 
-.default-input{
-    background: $white;
-    border: 1px solid $core_50;
-    border-radius: 2px;
-    width: 328px;
-    height: 56px;
-    outline: none;
-
-        &:focus{
-        background: $white;
-        border: 2px solid $primary_80;
+.input-wrapper {
+    .default-input {
+        width:328px;
+        height: 56px;
+        border: 1px solid #98A1AE;
         border-radius: 2px;
-
-        &::placeholder{
-            color: $core_100;
+        .ant-input {
+            &:focus + .ant-input-suffix, &:not(:placeholder-shown) + .ant-input-suffix {
+                .floating-label {
+                    transform: translate3d(10px, -25px, 0);
+                    color: rgba(0, 0, 0, .7);
+                }
+            }
         }
     }
-}
 
-.placeholder {
-    color: $core_70;
-    background: $white;
-    left: 20px;
-    font-size: 16px;
-    line-height: 20px;
-    position: absolute;
-    transition: transform 200ms, color 200ms;
-    top: 15px;
-}
-  
-.default-input:focus ~ .placeholder,
-.default-input:not(:placeholder-shown) ~ .placeholder {
-    transform: translateY(-25px) translateX(10px) scale(0.75);
-}
+    .ant-input-suffix {
+        .floating-label {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            padding: 0 2px;
+            transition: all 200ms;
+            background: #fff;
+            color: #98A1AE;
+            line-height: 25px;
+            transform: translate3d(0, 0, 0);
+        }
+    }
 
-.default-input:focus ~ .placeholder {
-    color: $primary_80;
-    font-size: 14px;
-    padding: 0 5px;
+    .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled){
+        &:hover{
+            border: 1px solid #98A1AE;
+        }
+    }
+
+    .ant-input-affix-wrapper-focused{
+        box-shadow: none;
+        border: 1px solid #1E427B;
+    }
 }

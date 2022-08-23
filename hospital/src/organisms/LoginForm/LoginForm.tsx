@@ -16,11 +16,9 @@ export const LoginForm = ({
     <Modal visible={visible}>
       <Typography.Headline4 className="modal-title">{firstTitle}</Typography.Headline4>
       <Typography.Subtitle1 className="modal-description">{secondTitle}</Typography.Subtitle1>
-      <div className="form-container">
-        <Form form={form} onFinish={onFinish}>
-          {children}
-        </Form>
-      </div>
+      <Form className="form-container" form={form} onFinish={onFinish}>
+        {children}
+      </Form>
     </Modal>
   )
 }

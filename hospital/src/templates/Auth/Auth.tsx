@@ -49,15 +49,13 @@ export const Auth = () => {
       onFinish={onFinish}
       form={form}
     >
-      <Input.Code name="validation_code" onChange={onChange} />
-      <div className="auth-button-wrapper">
-        <Form.Item>
-          <Button className="resend-button" variant="secondary">
-            Resend
-          </Button>
-          <Button variant="primary">Next</Button>
-        </Form.Item>
-      </div>
+      <Input.Code className="input-code" name="validation_code" onChange={onChange} />
+      <Form.Item className="auth-button wrapper">
+        <Button className="resend-button" variant="secondary">
+          Resend
+        </Button>
+        <Button variant="primary">Next</Button>
+      </Form.Item>
     </LoginForm>
   )
 }

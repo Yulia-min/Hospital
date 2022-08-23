@@ -34,40 +34,6 @@ export const SignIn = () => {
     })
   }
 
-  const options=[
-    {
-      value: 'aaa',
-      label: 'sss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    },
-    {
-      value: 'aasa',
-      label: 'ssss'
-    }
-  ]
   return (
     <LoginForm
       visible
@@ -76,12 +42,10 @@ export const SignIn = () => {
       onFinish={onFinish}
       form={form}
     >
-      <Input.Phone name="phone_number" value={phone} onChange={onChange} />
-      <div className="login-button-wrapper">
-        <Form.Item>
-          <Button variant="primary">Next</Button>
-        </Form.Item>
-      </div>
+      <Input.Phone className="input-phone" name="phone_number" value={phone} onChange={onChange} />
+      <Form.Item className="login-button wrapper">
+        <Button variant="primary">Next</Button>
+      </Form.Item>
     </LoginForm>
   )
 }

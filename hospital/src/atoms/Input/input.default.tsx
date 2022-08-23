@@ -4,17 +4,18 @@ import './input.default.scss'
 
 export const Default = ({ value, onChange, label, name }: InputType) => {
   return (
-    <Form.Item name={name}>
+    <Form.Item name={name} className="input-wrapper">
       <Input
         value={value}
         onChange={onChange}
-        id="field"
         className="default-input"
-        placeholder=" "
+        placeholder="."
+        suffix={
+          <label className="floating-label" htmlFor="name">
+            {label}
+          </label>
+        }
       />
-      <label htmlFor="field" className="placeholder">
-        {label}
-      </label>
     </Form.Item>
   )
 }

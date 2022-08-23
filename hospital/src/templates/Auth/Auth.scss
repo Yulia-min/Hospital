@@ -1,8 +1,13 @@
-.auth-button-wrapper{
+.auth-button.wrapper{
     display: flex;
     justify-content: space-around;
+
+    .resend-button{
+        margin-right: 30px;
+    }
 }
 
-.resend-button{
-    margin-right: 30px;
+.input-code{
+    display: flex;
+    justify-content: center;
 }
