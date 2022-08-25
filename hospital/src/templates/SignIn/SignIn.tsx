@@ -2,8 +2,8 @@ import { Form } from 'antd'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Input, Select } from 'src/atoms'
-import { requestSignIn } from 'src/constants/Api/SignIn/SignIn'
-import { FormDataSignIn } from 'src/constants/Api/SignIn/SignIn.d'
+import { requestSignIn } from 'src/api/SignIn/SignIn'
+import { FormDataSignIn } from 'src/api/SignIn/SignIn.d'
 import { LoginForm } from 'src/organisms'
 import './SignIn.scss'
 
@@ -44,7 +44,9 @@ export const SignIn = () => {
     >
       <Input.Phone className="input-phone" name="phone_number" value={phone} onChange={onChange} />
       <Form.Item className="login-button wrapper">
-        <Button variant="primary">Next</Button>
+        <Button htmlType="submit" variant="primary">
+          Next
+        </Button>
       </Form.Item>
     </LoginForm>
   )

@@ -1,18 +1,18 @@
-import { Checkbox, Select as DefaultSelect } from 'antd'
+import { Checkbox, Form, Select as DefaultSelect } from 'antd'
 import './select.multy.scss'
 import { ReactComponent as SelectArrow } from 'src/public/selectArrow.svg'
 import { SelectType } from './SelectType'
 
-export const Multi = ({ onChange, options, placeholder }: SelectType) => {
+export const Multi = ({ onChange, options, placeholder, name }: SelectType) => {
   return (
-    <div className="select-wrapper">
+    <Form.Item className="select-wrapper" name={name}>
       <DefaultSelect
         suffixIcon={<SelectArrow />}
         showArrow
         showSearch={false}
         menuItemSelectedIcon={<Checkbox checked />}
-        className="select-default"
         mode="multiple"
+        dropdownClassName="dropdown-wrapper"
         placeholder={placeholder}
         onChange={onChange}
       >
@@ -23,6 +23,6 @@ export const Multi = ({ onChange, options, placeholder }: SelectType) => {
           </DefaultSelect.Option>
         ))}
       </DefaultSelect>
-    </div>
+    </Form.Item>
   )
 }

@@ -1,0 +1,69 @@
+@import '/src/style/style.scss';
+
+.card{
+    &-container{
+        border: 1px solid $core_30;
+        border-radius: 2px;
+        background: $white;
+        height: 529px;
+        margin-right: 24px;
+    }
+
+    &-header{
+        display: flex;
+        justify-content: space-between;
+        margin: 44px 20px 25px 20px;
+
+        &_isgrouped{
+            color: $core_70;
+            letter-spacing: 0.1px;
+            text-transform: capitalize;
+            margin-top: 5px;
+        }
+    }
+
+    &-body{
+        &_urgency{
+            margin: 0 0 16px 12px;
+        }
+        &_info{
+            display: flex;
+            margin-left: 20px;
+
+            &_title{
+                color: $core_70;
+            }
+
+            &_description{
+                color: $core_100;
+                margin: 0 0 0 8px;
+            }
+        }
+        &_patientname{
+            margin: 42px 0 42px 88px;
+        }
+    }
+
+    &-line{
+        height: 1px;
+        background: $core_30;
+        width: 90%;
+        margin: 0 auto;
+    }
+    &-doctor{
+        color: $core_70;
+        margin: 30px 0 0 20px;
+    }
+    &-doctorinfo{
+        display: flex;
+        margin: 16px 0 0 20px;
+        &_name{
+            margin: 10px 0 0 20px
+        }
+    }
+
+    &-button{
+        display: flex;
+        margin: 40px 0 52px 65%;
+    }
+}

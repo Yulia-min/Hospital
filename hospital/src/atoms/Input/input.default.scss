@@ -1,16 +1,16 @@
 @import '/src/style/style.scss';
 
 .input-wrapper {
-    .default-input {
+    .ant-input-affix-wrapper {
         width:328px;
         height: 56px;
-        border: 1px solid #98A1AE;
+        border: 1px solid $core_50;;
         border-radius: 2px;
         .ant-input {
             &:focus + .ant-input-suffix, &:not(:placeholder-shown) + .ant-input-suffix {
                 .floating-label {
                     transform: translate3d(10px, -25px, 0);
-                    color: rgba(0, 0, 0, .7);
+                    color: $primary_80;
                 }
             }
         }
@@ -23,8 +23,8 @@
             left: 5px;
             padding: 0 2px;
             transition: all 200ms;
-            background: #fff;
-            color: #98A1AE;
+            background: $white;
+            color: $core_50;
             line-height: 25px;
             transform: translate3d(0, 0, 0);
         }
@@ -32,12 +32,12 @@
 
     .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled){
         &:hover{
-            border: 1px solid #98A1AE;
+            border: 1px solid $core_50;
         }
     }
 
     .ant-input-affix-wrapper-focused{
         box-shadow: none;
-        border: 1px solid #1E427B;
+        border: 1px solid $primary_80;
     }
 }

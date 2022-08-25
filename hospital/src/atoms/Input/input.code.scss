@@ -1,6 +1,7 @@
 @import '/src/style/style.scss';
 
-.code-input{
+.code-wrapper{
+  input{
     height: 56px;
     border: none;
     border-bottom: 1px solid $core_50;
@@ -15,3 +16,4 @@
     line-height: 28px;
     color: $core_100;
   }
+}

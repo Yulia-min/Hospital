@@ -2,7 +2,7 @@
 
 
 .select-wrapper{
-    .select-default{
+    .ant-select.ant-select-in-form-item{
         width: 328px;
         border: 1px solid $core_50;
         border-radius: 2px;
@@ -39,13 +39,13 @@
         height: 56px;
     }
     
-    .select-default .ant-select-selection-item {
+    .ant-select.ant-select-in-form-item .ant-select-selection-item {
         border-radius: 16px;
     }
     
     .ant-select-single.ant-select-show-arrow .ant-select-selection-item,
     .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder{
-        margin-top: 10px;
+        margin-top: 11px;
     }
     
     .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
@@ -65,24 +65,30 @@
         
 }
 
-.ant-select-item-option-content{
-    margin-left: 5%;
+.dropdown-wrapper{
+    .ant-select-item-option-content{
+        margin-left: 5%;
+    }
+
+    .ant-select-item-option{
+        height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .ant-checkbox-wrapper{
+        position: absolute;
+        left: 5px;
+        bottom: 12.5px;
+    }
+    
+    .ant-checkbox-checked .ant-checkbox-inner{
+        width: 18px;
+        height: 18px;
+        background: $primary_80;
+    }
 }
 
-.ant-select-item-option{
-    height: 48px;
-    display: flex;
-    align-items: center;
-}
 
-.ant-checkbox-wrapper{
-    position: absolute;
-    left: 5px;
-    bottom: 12.5px;
-}
 
-.ant-checkbox-checked .ant-checkbox-inner{
-    width: 18px;
-    height: 18px;
-    background: $primary_80;
-}
+

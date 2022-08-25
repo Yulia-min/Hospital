@@ -1,5 +1,6 @@
 export type SelectType = {
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
   options: { value: string; label: string }[]
-  placeholder: string
+  placeholder?: string
+  name?: string
 }

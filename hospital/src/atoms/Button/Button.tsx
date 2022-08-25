@@ -1,11 +1,24 @@
 import classNames from 'classnames'
+import { Button as DefaultButton } from 'antd'
 import './Button.scss'
 import { ButtonType } from './ButtonType'
 
-export const Button = ({ variant, disabled, children, onClick, className }: ButtonType) => {
+export const Button = ({
+  variant,
+  disabled,
+  children,
+  onClick,
+  className,
+  htmlType
+}: ButtonType) => {
   return (
-    <button className={classNames(variant, className)} onClick={onClick} disabled={disabled}>
+    <DefaultButton
+      htmlType={htmlType}
+      className={classNames(variant, className)}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
-    </button>
+    </DefaultButton>
   )
 }

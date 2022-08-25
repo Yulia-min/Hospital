@@ -1,0 +1,28 @@
+@import '/src/style/style.scss';
+
+.header{
+    &-wrapper{
+        margin-bottom: 40px;
+    }
+    &-info{
+        margin: 15px 17px 15px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_title{
+            color: $core_70;
+        }
+
+        &_icons{
+            .notification{
+                margin: 0 25px 3px 0;
+            }
+        }
+    }
+
+    &-line{
+        height: 1px;
+        background: #DDE0E4;
+    }
+}

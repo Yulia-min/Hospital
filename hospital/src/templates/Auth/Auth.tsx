@@ -1,8 +1,8 @@
 import { Form } from 'antd'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button, Input } from 'src/atoms'
-import { requestAuthCode } from 'src/constants/Api/SignIn/SignIn'
-import { FormDataAuthCode } from 'src/constants/Api/SignIn/SignIn.d'
+import { requestAuthCode } from 'src/api/SignIn/SignIn'
+import { FormDataAuthCode } from 'src/api/SignIn/SignIn.d'
 import { LoginForm } from 'src/organisms'
 import { LocationType } from './AuthType'
 import { useState } from 'react'
@@ -10,6 +10,8 @@ import './Auth.scss'
 
 export const Auth = () => {
   const [form] = Form.useForm()
+
+  const navigate = useNavigate()
 
   const [, setResult] = useState<string>()
 
@@ -21,7 +23,7 @@ export const Auth = () => {
       requestAuthCode({ ...values, user_uuid }).then((resp) => {
         localStorage.setItem('access', resp.data.access)
         localStorage.setItem('refresh', resp.data.refresh)
-        alert('Success')
+        navigate('/visits-list')
       })
   }
 
@@ -54,7 +56,9 @@ export const Auth = () => {
         <Button className="resend-button" variant="secondary">
           Resend
         </Button>
-        <Button variant="primary">Next</Button>
+        <Button htmlType="submit" variant="primary">
+          Next
+        </Button>
       </Form.Item>
     </LoginForm>
   )

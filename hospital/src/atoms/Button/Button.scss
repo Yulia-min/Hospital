@@ -1,16 +1,15 @@
 @import '/src/style/style.scss';
 
 .primary{
-    width: 124px;
     height: 36px;
     background: $primary_80;
     border: 1px solid $primary_80;
     border-radius: 2px; 
     color: $white;
     cursor: pointer;
-
     &:hover{
         background: $primary_70;
+        color: $white;
     }
 
     &:active{
@@ -23,7 +22,6 @@
 }
 
 .secondary{
-    width: 124px;
     height: 36px;
     background: $primary_10;
     border: 1px solid $primary_80;
@@ -56,7 +54,6 @@
     color: $primary_80;
     letter-spacing: 0.75px;
     text-transform: uppercase;  
-    width: 79px;
     height: 32px;
     cursor: pointer;
 
@@ -78,7 +75,6 @@
 }
 
 .icon{
-    width: 40px;
     height: 36px;
     background: $primary_10;
     border: 1px solid $primary_80;

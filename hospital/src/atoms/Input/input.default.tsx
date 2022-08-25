@@ -8,7 +8,6 @@ export const Default = ({ value, onChange, label, name }: InputType) => {
       <Input
         value={value}
         onChange={onChange}
-        className="default-input"
         placeholder="."
         suffix={
           <label className="floating-label" htmlFor="name">

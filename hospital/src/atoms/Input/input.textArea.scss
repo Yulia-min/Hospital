@@ -1,6 +1,7 @@
 @import '/src/style/style.scss';
 
-.text-field-input{
+.text-field-wrapper{
+  .ant-input{
     background: url("../../public/Arrow.svg") no-repeat 340px 90px;
     border: 1px solid $core_50;
     border-radius: 2px; 
@@ -26,3 +27,4 @@
       }
     }
   }
+}
