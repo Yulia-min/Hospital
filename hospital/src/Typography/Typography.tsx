@@ -1,12 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import './Typography.scss'
-
-export type TypographyType = {
-  children: React.ReactNode
-  className?: string
-  uppercase?: string
-}
+import { TypographyType } from './TypographyType'
 
 export const Headline1 = ({ children, className, uppercase }: TypographyType) => (
   <div className={cn('typography typography-h1', { uppercase }, className)}>{children}</div>
