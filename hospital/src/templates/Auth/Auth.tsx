@@ -44,21 +44,21 @@ export const Auth = () => {
   return (
     <LoginForm
       visible
-      firstTitle="Security Is Very Important To Us."
-      secondTitle={`We will now send secure verification correspondence to your cell phone number at ${formatPhoneNumber(
+      title="Security Is Very Important To Us."
+      subtitle={`We will now send secure verification correspondence to your cell phone number at ${formatPhoneNumber(
         location?.phone
       )}`}
       onFinish={onFinish}
       form={form}
     >
-      <Input.Code className="input-code" name="validation_code" onChange={onChange} />
+      <Input.Code name="validation_code" onChange={onChange} />
       <Form.Item className="auth-button wrapper">
-        <Button className="resend-button" variant="secondary">
+        <Button.Default className="resend-button" variant="secondary">
           Resend
-        </Button>
-        <Button htmlType="submit" variant="primary">
+        </Button.Default>
+        <Button.Default htmlType="submit" variant="primary">
           Next
-        </Button>
+        </Button.Default>
       </Form.Item>
     </LoginForm>
   )

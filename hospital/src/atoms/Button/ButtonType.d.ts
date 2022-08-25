@@ -1,5 +1,5 @@
 export type ButtonType = {
-  variant: 'primary' | 'secondary' | 'text' | 'icon'
+  variant: 'primary' | 'secondary' | 'text'
   disabled?: boolean
   onClick?: () => void
   children: React.ReactNode

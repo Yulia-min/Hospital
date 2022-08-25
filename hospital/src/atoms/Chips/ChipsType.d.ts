@@ -1,5 +1,6 @@
 export type ChipsType = {
-  variant: 'symptom' | 'request'
+  variant?: 'symptom' | 'request'
   children: React.ReactNode
   className?: string
+  onClick?: () => void
 }

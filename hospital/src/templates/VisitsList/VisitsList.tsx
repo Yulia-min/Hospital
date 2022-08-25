@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Button, Select } from 'src/atoms'
-import { Cards } from 'src/organisms'
+import { RequestCards } from 'src/organisms'
 import { requestCardsInfo } from 'src/redux/cards/actions'
 import { getCardsInfo } from 'src/redux/cards/selectors'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
@@ -20,14 +20,14 @@ export const VisitsList = () => {
     dispatch(requestCardsInfo())
   }, [])
 
-  const CardsList = ({ columnIndex, data, rowIndex, style }: any) => {
+  const RequestCardsList = ({ columnIndex, data, rowIndex, style }: any) => {
     const { cards, columnCount } = data
     const singleColumnIndex = columnIndex + rowIndex * columnCount
     const card = cards[singleColumnIndex]
     return (
       <div style={style}>
         {card && (
-          <Cards
+          <RequestCards
             uuid={card.uuid}
             is_grouped={card.is_grouped}
             status={card.service_request_status}
@@ -46,7 +46,7 @@ export const VisitsList = () => {
     )
   }
 
-  const renderCardsGrid = () => {
+  const renderRequestCardsGrid = () => {
     const width =
       window.innerWidth > 1600
         ? 1700
@@ -71,7 +71,7 @@ export const VisitsList = () => {
         width={width}
         itemData={{ cards, columnCount }}
       >
-        {CardsList}
+        {RequestCardsList}
       </Grid>
     )
   }
@@ -84,12 +84,12 @@ export const VisitsList = () => {
         </Typography.Headline1>
         <div className="visits-select-container">
           <Select.Single placeholder="Select request type" options={REQUEST_TYPE} />
-          <Button variant="primary" className="request-button">
+          <Button.Default variant="primary" className="request-button">
             <Typography.Button2>Yes, Make a request</Typography.Button2>
-          </Button>
+          </Button.Default>
         </div>
         <Typography.Headline2 className="visits-list">List of Visits</Typography.Headline2>
-        {renderCardsGrid()}
+        {renderRequestCardsGrid()}
       </div>
     </>
   )

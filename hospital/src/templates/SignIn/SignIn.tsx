@@ -1,7 +1,7 @@
 import { Form } from 'antd'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Input, Select } from 'src/atoms'
+import { Button, Input } from 'src/atoms'
 import { requestSignIn } from 'src/api/SignIn/SignIn'
 import { FormDataSignIn } from 'src/api/SignIn/SignIn.d'
 import { LoginForm } from 'src/organisms'
@@ -37,16 +37,16 @@ export const SignIn = () => {
   return (
     <LoginForm
       visible
-      firstTitle="Please Enter Your Cell Phone Number Below"
-      secondTitle="This will allow us to safely and securely manage your pre-registration account"
+      title="Please Enter Your Cell Phone Number Below"
+      subtitle="This will allow us to safely and securely manage your pre-registration account"
       onFinish={onFinish}
       form={form}
     >
-      <Input.Phone className="input-phone" name="phone_number" value={phone} onChange={onChange} />
+      <Input.Phone name="phone_number" value={phone} onChange={onChange} />
       <Form.Item className="login-button wrapper">
-        <Button htmlType="submit" variant="primary">
+        <Button.Default htmlType="submit" variant="primary">
           Next
-        </Button>
+        </Button.Default>
       </Form.Item>
     </LoginForm>
   )

@@ -1,7 +1,7 @@
-import classNames from 'classnames'
-import './Chips.scss'
-import { ChipsType } from './ChipsType'
+import { Default } from './chips.default'
+import { Interactive } from './chips.interactive'
 
-export const Chips = ({ variant, children, className }: ChipsType) => {
-  return <span className={classNames('chips', variant, className)}>{children}</span>
-}
+export const Chips = () => 'Please, provide name component'
+
+Chips.Default = Default
+Chips.Interactive = Interactive

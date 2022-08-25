@@ -5,52 +5,54 @@
     text-transform: capitalize;
     padding: 4px 24px;
     
+    &.visits{
+        border-radius: 40px;
+        letter-spacing: 0.15px;
+        font-family: 'Google Sans';
+    }
+    
+    &.emr{
+        font-family: 'Avenir';
+        border-radius: 50px;
+        letter-spacing: 0.25px;
+    }
+    
+    &.complete{
+        background: $primary_30;
+        color: $success_dark;
+    
+    }
+    
+    &.incomplete{
+        background: $warning_light;
+        color: $warning_dark;
+    }
+    
+    &.unassigned{
+        background: $error_light_1;
+        color: $error_dark;
+    }
+    
+    &.assigned{
+        color: $white;
+        background: $primary_80;
+    }
+    
+    &.pending{
+        border: 1px solid $primary_80;
+        background: $primary_20;
+        color: $primary_80;
+    }
+    
+    &.declined{
+        background: $core_40;
+        color: $white;
+    }
+    
+    &.competed{
+        background: $primary_50;
+        color: $white;
+    }
 }
 
-.visits{
-    border-radius: 40px;
-    letter-spacing: 0.15px;
-    font-family: 'Google Sans';
-}
 
-.emr{
-    border-radius: 50px;
-    letter-spacing: 0.25px;
-}
-
-.complete{
-    background: $primary_30;
-    color: $success_dark;
-
-}
-
-.incomplete{
-    background: $warning_light;
-    color: $warning_dark;
-}
-
-.unassigned{
-    background: $error_light_1;
-    color: $error_dark;
-}
-
-.assigned{
-    color: $white;
-    background: $primary_80;
-}
-
-.pending{
-    border: 1px solid $primary_80;
-    background: $primary_20;
-    color: $primary_80;
-}
-
-.declined{
-    background: $core_40;
-    color: $white;
-}
-
-.competed{
-    background: $primary_50;
-    color: $white;
-}

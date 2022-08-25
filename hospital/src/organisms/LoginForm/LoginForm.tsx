@@ -6,17 +6,17 @@ import './LoginForm.scss'
 
 export const LoginForm = ({
   visible,
-  firstTitle,
-  secondTitle,
+  title,
+  subtitle,
   form,
   onFinish,
   children
 }: LoginFormType) => {
   return (
-    <Modal visible={visible}>
-      <Typography.Headline4 className="modal-title">{firstTitle}</Typography.Headline4>
-      <Typography.Subtitle1 className="modal-description">{secondTitle}</Typography.Subtitle1>
-      <Form className="form-container" form={form} onFinish={onFinish}>
+    <Modal visible={visible} className="modal">
+      <Typography.Headline4 className="modal-title">{title}</Typography.Headline4>
+      <Typography.Subtitle1 className="modal-description">{subtitle}</Typography.Subtitle1>
+      <Form className="modal-form" form={form} onFinish={onFinish}>
         {children}
       </Form>
     </Modal>

@@ -1,10 +1,11 @@
 import { Status, Chips, Button } from 'src/atoms'
 import { Typography } from 'src/Typography'
 import { ReactComponent as Doctor } from 'src/public/Doctor.svg'
-import './Cards.scss'
-import { CardsType } from './CardsType'
+import './RequestCards.scss'
+import { RequestCardsType } from './RequestCardsType'
+import { STATUS_VARIANTS } from 'src/constants'
 
-export const Cards = ({
+export const RequestCards = ({
   uuid,
   is_grouped,
   status,
@@ -13,27 +14,17 @@ export const Cards = ({
   patient_name,
   doctor_name,
   time
-}: CardsType) => {
+}: RequestCardsType) => {
   return (
     <div key={uuid} className="card-container">
       <div className="card-header">
         <Typography.Subtitle2 className="card-header_isgrouped">
           {is_grouped ? 'Group' : 'Single'} request
         </Typography.Subtitle2>
-        {status === 'Pending' || status === 'In progress' ? (
-          <Status variant="pending" type="visits" children={status} />
-        ) : status === 'Request completed' || status === 'Visit completed' ? (
-          <Status variant="competed" type="visits" children={status} />
-        ) : status === 'Declined' ? (
-          <Status variant="declined" type="visits" children={status} />
-        ) : status === 'Assigned' ? (
-          <Status variant="assigned" type="visits" children={status} />
-        ) : (
-          ''
-        )}
+        <Status variant={STATUS_VARIANTS[status]} type="visits" children={status} />
       </div>
       <div className="card-body">
-        <Chips className="card-body_urgency" variant="request" children={urgency} />
+        <Chips.Default className="card-body_urgency" variant="request" children={urgency} />
         <div className="card-body_info">
           <Typography.Subtitle1 className="card-body_info_title">Type:</Typography.Subtitle1>
           <Typography.Subtitle1 className="card-body_info_description">
@@ -58,9 +49,9 @@ export const Cards = ({
               {doctor_name}
             </Typography.Subtitle1>
           </div>
-          <Button variant="text" className="card-button">
+          <Button.Default variant="text" className="card-button">
             <Typography.Button2>Open Details</Typography.Button2>
-          </Button>
+          </Button.Default>
         </>
       )}
     </div>

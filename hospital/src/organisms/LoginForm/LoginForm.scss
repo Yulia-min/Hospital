@@ -1,17 +1,19 @@
 @import '/src/style/style.scss';
 
-.modal-title{
-    color: $core_100;
+.modal{
+    &-title{
+        color: $core_100;
+    }
+
+    &-description{
+        margin-top: 15px;
+        color: $core_60;
+    }
+
+    &-form{
+        margin: 20px 10% 40px 15%;
+    }
 }
 
-.modal-description{
-    margin-top: 15px;
-    color: $core_60;
-}
 
-.form-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 15px;
-}
+
