@@ -3,10 +3,10 @@ import { InputType } from './InputType'
 import './input.textArea.scss'
 import cn from 'classnames'
 
-export const TextArea = ({ propsItem, className }: InputType) => {
+export const TextArea = ({ propsTextArea, propsItem, className, row }: InputType) => {
   return (
     <Form.Item {...propsItem} className={cn('text-field-wrapper', className)}>
-      <Input.TextArea rows={5} />
+      <Input.TextArea {...propsTextArea} rows={row} />
     </Form.Item>
   )
 }

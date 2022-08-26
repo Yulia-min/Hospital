@@ -49,7 +49,7 @@ export const Auth = () => {
         <Button.Default className="resend-button" variant="secondary">
           Resend
         </Button.Default>
-        <Button.Default propsButton={{ htmlType: 'submit' }} variant="primary">
+        <Button.Default htmlType="submit" variant="primary">
           Next
         </Button.Default>
       </Form.Item>

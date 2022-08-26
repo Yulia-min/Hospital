@@ -1,10 +1,9 @@
 import { Default } from './input.default'
 import { Phone } from './input.phone'
 import { Code } from './input.code'
-import { InputType } from './InputType'
 import { TextArea } from './input.textArea'
 
-export const Input = ({ ...props }: InputType) => <Default {...props} />
+export const Input = () => 'Please, provide name component'
 
 Input.Default = Default
 Input.Phone = Phone

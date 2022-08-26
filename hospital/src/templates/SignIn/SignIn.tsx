@@ -39,7 +39,7 @@ export const SignIn = () => {
     >
       <Input.Phone propsItem={{ name: 'phone_number' }} />
       <Form.Item className="login-button wrapper">
-        <Button.Default propsButton={{ htmlType: 'submit' }} variant="primary">
+        <Button.Default htmlType="submit" variant="primary">
           Next
         </Button.Default>
       </Form.Item>

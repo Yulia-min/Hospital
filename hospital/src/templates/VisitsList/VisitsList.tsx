@@ -91,11 +91,7 @@ export const VisitsList = () => {
             options={REQUEST_TYPE}
           />
           <Form.Item>
-            <Button.Default
-              propsButton={{ htmlType: 'submit' }}
-              variant="primary"
-              className="request-button"
-            >
+            <Button.Default htmlType="submit" variant="primary" className="request-button">
               <Typography.Button2>Yes, Make a request</Typography.Button2>
             </Button.Default>
           </Form.Item>
