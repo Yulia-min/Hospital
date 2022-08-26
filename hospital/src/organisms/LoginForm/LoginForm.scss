@@ -1,16 +1,16 @@
 @import '/src/style/style.scss';
 
 .modal{
-    &-title{
+    &__title{
         color: $core_100;
     }
 
-    &-description{
+    &__description{
         margin-top: 15px;
         color: $core_60;
     }
 
-    &-form{
+    &__form{
         margin: 20px 10% 40px 15%;
     }
 }

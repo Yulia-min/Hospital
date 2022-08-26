@@ -1,10 +1,11 @@
 @import '/src/style/style.scss';
 
-.visits{
-    &-wrapper{
-    margin-left: 5%;
+.visits-list{
+    &.wrapper{
+        margin-left: 5%;
+    }
 
-    .grid{
+    &__layout{
         &::-webkit-scrollbar {
             width: 10px;
           }
@@ -19,14 +20,13 @@
             background: $core_40;
           }
     }
-    }
 
-    &-title{
+    &__title{
         margin: 0 0 24px;
         color: $core_100;
     }
     
-    &-select-container{
+    &__form{
         display: flex;
         flex-wrap: wrap;
     
@@ -35,11 +35,9 @@
         }
     }
 
-    &-list{
+    &__subtitle{
         margin-bottom: 32px;
     }
-
-
 }
 
 

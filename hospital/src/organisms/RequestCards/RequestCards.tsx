@@ -1,10 +1,9 @@
-import { Status, Chips, Button, Input } from 'src/atoms'
+import { Status, Chips, Button } from 'src/atoms'
 import { Typography } from 'src/Typography'
 import { ReactComponent as Doctor } from 'src/public/Doctor.svg'
 import './RequestCards.scss'
 import { RequestCardsType } from './RequestCardsType'
 import { STATUS_VARIANTS } from 'src/constants'
-import { Form } from 'antd'
 
 export const RequestCards = ({
   uuid,
@@ -17,40 +16,40 @@ export const RequestCards = ({
   time
 }: RequestCardsType) => {
   return (
-    <div key={uuid} className="card-container">
-      <div className="card-header">
-        <Typography.Subtitle2 className="card-header_isgrouped">
+    <div key={uuid} className="request-card container">
+      <div className="request-card__header">
+        <Typography.Subtitle2 className="request-card__request-type">
           {is_grouped ? 'Group' : 'Single'} request
         </Typography.Subtitle2>
         <Status variant={STATUS_VARIANTS[status]} type="visits" children={status} />
       </div>
-      <div className="card-body">
-        <Chips.Default className="card-body_urgency" variant="request" children={urgency} />
-        <div className="card-body_info">
-          <Typography.Subtitle1 className="card-body_info_title">Type:</Typography.Subtitle1>
-          <Typography.Subtitle1 className="card-body_info_description">
-            {service}
-          </Typography.Subtitle1>
-        </div>
-        <div className="card-body_info">
-          <Typography.Subtitle1 className="card-body_info_title">Time:</Typography.Subtitle1>
-          <Typography.Subtitle1 className="card-body_info_description">{time}</Typography.Subtitle1>
-        </div>
-        <Typography.Subtitle1 className="card-body_patientname">
-          {patient_name}
+      <Chips.Default className="request-card__urgency" variant="request" children={urgency} />
+      <div className="request-card__body">
+        <Typography.Subtitle1 className="request-card__body-title">Type:</Typography.Subtitle1>
+        <Typography.Subtitle1 className="request-card__body-description">
+          {service}
         </Typography.Subtitle1>
       </div>
+      <div className="request-card__body">
+        <Typography.Subtitle1 className="request-card__body-title">Time:</Typography.Subtitle1>
+        <Typography.Subtitle1 className="request-card__body-description">
+          {time}
+        </Typography.Subtitle1>
+      </div>
+      <Typography.Subtitle1 className="request-card__patient-name">
+        {patient_name}
+      </Typography.Subtitle1>
       {!!doctor_name && (
         <>
-          <div className="card-line" />
-          <Typography.Subtitle2 className="card-doctor">Doctor</Typography.Subtitle2>
-          <div className="card-doctorinfo">
+          <div className="request-card__line" />
+          <Typography.Subtitle2 className="request-card__footer-title">Doctor</Typography.Subtitle2>
+          <div className="request-card__footer-info">
             <Doctor />
-            <Typography.Subtitle1 className="card-doctorinfo_name">
+            <Typography.Subtitle1 className="request-card__doctor-name">
               {doctor_name}
             </Typography.Subtitle1>
           </div>
-          <Button.Default variant="text" className="card-button">
+          <Button.Default variant="text" className="request-card__button">
             <Typography.Button2>Open Details</Typography.Button2>
           </Button.Default>
         </>

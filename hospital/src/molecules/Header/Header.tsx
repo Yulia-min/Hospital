@@ -6,16 +6,16 @@ import './Header.scss'
 
 export const Header = () => {
   return (
-    <div className="header-wrapper">
-      <div className="header-info">
+    <div className="main-header wrapper">
+      <div className="main-header__info">
         <Logo />
-        <Typography.Subtitle1 className="header-info_title">Shedule</Typography.Subtitle1>
-        <div className="header-info_icons">
+        <Typography.Subtitle1 className="main-header__title">Shedule</Typography.Subtitle1>
+        <div className="main-header__icons">
           <Notification className="notification" />
           <Profile />
         </div>
       </div>
-      <div className="header-line" />
+      <div className="main-header__line" />
     </div>
   )
 }

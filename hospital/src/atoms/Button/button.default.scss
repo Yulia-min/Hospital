@@ -1,13 +1,12 @@
 @import '/src/style/style.scss';
 
 .default-button{
+    cursor: pointer;
     &.primary{
-        height: 36px;
         background: $primary_80;
         border: 1px solid $primary_80;
         border-radius: 2px; 
         color: $white;
-        cursor: pointer;
         &:hover{
             background: $primary_70;
             color: $white;
@@ -23,13 +22,11 @@
     }
 
     &.secondary{
-        height: 36px;
         background: $primary_10;
         border: 1px solid $primary_80;
         border-radius: 2px;
         color: $primary_80;
-        cursor: pointer;
-    
+
         &:hover{
             background: $primary_20;
             border: 1px solid $primary_70;
@@ -55,8 +52,6 @@
         color: $primary_80;
         letter-spacing: 0.75px;
         text-transform: uppercase;  
-        height: 32px;
-        cursor: pointer;
     
         &:hover{
             background: $primary_20;

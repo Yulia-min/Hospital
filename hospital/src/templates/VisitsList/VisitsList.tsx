@@ -63,7 +63,7 @@ export const VisitsList = () => {
     const rowCount = Math.ceil(cards.length / columnCount)
     return (
       <Grid
-        className="grid"
+        className="visits-list__layout"
         columnCount={columnCount}
         columnWidth={cardWidth}
         height={height}
@@ -79,11 +79,11 @@ export const VisitsList = () => {
   return (
     <>
       <Header />
-      <div className="visits-wrapper">
-        <Typography.Headline1 className="visits-title">
+      <div className="visits-list wrapper">
+        <Typography.Headline1 className="visits-list__title">
           Would You Like The Doctor to Come See You Now?
         </Typography.Headline1>
-        <Form className="visits-select-container">
+        <Form className="visits-list__form">
           <Select.Single
             name="request_type"
             placeholder="Select request type"
@@ -95,7 +95,9 @@ export const VisitsList = () => {
             </Button.Default>
           </Form.Item>
         </Form>
-        <Typography.Headline2 className="visits-list">List of Visits</Typography.Headline2>
+        <Typography.Headline2 className="visits-list__subtitle">
+          List of Visits
+        </Typography.Headline2>
         {renderRequestCardsGrid()}
       </div>
     </>

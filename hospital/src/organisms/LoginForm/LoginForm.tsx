@@ -14,9 +14,9 @@ export const LoginForm = ({
 }: LoginFormType) => {
   return (
     <Modal visible={visible} className="modal">
-      <Typography.Headline4 className="modal-title">{title}</Typography.Headline4>
-      <Typography.Subtitle1 className="modal-description">{subtitle}</Typography.Subtitle1>
-      <Form className="modal-form" form={form} onFinish={onFinish}>
+      <Typography.Headline4 className="modal__title">{title}</Typography.Headline4>
+      <Typography.Subtitle1 className="modal__description">{subtitle}</Typography.Subtitle1>
+      <Form className="modal__form" form={form} onFinish={onFinish}>
         {children}
       </Form>
     </Modal>

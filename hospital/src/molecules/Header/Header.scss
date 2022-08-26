@@ -1,28 +1,30 @@
 @import '/src/style/style.scss';
 
-.header{
-    &-wrapper{
-        margin-bottom: 40px;
-    }
-    &-info{
-        margin: 15px 17px 15px 24px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+.main{
+    &-header{
+        &.wrapper{
+            margin-bottom: 40px;
+        }
+        &__info{
+            margin: 15px 17px 15px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;    
+        }
 
-        &_title{
+        &__title{
             color: $core_70;
         }
 
-        &_icons{
+        &__icons{
             .notification{
                 margin: 0 25px 3px 0;
             }
         }
-    }
 
-    &-line{
-        height: 1px;
-        background: #DDE0E4;
+        &__line{
+            height: 1px;
+            background: $core_30;
+        }
     }
 }
