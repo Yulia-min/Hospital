@@ -12,11 +12,6 @@ export const SignIn = () => {
 
   const navigate = useNavigate()
 
-  const [phone, setPhone] = useState('')
-  const onChange = (phone: string) => {
-    setPhone(phone)
-  }
-
   const formatPhoneNumber = (phoneNumberString: string) => {
     const cleaned = ('' + phoneNumberString).replace(/\D/g, '')
     const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/)
@@ -42,7 +37,7 @@ export const SignIn = () => {
       onFinish={onFinish}
       form={form}
     >
-      <Input.Phone name="phone_number" value={phone} onChange={onChange} />
+      <Input.Phone name="phone_number" />
       <Form.Item className="login-button wrapper">
         <Button.Default htmlType="submit" variant="primary">
           Next

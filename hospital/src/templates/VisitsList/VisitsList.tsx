@@ -10,6 +10,7 @@ import moment from 'moment'
 import { FixedSizeGrid as Grid } from 'react-window'
 import { Header } from 'src/molecules'
 import { REQUEST_TYPE } from 'src/constants/constants'
+import { Form } from 'antd'
 
 export const VisitsList = () => {
   const dispatch = useAppDispatch()
@@ -82,12 +83,18 @@ export const VisitsList = () => {
         <Typography.Headline1 className="visits-title">
           Would You Like The Doctor to Come See You Now?
         </Typography.Headline1>
-        <div className="visits-select-container">
-          <Select.Single placeholder="Select request type" options={REQUEST_TYPE} />
-          <Button.Default variant="primary" className="request-button">
-            <Typography.Button2>Yes, Make a request</Typography.Button2>
-          </Button.Default>
-        </div>
+        <Form className="visits-select-container">
+          <Select.Single
+            name="request_type"
+            placeholder="Select request type"
+            options={REQUEST_TYPE}
+          />
+          <Form.Item>
+            <Button.Default htmlType="submit" variant="primary" className="request-button">
+              <Typography.Button2>Yes, Make a request</Typography.Button2>
+            </Button.Default>
+          </Form.Item>
+        </Form>
         <Typography.Headline2 className="visits-list">List of Visits</Typography.Headline2>
         {renderRequestCardsGrid()}
       </div>

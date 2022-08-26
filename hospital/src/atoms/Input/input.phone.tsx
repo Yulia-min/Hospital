@@ -5,7 +5,7 @@ import './input.phone.scss'
 import { Form } from 'antd'
 import cn from 'classnames'
 
-export const Phone = ({ value, onChange, name, className }: InputType) => {
+export const Phone = ({ name, className }: InputType) => {
   return (
     <Form.Item className={cn('phone-wrapper', className)} name={name}>
       <PhoneInput
@@ -15,8 +15,6 @@ export const Phone = ({ value, onChange, name, className }: InputType) => {
           required: true,
           autoFocus: true
         }}
-        value={value}
-        onChange={onChange}
         placeholder="(XXX) XXX-XXXX"
       />
     </Form.Item>

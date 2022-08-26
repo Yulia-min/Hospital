@@ -5,15 +5,12 @@ import { requestAuthCode } from 'src/api/SignIn/SignIn'
 import { FormDataAuthCode } from 'src/api/SignIn/SignIn.d'
 import { LoginForm } from 'src/organisms'
 import { LocationType } from './AuthType'
-import { useState } from 'react'
 import './Auth.scss'
 
 export const Auth = () => {
   const [form] = Form.useForm()
 
   const navigate = useNavigate()
-
-  const [, setResult] = useState<string>()
 
   const user_uuid = localStorage.getItem('uuid')
   const location = useLocation().state as LocationType
@@ -37,10 +34,6 @@ export const Auth = () => {
     return ''
   }
 
-  const onChange = (result: string) => {
-    setResult(result)
-  }
-
   return (
     <LoginForm
       visible
@@ -51,7 +44,7 @@ export const Auth = () => {
       onFinish={onFinish}
       form={form}
     >
-      <Input.Code name="validation_code" onChange={onChange} />
+      <Input.Code name="validation_code" />
       <Form.Item className="auth-button wrapper">
         <Button.Default className="resend-button" variant="secondary">
           Resend
