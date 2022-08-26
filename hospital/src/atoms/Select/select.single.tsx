@@ -2,17 +2,17 @@ import { Form, Select as DefaultSelect } from 'antd'
 import { ReactComponent as SelectArrow } from 'src/public/selectArrow.svg'
 import { SelectType } from './SelectType'
 
-export const Single = ({ options, placeholder, name }: SelectType) => {
+export const Single = ({ options, propsItem, propsSelect }: SelectType) => {
   return (
-    <Form.Item className="select-wrapper" name={name}>
+    <Form.Item className="select-wrapper" {...propsItem}>
       <DefaultSelect
         suffixIcon={<SelectArrow />}
         showArrow
         showSearch={false}
-        placeholder={placeholder}
+        {...propsSelect}
         dropdownClassName="dropdown-wrapper"
       >
-        {options.map((item) => (
+        {options?.map((item) => (
           <DefaultSelect.Option value={item.value}>{item.label}</DefaultSelect.Option>
         ))}
       </DefaultSelect>

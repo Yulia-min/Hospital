@@ -1,7 +1,6 @@
+import { FormItemProps } from 'antd'
+
 export type InputType = {
-  value?: any
-  onChange?: (value: any) => void
+  propsItem?: FormItemProps
   className?: string
-  label?: string
-  name?: string
 }

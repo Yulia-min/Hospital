@@ -5,9 +5,9 @@ import './input.phone.scss'
 import { Form } from 'antd'
 import cn from 'classnames'
 
-export const Phone = ({ name, className }: InputType) => {
+export const Phone = ({ propsItem, className }: InputType) => {
   return (
-    <Form.Item className={cn('phone-wrapper', className)} name={name}>
+    <Form.Item className={cn('phone-wrapper', className)} {...propsItem}>
       <PhoneInput
         country={'us'}
         inputProps={{

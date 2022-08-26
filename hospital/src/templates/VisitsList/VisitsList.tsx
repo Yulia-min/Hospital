@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Button, Select } from 'src/atoms'
+import { Button, Input, Select } from 'src/atoms'
 import { RequestCards } from 'src/organisms'
 import { requestCardsInfo } from 'src/redux/cards/actions'
 import { getCardsInfo } from 'src/redux/cards/selectors'
@@ -76,6 +76,7 @@ export const VisitsList = () => {
       </Grid>
     )
   }
+
   return (
     <>
       <Header />
@@ -85,12 +86,16 @@ export const VisitsList = () => {
         </Typography.Headline1>
         <Form className="visits-list__form">
           <Select.Single
-            name="request_type"
-            placeholder="Select request type"
+            propsItem={{ name: 'request_type' }}
+            propsSelect={{ placeholder: 'Select request type' }}
             options={REQUEST_TYPE}
           />
           <Form.Item>
-            <Button.Default htmlType="submit" variant="primary" className="request-button">
+            <Button.Default
+              propsButton={{ htmlType: 'submit' }}
+              variant="primary"
+              className="request-button"
+            >
               <Typography.Button2>Yes, Make a request</Typography.Button2>
             </Button.Default>
           </Form.Item>

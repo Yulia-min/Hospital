@@ -4,9 +4,9 @@ import './input.code.scss'
 import { Form } from 'antd'
 import cn from 'classnames'
 
-export const Code = ({ name, className }: InputType) => {
+export const Code = ({ propsItem, className }: InputType) => {
   return (
-    <Form.Item name={name} className={cn('code-wrapper', className)}>
+    <Form.Item {...propsItem} className={cn('code-wrapper', className)}>
       <AuthCode allowedCharacters="numeric" />
     </Form.Item>
   )

@@ -3,9 +3,10 @@ import './select.multy.scss'
 import { ReactComponent as SelectArrow } from 'src/public/selectArrow.svg'
 import { SelectType } from './SelectType'
 
-export const Multi = ({ options, placeholder, name }: SelectType) => {
+export const Multi = ({ propsSelect, propsItem }: SelectType) => {
+  const { placeholder, options } = { ...propsSelect }
   return (
-    <Form.Item className="select-wrapper" name={name}>
+    <Form.Item className="select-wrapper" {...propsItem}>
       <DefaultSelect
         suffixIcon={<SelectArrow />}
         showArrow
@@ -15,7 +16,7 @@ export const Multi = ({ options, placeholder, name }: SelectType) => {
         dropdownClassName="dropdown-wrapper"
         placeholder={placeholder}
       >
-        {options.map((item) => (
+        {options?.map((item) => (
           <DefaultSelect.Option value={item.value}>
             <div className="select-checkbox" />
             {item.label}

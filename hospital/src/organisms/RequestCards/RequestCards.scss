@@ -29,16 +29,18 @@
     &__body{
         display: flex;
         margin-left: 20px;
-
-        &-title{
-            color: $core_70;
-        }
-
-        &-description{
-            color: $core_100;
-            margin: 0 0 0 8px;
-        }
     }
+
+    &__body-title{
+        color: $core_70;
+    }
+
+    
+    &__body-description{
+        color: $core_100;
+        margin: 0 0 0 8px;
+    }
+
 
     &__patient-name{
         margin: 42px 0 42px 88px;
@@ -51,16 +53,14 @@
         margin: 0 auto;
     }
 
-    &__footer{
-        &-title{
-            color: $core_70;
-            margin: 30px 0 0 20px;
-        }
+    &__footer-title{
+        color: $core_70;
+        margin: 30px 0 0 20px;
+    }
 
-        &-info{
-            display: flex;
-            margin: 16px 0 0 20px;
-        }
+    &__footer-info{
+        display: flex;
+        margin: 16px 0 0 20px;
     }
 
     &__doctor-name{
