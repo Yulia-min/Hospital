@@ -1,0 +1,19 @@
+@import '/src/style/style.scss';
+
+.dropdown-wrapper{
+    .select-checkbox{
+        position:absolute;
+        top: 15px;
+        left: 5px;
+        width: 18px;
+        height: 18px;
+        background: $white;
+        box-shadow: 0px 4px 16px 4px rgba(18, 40, 75, 0.12);
+        border-radius: 2px;
+        border: 1px solid $core_70;
+    }
+}
+
+
+
+
