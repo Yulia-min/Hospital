@@ -97,11 +97,13 @@ export const VisitsList = () => {
         <Form className="visits-list__form">
           <Select.Single
             propsItem={{ name: 'request_type' }}
-            propsSelect={{ placeholder: 'Select request type' }}
-            options={services.map((service) => ({
-              value: service.name,
-              label: SERVICES_TYPE[service.name as keyof ServiceType]
-            }))}
+            propsSelect={{
+              placeholder: 'Select request type',
+              options: services.map((service) => ({
+                value: service.name,
+                label: SERVICES_TYPE[service.name as keyof ServiceType]
+              }))
+            }}
             onChange={handleChange}
           />
           <Form.Item>

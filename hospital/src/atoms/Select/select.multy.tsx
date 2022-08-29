@@ -3,7 +3,7 @@ import './select.multy.scss'
 import { ReactComponent as SelectArrow } from 'src/public/selectArrow.svg'
 import { SelectType } from './SelectType'
 
-export const Multi = ({ propsSelect, propsItem, options, onChange }: SelectType) => {
+export const Multi = ({ propsSelect, propsItem, onChange }: SelectType) => {
   return (
     <Form.Item className="select-wrapper" {...propsItem}>
       <DefaultSelect
@@ -15,7 +15,6 @@ export const Multi = ({ propsSelect, propsItem, options, onChange }: SelectType)
         mode="multiple"
         onChange={onChange}
         dropdownClassName="dropdown-wrapper"
-        options={options}
       />
     </Form.Item>
   )
