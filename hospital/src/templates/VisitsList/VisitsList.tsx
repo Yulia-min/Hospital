@@ -102,9 +102,9 @@ export const VisitsList = () => {
               options: services.map((service) => ({
                 value: service.name,
                 label: SERVICES_TYPE[service.name as keyof ServiceType]
-              }))
+              })),
+              onChange: handleChange
             }}
-            onChange={handleChange}
           />
           <Form.Item>
             <Button.Default
