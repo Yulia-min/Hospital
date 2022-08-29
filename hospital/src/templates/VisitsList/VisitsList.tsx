@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { Button, Input, Select } from 'src/atoms'
+import { useEffect, useState } from 'react'
+import { Button, Select } from 'src/atoms'
 import { RequestCards } from 'src/organisms'
 import { requestCardsInfo } from 'src/redux/cards/actions'
 import { getCardsInfo } from 'src/redux/cards/selectors'
@@ -9,19 +9,25 @@ import './VisitsList.scss'
 import moment from 'moment'
 import { FixedSizeGrid as Grid } from 'react-window'
 import { Header } from 'src/molecules'
-import { REQUEST_TYPE } from 'src/constants/constants'
 import { Form } from 'antd'
+import { requestServiceType } from 'src/redux/services/actions'
+import { getServiceInfo } from 'src/redux/services/selectors'
+import { SERVICES_TYPE, ServiceType } from 'src/constants'
 
 export const VisitsList = () => {
   const dispatch = useAppDispatch()
 
   const { cards } = useAppSelector(getCardsInfo)
+  const { services } = useAppSelector(getServiceInfo)
+
+  const [isServiceType, setIsServiceType] = useState<string>()
 
   useEffect(() => {
     dispatch(requestCardsInfo())
+    dispatch(requestServiceType())
   }, [])
 
-  const RequestCardsList = ({ columnIndex, data, rowIndex, style }: any) => {
+  const requestCardsList = ({ columnIndex, data, rowIndex, style }: any) => {
     const { cards, columnCount } = data
     const singleColumnIndex = columnIndex + rowIndex * columnCount
     const card = cards[singleColumnIndex]
@@ -72,9 +78,13 @@ export const VisitsList = () => {
         width={width}
         itemData={{ cards, columnCount }}
       >
-        {RequestCardsList}
+        {requestCardsList}
       </Grid>
     )
+  }
+
+  const handleChange = (value: string) => {
+    setIsServiceType(value)
   }
 
   return (
@@ -87,11 +97,22 @@ export const VisitsList = () => {
         <Form className="visits-list__form">
           <Select.Single
             propsItem={{ name: 'request_type' }}
-            propsSelect={{ placeholder: 'Select request type' }}
-            options={REQUEST_TYPE}
+            propsSelect={{
+              placeholder: 'Select request type',
+              options: services.map((service) => ({
+                value: service.name,
+                label: SERVICES_TYPE[service.name as keyof ServiceType]
+              })),
+              onChange: handleChange
+            }}
           />
           <Form.Item>
-            <Button.Default htmlType="submit" variant="primary" className="request-button">
+            <Button.Default
+              htmlType="submit"
+              disabled={!isServiceType}
+              variant="primary"
+              className="request-button"
+            >
               <Typography.Button2>Yes, Make a request</Typography.Button2>
             </Button.Default>
           </Form.Item>
