@@ -3,13 +3,13 @@ export interface IService {
   comment: string
   is_visible: boolean
   price: number
-  symptoms: [
-    {
-      name: string
-      comment: string
-      uuid: string
-    }
-  ]
+  symptoms: ISymptom[]
+}
+
+export interface ISymptom {
+  name: string
+  comment: string
+  uuid: string
 }
 
 export interface IServiceState {
