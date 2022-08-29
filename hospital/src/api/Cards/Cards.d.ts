@@ -1,4 +1,5 @@
 import { ICard } from 'src/redux/types/cardsTypes'
+import { IService } from 'src/redux/types/servicesTypes'
 
 export type CardsData = {
   application_can_start_at: string
@@ -27,3 +28,19 @@ export type CardsData = {
 }
 
 export type CardsInfoResponse = ICard
+
+export type ServiceTypeData = {
+  name: string
+  comment: string
+  is_visible: boolean
+  price: number
+  symptoms: [
+    {
+      name: string
+      comment: string
+      uuid: string
+    }
+  ]
+}
+
+export type ServicesInfoResponse = IService

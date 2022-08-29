@@ -18,6 +18,7 @@
     
         &:disabled{
             background: $core_30;
+            border: 1px solid $core_30;
         }
     }
 

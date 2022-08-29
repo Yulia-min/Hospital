@@ -1,0 +1,19 @@
+export interface IService {
+  name: string
+  comment: string
+  is_visible: boolean
+  price: number
+  symptoms: [
+    {
+      name: string
+      comment: string
+      uuid: string
+    }
+  ]
+}
+
+export interface IServiceState {
+  services: IService[]
+  isLoading: boolean
+  error: any | null
+}
