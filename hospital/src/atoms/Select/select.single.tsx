@@ -12,13 +12,8 @@ export const Single = ({ options, propsItem, propsSelect, onChange }: SelectType
         {...propsSelect}
         dropdownClassName="dropdown-wrapper"
         onChange={onChange}
-      >
-        {options?.map((item, index) => (
-          <DefaultSelect.Option key={index} value={item.name}>
-            {item.name}
-          </DefaultSelect.Option>
-        ))}
-      </DefaultSelect>
+        options={options}
+      />
     </Form.Item>
   )
 }

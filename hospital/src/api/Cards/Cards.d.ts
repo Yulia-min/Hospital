@@ -34,13 +34,13 @@ export type ServiceTypeData = {
   comment: string
   is_visible: boolean
   price: number
-  symptoms: [
-    {
-      name: string
-      comment: string
-      uuid: string
-    }
-  ]
+  symptoms: SymptomsData[]
+}
+
+export type SymptomsData = {
+  name: string
+  comment: string
+  uuid: string
 }
 
 export type ServicesInfoResponse = IService

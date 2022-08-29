@@ -12,6 +12,7 @@ import { Header } from 'src/molecules'
 import { Form } from 'antd'
 import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
+import { SERVICES_TYPE, ServiceType } from 'src/constants'
 
 export const VisitsList = () => {
   const dispatch = useAppDispatch()
@@ -97,7 +98,10 @@ export const VisitsList = () => {
           <Select.Single
             propsItem={{ name: 'request_type' }}
             propsSelect={{ placeholder: 'Select request type' }}
-            options={services}
+            options={services.map((service) => ({
+              value: service.name,
+              label: SERVICES_TYPE[service.name as keyof ServiceType]
+            }))}
             onChange={handleChange}
           />
           <Form.Item>

@@ -15,14 +15,8 @@ export const Multi = ({ propsSelect, propsItem, options, onChange }: SelectType)
         mode="multiple"
         onChange={onChange}
         dropdownClassName="dropdown-wrapper"
-      >
-        {options?.map((item, index) => (
-          <DefaultSelect.Option value={item.name} key={index}>
-            <div className="select-checkbox" />
-            {item.name}
-          </DefaultSelect.Option>
-        ))}
-      </DefaultSelect>
+        options={options}
+      />
     </Form.Item>
   )
 }
