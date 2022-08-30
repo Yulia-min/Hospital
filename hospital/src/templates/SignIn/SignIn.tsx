@@ -1,6 +1,5 @@
 import { Form } from 'antd'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button, Input } from 'src/atoms'
 import { requestSignIn } from 'src/api/SignIn/SignIn'
 import { FormDataSignIn } from 'src/api/SignIn/SignIn.d'
@@ -9,6 +8,10 @@ import './SignIn.scss'
 
 export const SignIn = () => {
   const [form] = Form.useForm()
+
+  const location = useLocation();
+
+  const target = location.pathname.slice(7)
 
   const navigate = useNavigate()
 
@@ -23,7 +26,7 @@ export const SignIn = () => {
 
   const onFinish = (values: FormDataSignIn) => {
     const getPhone = formatPhoneNumber(values.phone_number)
-    requestSignIn({ phone_number: getPhone, target: 'admin' }).then((resp) => {
+    requestSignIn({ phone_number: getPhone, target }).then((resp) => {
       localStorage.setItem('uuid', resp.data.uuid)
       navigate('/auth', { state: { phone: values.phone_number } })
     })
