@@ -13,6 +13,7 @@ import { Form } from 'antd'
 import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
 import { SERVICES_TYPE, ServiceType } from 'src/constants'
+import { useNavigate } from 'react-router-dom'
 
 export const VisitsList = () => {
   const dispatch = useAppDispatch()
@@ -21,6 +22,8 @@ export const VisitsList = () => {
   const { services } = useAppSelector(getServiceInfo)
 
   const [isServiceType, setIsServiceType] = useState<string>()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(requestCardsInfo())
@@ -87,6 +90,10 @@ export const VisitsList = () => {
     setIsServiceType(value)
   }
 
+  const onFinish = () => {
+    navigate('/request-list')
+  }
+
   return (
     <>
       <Header />
@@ -94,7 +101,7 @@ export const VisitsList = () => {
         <Typography.Headline1 className="visits-list__title">
           Would You Like The Doctor to Come See You Now?
         </Typography.Headline1>
-        <Form className="visits-list__form">
+        <Form className="visits-list__form" onFinish={onFinish}>
           <Select.Single
             propsItem={{ name: 'request_type' }}
             propsSelect={{

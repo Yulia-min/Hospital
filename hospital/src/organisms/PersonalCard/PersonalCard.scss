@@ -1,0 +1,26 @@
+@import '/src/style/style.scss';
+
+.personal-card{
+    &__info{
+        margin-left: 20px;
+    }
+    &__name{
+        color: $core_100;
+        margin: 24px 0 8px 0;
+    }
+
+    &__birthday{
+        color: $core_70;
+        margin-bottom: 8px;
+    }
+
+    &__number{
+        color: $primary_70;
+        margin-bottom: 8px;
+    }
+
+    &__email{
+        color: $primary_70;
+        margin-bottom: 24px;
+    }
+}

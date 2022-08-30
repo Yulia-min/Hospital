@@ -1,11 +1,13 @@
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit'
 import cardsSlice from './reducers/cardsSlice'
+import patientsSlice from './reducers/patientsSlice'
 import servicesSlice from './reducers/servicesSlice'
 
 export const store = configureStore({
   reducer: {
     cards: cardsSlice,
-    services: servicesSlice
+    services: servicesSlice,
+    patients: patientsSlice,
   }
 })
 
