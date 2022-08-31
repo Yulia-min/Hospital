@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { AuthPage, SignInPage, VisitsListPage, RequestListPage } from 'src/pages'
+import { AuthPage, SignInPage, VisitsListPage, CreateRequestPage } from 'src/pages'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Route path="login/doctor" element={<SignInPage />} />
         <Route path="auth" element={<AuthPage />} />
         <Route path="visits-list" element={<VisitsListPage />} />
-        <Route path="request-list" element={<RequestListPage />} />
+        <Route path="create-request" element={<CreateRequestPage />} />
       </Routes>
     </BrowserRouter>
   )

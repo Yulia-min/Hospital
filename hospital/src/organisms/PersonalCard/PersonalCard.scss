@@ -1,7 +1,20 @@
 @import '/src/style/style.scss';
 
 .personal-card{
+    &__wrapper{
+        width: 450px;
+        display: flex;
+
+        &:hover{
+            .personal-card__button{
+                opacity: 1;
+                display: flex;
+            }
+        }
+    }
+
     &__info{
+        width:100%;
         margin-left: 20px;
     }
     &__name{
@@ -22,5 +35,17 @@
     &__email{
         color: $primary_70;
         margin-bottom: 24px;
+    }
+
+    &__edit{
+        margin: 5px 0 0 10px;
+        text-transform: uppercase;
+        color: $primary_80;
+    }
+
+    &__button{
+        display: flex;
+        opacity: 0;
+        margin-top: 20px;
     }
 }

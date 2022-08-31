@@ -91,7 +91,7 @@ export const VisitsList = () => {
   }
 
   const onFinish = () => {
-    navigate('/request-list')
+    navigate('/create-request')
   }
 
   return (

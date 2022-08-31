@@ -13,7 +13,7 @@ export interface IPatient {
 }
 
 export interface IChoosenPatient {
-  uuid: string[]
+  selectedPatientsIds: string[]
 }
 
 export interface IPatientState {

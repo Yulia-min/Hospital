@@ -9,9 +9,9 @@ import './SignIn.scss'
 export const SignIn = () => {
   const [form] = Form.useForm()
 
-  const location = useLocation();
+  const location = useLocation()
 
-  const target = location.pathname.slice(7)
+  const target = location.pathname.split('/')[2]
 
   const navigate = useNavigate()
 

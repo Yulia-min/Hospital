@@ -1,9 +1,18 @@
 @import '/src/style/style.scss';
 
 .request-list {
-    &__title{
+    &__header{
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
+
+        svg{
+            margin-top: 20px;
+            path{
+                fill: #5E6878;
+            }
+        }
+    }
+    &__title{
         color: $core_100;
     }
 
@@ -14,7 +23,7 @@
     }
 
     &__step-description{
-        margin-left: 32px;
+        margin: 5px 0 0 32px;
     }
 
     &__step-title{
@@ -32,17 +41,18 @@
     }
 
     &__card-wrapper{
-        width: 50%;
-        margin: 0 25%;
+        display: grid;
+        justify-content: center;
     }
 
     &__info{
         .ant-checkbox-group{
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(1, 1r);
 
         }
         .ant-checkbox-wrapper{
+            width: 100%;
             margin-bottom: 12px;
             border: 1px solid $core_30;
             border-radius: 2px;

@@ -1,43 +1,76 @@
 import { Typography } from 'src/Typography'
-import { ReactComponent as FirstStep } from 'src/public/FirstStep.svg'
+import { ReactComponent as MainArrow } from 'src/public/MainArrow.svg'
+import { ReactComponent as Cross } from 'src/public/Cross.svg'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { getPatientsInfo } from 'src/redux/patients/selectors'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
-import { Button, Checkbox } from 'src/atoms'
-import './RequestList.scss'
+import { Button, Checkbox, Stepper } from 'src/atoms'
+import './CreateRequest.scss'
 import { Form } from 'antd'
 import { PersonalCard } from 'src/organisms'
-import { RequestType } from './RequestListType'
+import { RequestType } from './CreateRequestType'
+import { CheckboxValueType } from 'antd/lib/checkbox/Group'
+import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 
-export const RequestList = () => {
+export const CreateRequest = () => {
   const dispatch = useAppDispatch()
 
   const { patients } = useAppSelector(getPatientsInfo)
 
+  const checkedPatients = patients
+    .filter((patient) => patient.client_patient_relationship === 'family')
+    .map((item) => ({
+      value: item.uuid,
+      label: PersonalCard(item)
+    }))
+
+  const [checkedList, setCheckedList] = useState<CheckboxValueType[]>()
+  const [checkAll, setCheckAll] = useState(false)
+
   useEffect(() => {
     dispatch(requestPatientsInfo())
   }, [])
+
+  const onCheckAllChange = (e: CheckboxChangeEvent) => {
+    const values = checkedPatients.map((patient) => patient.value)
+    setCheckedList(e.target.checked ? values : [])
+    setCheckAll(e.target.checked)
+  }
+
+  const onChange = (checkedValues: CheckboxValueType[]) => {
+    setCheckedList(checkedValues)
+    setCheckAll(checkedValues.length === checkedPatients.length)
+  }
 
   const onFinish = (values: RequestType) => {
     dispatch(
       saveChoosenPatient(
         Object.values(values)
           .filter((item) => !!item)
-          .reduce((prev: { uuid: string[] }, current) => ({ uuid: [...prev.uuid, ...current] }), {
-            uuid: []
-          })
+          .reduce(
+            (prev: { selectedPatientsIds: string[] }, current) => ({
+              selectedPatientsIds: [...prev.selectedPatientsIds, ...current]
+            }),
+            {
+              selectedPatientsIds: []
+            }
+          )
       )
     )
   }
 
   return (
     <div className="request-list wrapper">
-      <Typography.Headline1 className="request-list__title">
-        Requesting The Doctor
-      </Typography.Headline1>
+      <div className="request-list__header">
+        <MainArrow />
+        <Typography.Headline1 className="request-list__title">
+          Requesting The Doctor
+        </Typography.Headline1>
+        <Cross />
+      </div>
       <div className="request-list__step-wrapper">
-        <FirstStep />
+        <Stepper strokeDasharray="15 85" step={1} />
         <div className="request-list__step-description">
           <Typography.Headline6 className="request-list__step-title">
             Who Needs The Visit?
@@ -50,7 +83,7 @@ export const RequestList = () => {
       <div />
       <Form onFinish={onFinish} className="request-list__card-wrapper">
         <Typography.Subtitle2 className="request-list__subtitle">You</Typography.Subtitle2>
-        <Checkbox
+        <Checkbox.Group
           className="request-list__info"
           propsItem={{ name: 'personal_data' }}
           propsGroupCheckbox={{
@@ -62,13 +95,17 @@ export const RequestList = () => {
               }))
           }}
         />
-        <Typography.Subtitle2 className="request-list__subtitle">Other</Typography.Subtitle2>
-        <Checkbox
+        <Checkbox.Single propsChecbox={{ onChange: onCheckAllChange, checked: checkAll }}>
+          <Typography.Subtitle2 className="request-list__subtitle">Family</Typography.Subtitle2>
+        </Checkbox.Single>
+        <Checkbox.Group
           className="request-list__info"
-          propsItem={{ name: 'other_data' }}
+          propsItem={{ name: 'family_data' }}
           propsGroupCheckbox={{
+            value: checkedList,
+            onChange: onChange,
             options: patients
-              .filter((patient) => patient.client_patient_relationship === 'other')
+              .filter((patient) => patient.client_patient_relationship === 'family')
               .map((item) => ({
                 value: item.uuid,
                 label: PersonalCard(item)
