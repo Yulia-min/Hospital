@@ -38,6 +38,8 @@
     "eject": "react-scripts eject"
   },
   "prettier": {
+    "semi": false,
+    "trailingComma": "none",
     "singleQuote": true,
     "printWidth": 100
   },
