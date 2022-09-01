@@ -20,7 +20,7 @@ export const patientsSlice = createSlice({
       state.isLoading = false
       state.patients = action.payload
     },
-    setPatient(state: IPatientState, action: PayloadAction<IChoosenPatient>){
+    setPatient(state: IPatientState, action: PayloadAction<IChoosenPatient>) {
       state.choosenPatient = action.payload
     },
     finish(state: IPatientState) {

@@ -9,4 +9,3 @@ export const requestPatientsInfo = () =>
     url: 'patients/',
     method: HTTP_METHODS.GET
   })
-

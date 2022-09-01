@@ -6,7 +6,6 @@ import cn from 'classnames'
 import { useState } from 'react'
 
 export const Code = ({ propsItem, className }: InputType) => {
-
   const [, setResult] = useState('')
   const onChange = (res: string) => {
     setResult(res)

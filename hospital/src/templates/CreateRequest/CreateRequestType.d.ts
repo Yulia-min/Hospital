@@ -19,4 +19,3 @@ export type PatientListType = {
   friends: string[]
   other: string[]
 }
-
