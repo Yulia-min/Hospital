@@ -1,4 +1,4 @@
 export type StepperType = {
-  step: number
-  strokeDasharray: string
+  step?: number
+  strokeDasharray?: string
 }

@@ -1,80 +1,43 @@
 @import '/src/style/style.scss';
 
 .request-list {
-    &__header{
-        display: flex;
-        justify-content: space-around;
+  &__subtitle {
+    color: $core_70;
+    margin-bottom: 10px;
+  }
 
-        svg{
-            margin-top: 20px;
-            path{
-                fill: #5E6878;
-            }
-        }
-    }
-    &__title{
-        color: $core_100;
-    }
+  &__card-wrapper {
+    display: grid;
+    justify-content: center;
+  }
 
-    &__step-wrapper{
-        display: flex;
-        justify-content: center;
-        margin: 40px 0 40px 0;
+  &__info {
+    .ant-checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(1, 1r);
     }
+    .ant-checkbox-wrapper {
+      width: 100%;
+      margin-bottom: 12px;
+      border: 1px solid $core_30;
+      border-radius: 2px;
 
-    &__step-description{
-        margin: 5px 0 0 32px;
-    }
-
-    &__step-title{
-        color: $core_100;
-        margin: 4px 0 8px 0;
+      &:hover {
+        background: $primary_10;
+      }
     }
 
-    &__step-subtitle{
-        color: $core_70;
+    .ant-checkbox {
+      margin-left: 20px;
     }
+  }
 
-    &__subtitle{
-        color: $core_70;
-        margin-bottom: 10px;
-    }
+  &__next-button {
+    margin-left: 20px;
+  }
 
-    &__card-wrapper{
-        display: grid;
-        justify-content: center;
-    }
-
-    &__info{
-        .ant-checkbox-group{
-            display: grid;
-            grid-template-columns: repeat(1, 1r);
-
-        }
-        .ant-checkbox-wrapper{
-            width: 100%;
-            margin-bottom: 12px;
-            border: 1px solid $core_30;
-            border-radius: 2px;
-
-            &:hover{
-                background: $primary_10;
-            }
-            
-        }
-
-        .ant-checkbox{
-            margin-left: 20px;
-        }
-
-    }
-
-    &__next-button{
-        margin-left: 20px;
-    }
-
-    &__button-wrapper{
-        display: flex;
-        justify-content: space-between;
-    }
+  &__button-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
 }

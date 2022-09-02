@@ -96,7 +96,7 @@ export const VisitsList = () => {
 
   return (
     <>
-      <Header />
+      <Header.VisitsPage />
       <div className="visits-list wrapper">
         <Typography.Headline1 className="visits-list__title">
           Would You Like The Doctor to Come See You Now?

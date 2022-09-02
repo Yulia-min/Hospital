@@ -1,11 +1,9 @@
 import { Typography } from 'src/Typography'
-import { ReactComponent as MainArrow } from 'src/public/MainArrow.svg'
-import { ReactComponent as Cross } from 'src/public/Cross.svg'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { getPatientsInfo } from 'src/redux/patients/selectors'
 import { useEffect, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
-import { Button, Checkbox, Stepper } from 'src/atoms'
+import { Button, Checkbox } from 'src/atoms'
 import './CreateRequest.scss'
 import { Form } from 'antd'
 import { PersonalCard } from 'src/organisms'
@@ -13,6 +11,7 @@ import { CheckedListType, PatientListType, RequestType } from './CreateRequestTy
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENT_TYPE } from 'src/constants'
+import { Header } from 'src/molecules'
 
 export const CreateRequest = () => {
   const dispatch = useAppDispatch()
@@ -87,25 +86,12 @@ export const CreateRequest = () => {
 
   return (
     <div className="request-list wrapper">
-      <div className="request-list__header">
-        <MainArrow />
-        <Typography.Headline1 className="request-list__title">
-          Requesting The Doctor
-        </Typography.Headline1>
-        <Cross />
-      </div>
-      <div className="request-list__step-wrapper">
-        <Stepper strokeDasharray="15 85" step={1} />
-        <div className="request-list__step-description">
-          <Typography.Headline6 className="request-list__step-title">
-            Who Needs The Visit?
-          </Typography.Headline6>
-          <Typography.Body1 className="request-list__step-subtitle">
-            Select People For Whom You Are Requesting The Visit
-          </Typography.Body1>
-        </div>
-      </div>
-      <div />
+      <Header.RequestPage
+        step={1}
+        strokeDasharray="15 85"
+        title="Who Needs The Visit?"
+        subtitle="Select People For Whom You Are Requesting The Visit"
+      />
       <Form form={form} onFinish={onFinish} className="request-list__card-wrapper">
         <Typography.Subtitle2 className="request-list__subtitle">You</Typography.Subtitle2>
         <Checkbox.Group
