@@ -1,0 +1,43 @@
+@import '/src/style/style.scss';
+
+.request-list {
+  &__subtitle {
+    color: $core_70;
+    margin-bottom: 10px;
+  }
+
+  &__card-wrapper {
+    display: grid;
+    justify-content: center;
+  }
+
+  &__info {
+    .ant-checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(1, 1r);
+    }
+    .ant-checkbox-wrapper {
+      width: 100%;
+      margin-bottom: 12px;
+      border: 1px solid $core_30;
+      border-radius: 2px;
+
+      &:hover {
+        background: $primary_10;
+      }
+    }
+
+    .ant-checkbox {
+      margin-left: 20px;
+    }
+  }
+
+  &__next-button {
+    margin-left: 20px;
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}

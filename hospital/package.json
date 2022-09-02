@@ -33,11 +33,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint --ext .ts, .tsx src --fix",
+    "lint": "tsc --noEmit && eslint --ext=ts --ext=tsx ./src --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "prettier": {
+    "semi": false,
+    "trailingComma": "none",
     "singleQuote": true,
     "printWidth": 100
   },
