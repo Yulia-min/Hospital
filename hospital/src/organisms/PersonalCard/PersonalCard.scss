@@ -1,51 +1,88 @@
 @import '/src/style/style.scss';
 
-.personal-card{
-    &__wrapper{
-        width: 450px;
+.personal-card {
+  &.wrapper {
+    width: 450px;
+    display: flex;
+
+    &:hover {
+      .personal-card__button {
+        opacity: 1;
         display: flex;
+      }
+    }
+  }
 
-        &:hover{
-            .personal-card__button{
-                opacity: 1;
-                display: flex;
-            }
-        }
-    }
+  &.default-wrapper {
+    width: 230px;
+    border: 1px solid $core_30;
+    border-radius: 2px;
+  }
 
-    &__info{
-        width:100%;
-        margin-left: 20px;
-    }
-    &__name{
-        color: $core_100;
-        margin: 24px 0 8px 0;
-    }
+  &__info {
+    width: 100%;
+    margin-left: 20px;
+  }
 
-    &__birthday{
-        color: $core_70;
-        margin-bottom: 8px;
-    }
+  &__name {
+    color: $core_100;
+    margin: 24px 0 8px 0;
+  }
 
-    &__number{
-        color: $primary_70;
-        margin-bottom: 8px;
-    }
+  &__birthday {
+    color: $core_70;
+    margin-bottom: 8px;
+  }
 
-    &__email{
-        color: $primary_70;
-        margin-bottom: 24px;
-    }
+  &__number {
+    color: $primary_70;
+    margin-bottom: 8px;
+  }
 
-    &__edit{
-        margin: 5px 0 0 10px;
-        text-transform: uppercase;
-        color: $primary_80;
-    }
+  &__email {
+    color: $primary_70;
+    margin-bottom: 24px;
+  }
 
-    &__button{
-        display: flex;
-        opacity: 0;
-        margin-top: 20px;
+  &__edit {
+    margin: 5px 0 0 10px;
+    text-transform: uppercase;
+    color: $primary_80;
+  }
+
+  &__button {
+    display: flex;
+    opacity: 0;
+    margin-top: 20px;
+  }
+
+  &__symptom-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5px;
+  }
+
+  &__symptom {
+    margin: 0 5px 15px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__comment-title {
+    color: #5e6878;
+    margin: 0 0 0 20px;
+  }
+  &__comment-content {
+    color: #090a0b;
+    margin: 2px 0 24px 20px;
+  }
+}
+
+@include media-mobile {
+  .personal-card {
+    &.default-wrapper {
+      border: none;
+      width: 330px;
     }
+  }
 }

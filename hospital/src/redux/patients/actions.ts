@@ -1,7 +1,14 @@
 import { requestPatientsInfo as requestPatientsInfoAPI } from 'src/api/Patients/Patients'
 import { AppThunk } from '../store'
-import { error, finish, loading, loadingSuccess, setPatient } from '../reducers/patientsSlice'
-import { IChoosenPatient } from '../types/patientsTypes'
+import {
+  error,
+  finish,
+  loading,
+  loadingSuccess,
+  setPatient,
+  setPatientsWithSymptoms
+} from '../reducers/patientsSlice'
+import { IChoosenPatient, IPatientWithSymptoms } from '../types/patientsTypes'
 
 export const requestPatientsInfo = (): AppThunk => async (dispatch) => {
   try {
@@ -19,4 +26,10 @@ export const saveChoosenPatient =
   (values: IChoosenPatient): AppThunk =>
   async (dispatch) => {
     dispatch(setPatient(values))
+  }
+
+export const savePatientWithSymptoms =
+  (data: IPatientWithSymptoms[]): AppThunk =>
+  async (dispatch) => {
+    dispatch(setPatientsWithSymptoms(data))
   }

@@ -12,9 +12,12 @@ import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
+import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
 export const CreateRequest = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const { patients } = useAppSelector(getPatientsInfo)
 
@@ -82,6 +85,7 @@ export const CreateRequest = () => {
           )
       )
     )
+    navigate('/choose-symptoms')
   }
 
   return (
@@ -102,14 +106,14 @@ export const CreateRequest = () => {
               .filter((patient) => patient.client_patient_relationship === null)
               .map((item) => ({
                 value: item.uuid,
-                label: PersonalCard(item)
+                label: PersonalCard.CheckboxCard(item)
               }))
           }}
         />
         {PATIENT_TYPE.map(
           (type: string) =>
             !!patientsList[type as keyof PatientListType].length && (
-              <>
+              <React.Fragment key={type}>
                 <Checkbox.Single
                   propsChecbox={{
                     onChange: onCheckAllChange(type),
@@ -130,11 +134,11 @@ export const CreateRequest = () => {
                       .filter((patient) => patient.client_patient_relationship === type)
                       .map((item) => ({
                         value: item.uuid,
-                        label: PersonalCard(item)
+                        label: PersonalCard.CheckboxCard(item)
                       }))
                   }}
                 />
-              </>
+              </React.Fragment>
             )
         )}
         <div className="request-list__button-wrapper">

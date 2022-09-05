@@ -1,0 +1,22 @@
+@import '/src/style/style.scss';
+
+.symptoms-cards {
+  display: flex;
+  align-items: center;
+  width: 450px;
+  &__image {
+    border-radius: 100%;
+    border: 1px solid $core_30;
+    margin: 5px 20px 0 0;
+  }
+
+  &__name {
+    color: $core_100;
+  }
+}
+
+@include media-mobile {
+  .symptoms-cards {
+    width: 300px;
+  }
+}

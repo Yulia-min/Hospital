@@ -4,4 +4,6 @@ export type PersonalCardType = {
   date_of_birth: string
   phone_number: string
   email: string
+  symptoms?: CheckboxValueType[]
+  comment?: string
 }
