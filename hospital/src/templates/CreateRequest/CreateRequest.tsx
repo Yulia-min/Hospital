@@ -1,7 +1,7 @@
 import { Typography } from 'src/Typography'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { getPatientsInfo } from 'src/redux/patients/selectors'
-import { LegacyRef, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
 import { Button, Checkbox } from 'src/atoms'
 import './CreateRequest.scss'
@@ -18,7 +18,7 @@ import React from 'react'
 export const CreateRequest = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   const { patients } = useAppSelector(getPatientsInfo)
 
