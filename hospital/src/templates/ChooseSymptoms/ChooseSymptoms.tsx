@@ -73,7 +73,6 @@ export const ChooseSymptoms = () => {
             {Object.values(patientsWithSymptoms).map((patient) => (
               <Collapse
                 className="choose-symptoms__collapse"
-                open
                 title={PersonalCard.DefaultCard(patient)}
               >
                 <div>

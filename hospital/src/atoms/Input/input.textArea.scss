@@ -13,14 +13,14 @@
     line-height: 20px;
   }
   .ant-input {
-    background: url('../../public/Arrow.svg') no-repeat 96% 90px;
+    background: url('../../public/Arrow.svg') no-repeat right 15px bottom 20px;
     border: 1px solid $core_50;
     border-radius: 2px;
     resize: none;
     padding: 20px 40px 0 5px;
 
     &:focus {
-      background: url('../../public/ActiveArrow.svg') no-repeat 96% 90px;
+      background: url('../../public/ActiveArrow.svg') no-repeat right 15px bottom 20px;
       &::placeholder {
         color: $core_100;
       }

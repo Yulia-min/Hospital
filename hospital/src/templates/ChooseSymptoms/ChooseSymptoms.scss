@@ -22,16 +22,14 @@
   }
 
   &__tab {
-    margin-left: 10%;
-    display: grid;
-    justify-content: start;
-    grid-template-columns: repeat(2, 0.25fr);
+    margin-left: 14%;
 
     .ant-tabs-tab.ant-tabs-tab {
       text-align: start;
     }
     .ant-tabs-content-holder {
       border: none;
+      margin-top: 8px;
     }
     .ant-tabs-ink-bar {
       display: none;
@@ -81,8 +79,10 @@
       justify-content: space-between;
     }
     &__line {
+      width: 134px;
       height: 5px;
-      margin: 43px 33%;
+      display: table;
+      margin: 43px auto;
       background: $core_100;
       border-radius: 100px;
     }
@@ -99,10 +99,7 @@
 @include media-monitor {
   .choose-symptoms {
     &__tab {
-      margin-left: 10%;
-      display: grid;
-      justify-content: start;
-      grid-template-columns: repeat(2, 0.29fr);
+      margin-left: 21%;
     }
   }
 }

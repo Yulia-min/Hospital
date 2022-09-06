@@ -4,9 +4,9 @@ import { ReactComponent as Arrow } from 'src/public/CollapseArrow.svg'
 import './Collapse.scss'
 import { CollapseType } from './CollapseType'
 
-export const Collapse = ({ open, children, title, className }: CollapseType) => {
+export const Collapse = ({ children, title, className }: CollapseType) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [height, setHeight] = useState<number | undefined>(open ? undefined : 40)
+  const [height, setHeight] = useState<number | undefined>()
 
   const ref = useRef<HTMLDivElement>(null)
 
