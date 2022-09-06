@@ -36,6 +36,7 @@ $success_dark: #166438;
 
 $mobile: 1200px;
 $monitor: 1600px;
+$desktop: 380px;
 
 @mixin media-max($max) {
   @media screen and (max-width: $max) {
@@ -45,6 +46,18 @@ $monitor: 1600px;
 
 @mixin media-min($min) {
   @media screen and (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin media-middle($min, $max) {
+  @media screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin media-desktop {
+  @include media-middle($desktop, $mobile) {
     @content;
   }
 }

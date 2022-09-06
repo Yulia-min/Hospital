@@ -102,22 +102,19 @@ export const ChooseSymptoms = () => {
             ))}
           </div>
           <div className="choose-symptoms__button-container">
-            <div className="choose-symptoms__button">
-              <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
-                Cancel
-              </Button.Default>
-              <Button.Default
-                onClick={onClick}
-                disabled={
-                  !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
-                }
-                className="choose-symptoms__next-button"
-                variant="primary"
-              >
-                Next
-              </Button.Default>
-            </div>
-            <div className="choose-symptoms__line" />
+            <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
+              Cancel
+            </Button.Default>
+            <Button.Default
+              onClick={onClick}
+              disabled={
+                !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
+              }
+              className="choose-symptoms__next-button"
+              variant="primary"
+            >
+              Next
+            </Button.Default>
           </div>
         </div>
       ) : (

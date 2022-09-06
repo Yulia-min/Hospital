@@ -54,3 +54,15 @@
     margin-right: 20px;
   }
 }
+
+@include media-desktop {
+  .request-header {
+    &__title {
+      font-size: 30px;
+      margin-top: -40px;
+      color: $core_100;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
