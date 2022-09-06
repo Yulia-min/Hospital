@@ -22,7 +22,10 @@
   }
 
   &__tab {
-    margin-left: 14%;
+    display: grid;
+    grid-template-columns: repeat(2, 490px);
+    column-gap: 30px;
+    justify-items: end;
 
     .ant-tabs-tab.ant-tabs-tab {
       text-align: start;
@@ -42,7 +45,10 @@
     width: 510px;
   }
   &__button-container {
-    margin-left: 50%;
+    display: grid;
+    grid-template-columns: 890px 100px;
+    column-gap: 30px;
+    justify-items: end;
   }
   &__cancel-button {
     width: 124px;
@@ -79,8 +85,8 @@
       justify-content: space-between;
     }
     &__line {
-      width: 134px;
       height: 5px;
+      width: 134px;
       display: table;
       margin: 43px auto;
       background: $core_100;
@@ -98,8 +104,13 @@
 
 @include media-monitor {
   .choose-symptoms {
+    &__button-container {
+      display: grid;
+      grid-template-columns: 1090px 100px;
+    }
     &__tab {
-      margin-left: 21%;
+      grid-template-columns: repeat(2, 590px);
+      column-gap: 30px;
     }
   }
 }
