@@ -73,6 +73,9 @@
         border-radius: 10px;
       }
     }
+    &__collapse-wrapper {
+      min-height: calc(100vh - 250px);
+    }
     &__button-container {
       display: flex;
       justify-content: center;

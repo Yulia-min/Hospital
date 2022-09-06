@@ -69,7 +69,7 @@ export const ChooseSymptoms = () => {
             title="What Are The Symptoms?"
             subtitle="Select Each Patient’s Symptoms"
           />
-          <div>
+          <div className="choose-symptoms__collapse-wrapper">
             {Object.values(patientsWithSymptoms).map((patient) => (
               <Collapse
                 className="choose-symptoms__collapse"
