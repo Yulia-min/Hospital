@@ -1,7 +1,7 @@
 @import '/src/style/style.scss';
 
-.text-field-wrapper{
-  .ant-form-item-label > label{
+.text-field-wrapper {
+  .ant-form-item-label > label {
     position: absolute;
     top: -5px;
     left: 5px;
@@ -11,18 +11,17 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-}
-  .ant-input{
-    background: url("../../public/Arrow.svg") no-repeat 340px 90px;
+  }
+  .ant-input {
+    background: url('../../public/Arrow.svg') no-repeat right 15px bottom 20px;
     border: 1px solid $core_50;
-    border-radius: 2px; 
-    width: 376px;
+    border-radius: 2px;
     resize: none;
     padding: 20px 40px 0 5px;
-  
-    &:focus{
-      background: url("../../public/ActiveArrow.svg") no-repeat 340px 90px;
-      &::placeholder{
+
+    &:focus {
+      background: url('../../public/ActiveArrow.svg') no-repeat right 15px bottom 20px;
+      &::placeholder {
         color: $core_100;
       }
     }

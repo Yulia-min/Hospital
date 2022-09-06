@@ -8,12 +8,18 @@ export interface IService {
 
 export interface ISymptom {
   name: string
-  comment: string
+  image: string
   uuid: string
 }
 
 export interface IServiceState {
   services: IService[]
+  isLoading: boolean
+  error: any | null
+}
+
+export interface ISymptomState {
+  services: ISymptom[]
   isLoading: boolean
   error: any | null
 }

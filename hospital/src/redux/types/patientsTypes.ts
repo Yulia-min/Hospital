@@ -1,3 +1,5 @@
+import { CheckboxValueType } from 'antd/lib/checkbox/Group'
+
 export interface IPatient {
   uuid: string
   client_patient_relationship: string
@@ -12,12 +14,18 @@ export interface IPatient {
   verbose_id: string
 }
 
+export interface IPatientWithSymptoms extends IPatient {
+  symptoms?: CheckboxValueType[]
+  comment?: string
+}
+
 export interface IChoosenPatient {
   selectedPatientsIds: string[]
 }
 
 export interface IPatientState {
   patients: IPatient[]
+  patientWithSymptoms: IPatientWithSymptoms[]
   choosenPatient: IChoosenPatient | null
   isLoading: boolean
   error: any | null

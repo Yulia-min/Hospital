@@ -37,7 +37,16 @@
   }
 
   &__button-wrapper {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    &.active {
+      position: fixed;
+      height: 50px;
+      padding: 0 10px;
+      bottom: 0px;
+      z-index: 40;
+      background-color: $white;
+    }
   }
 }

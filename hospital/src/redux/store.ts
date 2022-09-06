@@ -7,7 +7,8 @@ export const store = configureStore({
   reducer: {
     cards: cardsSlice,
     services: servicesSlice,
-    patients: patientsSlice
+    patients: patientsSlice,
+    choosenPatient: patientsSlice
   }
 })
 

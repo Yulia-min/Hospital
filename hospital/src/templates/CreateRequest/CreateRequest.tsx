@@ -1,7 +1,7 @@
 import { Typography } from 'src/Typography'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { getPatientsInfo } from 'src/redux/patients/selectors'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
 import { Button, Checkbox } from 'src/atoms'
 import './CreateRequest.scss'
@@ -12,11 +12,17 @@ import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
+import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
 export const CreateRequest = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const ref = useRef<HTMLDivElement>(null)
 
   const { patients } = useAppSelector(getPatientsInfo)
+
+  const [showScrollButton, setShowScrollButton] = useState(false)
 
   const [checkedList, setCheckedList] = useState<CheckedListType>({
     family: [],
@@ -82,10 +88,25 @@ export const CreateRequest = () => {
           )
       )
     )
+    navigate('/choose-symptoms')
   }
 
+  const isButtonHandler = () => {
+    if (window.visualViewport.width < window.innerWidth) {
+      setShowScrollButton(true)
+      if (ref.current && ref.current.getBoundingClientRect().bottom - 150 <= window.innerHeight) {
+        setShowScrollButton(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', isButtonHandler)
+    return () => window.removeEventListener('scroll', isButtonHandler)
+  }, [])
+
   return (
-    <div className="request-list wrapper">
+    <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
         step={1}
         strokeDasharray="15 85"
@@ -102,42 +123,44 @@ export const CreateRequest = () => {
               .filter((patient) => patient.client_patient_relationship === null)
               .map((item) => ({
                 value: item.uuid,
-                label: PersonalCard(item)
+                label: PersonalCard.CheckboxCard(item)
               }))
           }}
         />
-        {PATIENT_TYPE.map(
-          (type: string) =>
-            !!patientsList[type as keyof PatientListType].length && (
-              <>
-                <Checkbox.Single
-                  propsChecbox={{
-                    onChange: onCheckAllChange(type),
-                    checked: checkedList[`${type}Checked` as keyof CheckedListType & boolean]
-                  }}
-                >
-                  <Typography.Subtitle2 className="request-list__subtitle">
-                    {type[0].toUpperCase() + type.substring(1)}
-                  </Typography.Subtitle2>
-                </Checkbox.Single>
-                <Checkbox.Group
-                  className="request-list__info"
-                  propsItem={{ name: `${type}_data` }}
-                  propsGroupCheckbox={{
-                    value: checkedList[type as keyof PatientListType],
-                    onChange: onChange(type),
-                    options: patients
-                      .filter((patient) => patient.client_patient_relationship === type)
-                      .map((item) => ({
-                        value: item.uuid,
-                        label: PersonalCard(item)
-                      }))
-                  }}
-                />
-              </>
-            )
-        )}
-        <div className="request-list__button-wrapper">
+        <div>
+          {PATIENT_TYPE.map(
+            (type: string) =>
+              !!patientsList[type as keyof PatientListType].length && (
+                <React.Fragment key={type}>
+                  <Checkbox.Single
+                    propsChecbox={{
+                      onChange: onCheckAllChange(type),
+                      checked: checkedList[`${type}Checked` as keyof CheckedListType & boolean]
+                    }}
+                  >
+                    <Typography.Subtitle2 className="request-list__subtitle">
+                      {type[0].toUpperCase() + type.substring(1)}
+                    </Typography.Subtitle2>
+                  </Checkbox.Single>
+                  <Checkbox.Group
+                    className="request-list__info"
+                    propsItem={{ name: `${type}_data` }}
+                    propsGroupCheckbox={{
+                      value: checkedList[type as keyof PatientListType],
+                      onChange: onChange(type),
+                      options: patients
+                        .filter((patient) => patient.client_patient_relationship === type)
+                        .map((item) => ({
+                          value: item.uuid,
+                          label: PersonalCard.CheckboxCard(item)
+                        }))
+                    }}
+                  />
+                </React.Fragment>
+              )
+          )}
+        </div>
+        <div className={`request-list__button-wrapper ${showScrollButton ? 'active' : ''}`}>
           <Button.Default variant="secondary">
             <Typography.Button2>Cancel</Typography.Button2>
           </Button.Default>

@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IChoosenPatient, IPatient, IPatientState } from '../types/patientsTypes'
+import {
+  IChoosenPatient,
+  IPatient,
+  IPatientState,
+  IPatientWithSymptoms
+} from '../types/patientsTypes'
 
 const initialState: IPatientState = {
   patients: [],
+  patientWithSymptoms: [],
   choosenPatient: null,
   isLoading: false,
   error: null
@@ -23,6 +29,9 @@ export const patientsSlice = createSlice({
     setPatient(state: IPatientState, action: PayloadAction<IChoosenPatient>) {
       state.choosenPatient = action.payload
     },
+    setPatientsWithSymptoms(state: IPatientState, action: PayloadAction<IPatientWithSymptoms[]>) {
+      state.patientWithSymptoms = action.payload
+    },
     finish(state: IPatientState) {
       state.isLoading = false
     },
@@ -34,4 +43,5 @@ export const patientsSlice = createSlice({
 })
 
 export default patientsSlice.reducer
-export const { loading, loadingSuccess, finish, error, setPatient } = patientsSlice.actions
+export const { loading, loadingSuccess, finish, error, setPatient, setPatientsWithSymptoms } =
+  patientsSlice.actions

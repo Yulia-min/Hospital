@@ -4,21 +4,31 @@
   display: flex;
   justify-content: space-around;
 
+  &.mobile {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 21px;
+  }
+
   svg {
+    cursor: pointer;
     margin-top: 20px;
     path {
-      fill: #5e6878;
+      fill: $core_70;
     }
   }
 
   &__title {
     color: $core_100;
+    &.mobile {
+      margin-left: 16px;
+    }
   }
 
   &__step-wrapper {
     display: flex;
     justify-content: center;
-    margin: 40px 0 40px 0;
+    margin: 30px 0 40px 0;
   }
 
   &__step-description {
@@ -32,5 +42,27 @@
 
   &__step-subtitle {
     color: $core_70;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: end;
+    margin-top: 40px;
+  }
+
+  &__cancel-button {
+    margin-right: 20px;
+  }
+}
+
+@include media-desktop {
+  .request-header {
+    &__title {
+      font-size: 30px;
+      margin-top: -40px;
+      color: $core_100;
+      display: flex;
+      justify-content: center;
+    }
   }
 }
