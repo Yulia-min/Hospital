@@ -14,7 +14,7 @@ import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
 import React from 'react'
 
-export const CreateRequest = ({ step, setStep }: ICreateRequest) => {
+export const CreateRequest = ({ setStep }: ICreateRequest) => {
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
 
@@ -106,7 +106,7 @@ export const CreateRequest = ({ step, setStep }: ICreateRequest) => {
           )
       )
     )
-    setStep(step + 1)
+    setStep(2)
   }
 
   const isButtonHandler = () => {
@@ -127,7 +127,7 @@ export const CreateRequest = ({ step, setStep }: ICreateRequest) => {
     <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
         isBack={false}
-        step={step}
+        step={1}
         strokeDasharray="15 85"
         title="Who Needs The Visit?"
         subtitle="Select People For Whom You Are Requesting The Visit"

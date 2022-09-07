@@ -21,6 +21,5 @@ export type PatientListType = {
 }
 
 export interface ICreateRequest {
-  step: number
   setStep: Dispatch<SetStateAction<number>>
 }
