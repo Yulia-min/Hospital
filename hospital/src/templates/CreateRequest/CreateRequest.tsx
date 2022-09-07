@@ -57,9 +57,9 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
       .filter((item) => item.client_patient_relationship === 'other')
       .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
       .map((item) => item.uuid),
-    personal: patients
-      .filter((item) => item.client_patient_relationship === null)
-      .find((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))?.uuid
+    personal: choosenPatient?.selectedPatientsIds.filter(
+      (item) => item === patients.find((item) => item.client_patient_relationship === null)?.uuid
+    )
   }
 
   useEffect(() => {
