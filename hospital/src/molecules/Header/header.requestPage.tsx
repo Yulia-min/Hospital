@@ -11,7 +11,6 @@ import { useMobile } from 'src/hooks'
 export const RequestPage = ({
   step,
   strokeDasharray,
-  stepRef,
   title,
   subtitle,
   onClick,
@@ -56,7 +55,7 @@ export const RequestPage = ({
         </div>
       )}
       <div className="request-header__step-wrapper">
-        <Stepper stepRef={stepRef} strokeDasharray={strokeDasharray} step={step} />
+        <Stepper strokeDasharray={strokeDasharray} step={step} />
         <div className="request-header__step-description">
           <Typography.Headline6 className="request-header__step-title">
             {title}

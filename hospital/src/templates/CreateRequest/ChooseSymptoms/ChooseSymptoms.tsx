@@ -1,6 +1,6 @@
 import { Tabs } from 'antd'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { Button, Checkbox, Input } from 'src/atoms'
 import { useMobile } from 'src/hooks'
 import { Header } from 'src/molecules'
@@ -22,7 +22,6 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
   const { patients } = useAppSelector(getPatientsInfo)
   const { choosenPatient } = useAppSelector(getChoosenPatientsInfo)
   const isMobile = useMobile()
-  const stepRef = useRef<HTMLDivElement>(null)
 
   const [patientsWithSymptoms, setPatientsWithSymptoms] = useState<PatientsWithSymptomsType>(
     patients
@@ -62,7 +61,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
   }
 
   const backClickHandler = () => {
-    setStep(stepRef.current?.textContent && +stepRef.current?.textContent - 1)
+    setStep((step: number) => step - 1)
   }
 
   return (
@@ -70,7 +69,6 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
       {isMobile ? (
         <div>
           <Header.RequestPage
-            stepRef={stepRef}
             step={2}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
@@ -128,7 +126,6 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
       ) : (
         <>
           <Header.RequestPage
-            stepRef={stepRef}
             step={2}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
