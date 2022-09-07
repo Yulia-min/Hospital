@@ -1,7 +1,7 @@
 import './Stepper.scss'
 import { StepperType } from './StepperType'
 
-export const Stepper = ({ step, strokeDasharray }: StepperType) => {
+export const Stepper = ({ step, strokeDasharray, stepRef }: StepperType) => {
   return (
     <svg viewBox="0 0 40 40" className="stepper">
       <circle cx="13" cy="11" r="15.91549430918954" fill="#fff" />
@@ -24,8 +24,11 @@ export const Stepper = ({ step, strokeDasharray }: StepperType) => {
         strokeDashoffset="25"
       />
       <g>
-        <text x="17%" y="60%" fill="darkblue">
-          {step} of
+        <text x="17%" y="60%" fill="darkblue" ref={stepRef}>
+          {step}
+        </text>
+        <text x="33%" y="60%" fill="darkblue">
+          of
         </text>
         <text x="58%" y="60%" fill="gray">
           5
