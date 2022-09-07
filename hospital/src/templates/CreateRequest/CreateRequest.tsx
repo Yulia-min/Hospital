@@ -7,17 +7,15 @@ import { Button, Checkbox } from 'src/atoms'
 import './CreateRequest.scss'
 import { Form } from 'antd'
 import { PersonalCard } from 'src/organisms'
-import { CheckedListType, PatientListType, RequestType } from './CreateRequestType'
+import { CheckedListType, ICreateRequest, PatientListType, RequestType } from './CreateRequestType'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
-import { useNavigate } from 'react-router-dom'
 import React from 'react'
 
-export const CreateRequest = () => {
+export const CreateRequest = ({ step, setStep }: ICreateRequest) => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const ref = useRef<HTMLDivElement>(null)
 
   const { patients } = useAppSelector(getPatientsInfo)
@@ -108,7 +106,7 @@ export const CreateRequest = () => {
           )
       )
     )
-    navigate('/choose-symptoms')
+    setStep(step + 1)
   }
 
   const isButtonHandler = () => {
@@ -129,7 +127,7 @@ export const CreateRequest = () => {
     <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
         isBack={false}
-        step={1}
+        step={step}
         strokeDasharray="15 85"
         title="Who Needs The Visit?"
         subtitle="Select People For Whom You Are Requesting The Visit"

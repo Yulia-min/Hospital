@@ -1,7 +1,6 @@
 import { Tabs } from 'antd'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Input } from 'src/atoms'
 import { useMobile } from 'src/hooks'
 import { Header } from 'src/molecules'
@@ -12,12 +11,12 @@ import { requestPatientsInfo, savePatientWithSymptoms } from 'src/redux/patients
 import { getChoosenPatientsInfo, getPatientsInfo } from 'src/redux/patients/selectors'
 import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
+import { ICreateRequest } from '../CreateRequestType'
 import './ChooseSymptoms.scss'
 import { PatientsWithSymptomsType } from './ChooseSymptomsType'
 
-export const ChooseSymptoms = () => {
+export const ChooseSymptoms = ({ step, setStep }: ICreateRequest) => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
 
   const { services } = useAppSelector(getServiceInfo)
   const { patients } = useAppSelector(getPatientsInfo)
@@ -62,7 +61,7 @@ export const ChooseSymptoms = () => {
   }
 
   const backClickHandler = () => {
-    navigate('/create-request')
+    setStep(step - 1)
   }
 
   return (
@@ -70,7 +69,7 @@ export const ChooseSymptoms = () => {
       {isMobile ? (
         <div>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select Each Patient’s Symptoms"
@@ -127,7 +126,7 @@ export const ChooseSymptoms = () => {
       ) : (
         <>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select People For Whom You Are Requesting The Visit"
