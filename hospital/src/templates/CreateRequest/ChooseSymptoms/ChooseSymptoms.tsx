@@ -15,7 +15,7 @@ import { ICreateRequest } from '../CreateRequestType'
 import './ChooseSymptoms.scss'
 import { PatientsWithSymptomsType } from './ChooseSymptomsType'
 
-export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
+export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
   const dispatch = useAppDispatch()
 
   const { services } = useAppSelector(getServiceInfo)
@@ -69,7 +69,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
       {isMobile ? (
         <div>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select Each Patient’s Symptoms"
@@ -126,7 +126,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
       ) : (
         <>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select People For Whom You Are Requesting The Visit"

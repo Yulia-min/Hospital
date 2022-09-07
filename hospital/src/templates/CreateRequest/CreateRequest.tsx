@@ -14,7 +14,7 @@ import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
 import React from 'react'
 
-export const CreateRequest = ({ setStep }: ICreateRequest) => {
+export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
 
@@ -47,20 +47,20 @@ export const CreateRequest = ({ setStep }: ICreateRequest) => {
   const patientsIds = {
     family: patients
       .filter((item) => item.client_patient_relationship === 'family')
-      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
-      .map((item3) => item3.uuid),
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid),
     friends: patients
       .filter((item) => item.client_patient_relationship === 'friends')
-      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
-      .map((item3) => item3.uuid),
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid),
     other: patients
       .filter((item) => item.client_patient_relationship === 'other')
-      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
-      .map((item3) => item3.uuid),
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid),
     personal: patients
       .filter((item) => item.client_patient_relationship === null)
-      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
-      .map((item3) => item3.uuid)
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid)
   }
 
   useEffect(() => {
@@ -126,8 +126,7 @@ export const CreateRequest = ({ setStep }: ICreateRequest) => {
   return (
     <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
-        isBack={false}
-        step={1}
+        step={step}
         strokeDasharray="15 85"
         title="Who Needs The Visit?"
         subtitle="Select People For Whom You Are Requesting The Visit"

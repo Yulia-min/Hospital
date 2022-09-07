@@ -6,9 +6,9 @@ export const CreateRequestPage = () => {
   return (
     <div>
       {step === 1 ? (
-        <CreateRequest setStep={setStep} />
+        <CreateRequest setStep={setStep} step={step} />
       ) : (
-        step === 2 && <ChooseSymptoms setStep={setStep} />
+        step === 2 && <ChooseSymptoms setStep={setStep} step={step} />
       )}
     </div>
   )
