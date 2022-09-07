@@ -22,6 +22,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
   const { patients } = useAppSelector(getPatientsInfo)
   const { choosenPatient } = useAppSelector(getChoosenPatientsInfo)
   const isMobile = useMobile()
+  const step = 2
 
   const [patientsWithSymptoms, setPatientsWithSymptoms] = useState<PatientsWithSymptomsType>(
     patients
@@ -61,7 +62,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
   }
 
   const backClickHandler = () => {
-    setStep(1)
+    setStep(step - 1)
   }
 
   return (
@@ -69,7 +70,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
       {isMobile ? (
         <div>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select Each Patient’s Symptoms"
@@ -126,7 +127,7 @@ export const ChooseSymptoms = ({ setStep }: ICreateRequest) => {
       ) : (
         <>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select People For Whom You Are Requesting The Visit"

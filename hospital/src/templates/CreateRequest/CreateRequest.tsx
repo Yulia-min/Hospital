@@ -17,6 +17,7 @@ import React from 'react'
 export const CreateRequest = ({ setStep }: ICreateRequest) => {
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
+  const step = 1
 
   const { patients } = useAppSelector(getPatientsInfo)
 
@@ -106,7 +107,7 @@ export const CreateRequest = ({ setStep }: ICreateRequest) => {
           )
       )
     )
-    setStep(2)
+    setStep(step + 1)
   }
 
   const isButtonHandler = () => {
@@ -127,7 +128,7 @@ export const CreateRequest = ({ setStep }: ICreateRequest) => {
     <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
         isBack={false}
-        step={1}
+        step={step}
         strokeDasharray="15 85"
         title="Who Needs The Visit?"
         subtitle="Select People For Whom You Are Requesting The Visit"
