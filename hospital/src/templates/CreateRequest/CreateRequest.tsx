@@ -1,6 +1,6 @@
 import { Typography } from 'src/Typography'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
-import { getPatientsInfo } from 'src/redux/patients/selectors'
+import { getChoosenPatientsInfo, getPatientsInfo } from 'src/redux/patients/selectors'
 import { useEffect, useRef, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
 import { Button, Checkbox } from 'src/atoms'
@@ -23,6 +23,7 @@ export const CreateRequest = () => {
   const { patients } = useAppSelector(getPatientsInfo)
 
   const [showScrollButton, setShowScrollButton] = useState(false)
+  const { choosenPatient } = useAppSelector(getChoosenPatientsInfo)
 
   const [checkedList, setCheckedList] = useState<CheckedListType>({
     family: [],
@@ -43,6 +44,25 @@ export const CreateRequest = () => {
     other: patients
       .filter((patient) => patient.client_patient_relationship === 'other')
       .map((item) => item.uuid)
+  }
+
+  const patientsIds = {
+    family: patients
+      .filter((item) => item.client_patient_relationship === 'family')
+      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
+      .map((item3) => item3.uuid),
+    friends: patients
+      .filter((item) => item.client_patient_relationship === 'friends')
+      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
+      .map((item3) => item3.uuid),
+    other: patients
+      .filter((item) => item.client_patient_relationship === 'other')
+      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
+      .map((item3) => item3.uuid),
+    personal: patients
+      .filter((item) => item.client_patient_relationship === null)
+      .filter((item2) => choosenPatient?.selectedPatientsIds.includes(item2.uuid))
+      .map((item3) => item3.uuid)
   }
 
   useEffect(() => {
@@ -108,12 +128,23 @@ export const CreateRequest = () => {
   return (
     <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
+        isBack={false}
         step={1}
         strokeDasharray="15 85"
         title="Who Needs The Visit?"
         subtitle="Select People For Whom You Are Requesting The Visit"
       />
-      <Form form={form} onFinish={onFinish} className="request-list__card-wrapper">
+      <Form
+        initialValues={{
+          other_data: patientsIds.other,
+          family_data: patientsIds.family,
+          personal_data: patientsIds.personal,
+          friends_data: patientsIds.friends
+        }}
+        form={form}
+        onFinish={onFinish}
+        className="request-list__card-wrapper"
+      >
         <Typography.Subtitle2 className="request-list__subtitle">You</Typography.Subtitle2>
         <Checkbox.Group
           className="request-list__info"
@@ -144,7 +175,9 @@ export const CreateRequest = () => {
                   </Checkbox.Single>
                   <Checkbox.Group
                     className="request-list__info"
-                    propsItem={{ name: `${type}_data` }}
+                    propsItem={{
+                      name: `${type}_data`
+                    }}
                     propsGroupCheckbox={{
                       value: checkedList[type as keyof PatientListType],
                       onChange: onChange(type),

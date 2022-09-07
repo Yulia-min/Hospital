@@ -8,7 +8,14 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMobile } from 'src/hooks'
 
-export const RequestPage = ({ step, strokeDasharray, title, subtitle }: HeaderType) => {
+export const RequestPage = ({
+  step,
+  strokeDasharray,
+  title,
+  subtitle,
+  onClick,
+  isBack = true
+}: HeaderType) => {
   const [isVisible, setIsVisible] = useState(false)
 
   const isMobile = useMobile()
@@ -31,7 +38,7 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle }: HeaderTy
       {isMobile ? (
         <>
           <div className="request-header mobile">
-            <MainArrow />
+            {isBack ? <MainArrow onClick={onClick} /> : <div />}
             <Cross onClick={showConfirm} />
           </div>
           <Typography.Headline6 className="request-header__title mobile">
@@ -40,7 +47,7 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle }: HeaderTy
         </>
       ) : (
         <div className="request-header">
-          <MainArrow />
+          {isBack ? <MainArrow onClick={onClick} /> : <div />}
           <Typography.Headline1 className="request-header__title">
             Requesting The Doctor
           </Typography.Headline1>

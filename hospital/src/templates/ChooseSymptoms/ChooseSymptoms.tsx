@@ -1,6 +1,7 @@
 import { Tabs } from 'antd'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Input } from 'src/atoms'
 import { useMobile } from 'src/hooks'
 import { Header } from 'src/molecules'
@@ -16,6 +17,7 @@ import { PatientsWithSymptomsType } from './ChooseSymptomsType'
 
 export const ChooseSymptoms = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const { services } = useAppSelector(getServiceInfo)
   const { patients } = useAppSelector(getPatientsInfo)
@@ -59,6 +61,10 @@ export const ChooseSymptoms = () => {
     dispatch(savePatientWithSymptoms(Object.values(patientsWithSymptoms)))
   }
 
+  const backClickHandler = () => {
+    navigate('/create-request')
+  }
+
   return (
     <div className="choose-symptoms">
       {isMobile ? (
@@ -68,6 +74,7 @@ export const ChooseSymptoms = () => {
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select Each Patient’s Symptoms"
+            onClick={backClickHandler}
           />
           <div className="choose-symptoms__collapse-wrapper">
             {Object.values(patientsWithSymptoms).map((patient) => (
@@ -124,6 +131,7 @@ export const ChooseSymptoms = () => {
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select People For Whom You Are Requesting The Visit"
+            onClick={backClickHandler}
           />
           <Tabs
             className="choose-symptoms__tab"
