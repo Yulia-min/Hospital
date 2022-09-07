@@ -1,28 +1,27 @@
 import { Typography } from 'src/Typography'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
-import { getPatientsInfo } from 'src/redux/patients/selectors'
+import { getChoosenPatientsInfo, getPatientsInfo } from 'src/redux/patients/selectors'
 import { useEffect, useRef, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
 import { Button, Checkbox } from 'src/atoms'
 import './CreateRequest.scss'
 import { Form } from 'antd'
 import { PersonalCard } from 'src/organisms'
-import { CheckedListType, PatientListType, RequestType } from './CreateRequestType'
+import { CheckedListType, ICreateRequest, PatientListType, RequestType } from './CreateRequestType'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
-import { useNavigate } from 'react-router-dom'
 import React from 'react'
 
-export const CreateRequest = () => {
+export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const ref = useRef<HTMLDivElement>(null)
 
   const { patients } = useAppSelector(getPatientsInfo)
 
   const [showScrollButton, setShowScrollButton] = useState(false)
+  const { choosenPatient } = useAppSelector(getChoosenPatientsInfo)
 
   const [checkedList, setCheckedList] = useState<CheckedListType>({
     family: [],
@@ -43,6 +42,24 @@ export const CreateRequest = () => {
     other: patients
       .filter((patient) => patient.client_patient_relationship === 'other')
       .map((item) => item.uuid)
+  }
+
+  const patientsIds = {
+    family: patients
+      .filter((item) => item.client_patient_relationship === 'family')
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid),
+    friends: patients
+      .filter((item) => item.client_patient_relationship === 'friends')
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid),
+    other: patients
+      .filter((item) => item.client_patient_relationship === 'other')
+      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .map((item) => item.uuid),
+    personal: choosenPatient?.selectedPatientsIds.filter(
+      (item) => item === patients.find((item) => item.client_patient_relationship === null)?.uuid
+    )
   }
 
   useEffect(() => {
@@ -88,7 +105,7 @@ export const CreateRequest = () => {
           )
       )
     )
-    navigate('/choose-symptoms')
+    setStep((step: number) => step + 1)
   }
 
   const isButtonHandler = () => {
@@ -108,12 +125,22 @@ export const CreateRequest = () => {
   return (
     <div className="request-list wrapper" ref={ref}>
       <Header.RequestPage
-        step={1}
+        step={step}
         strokeDasharray="15 85"
         title="Who Needs The Visit?"
         subtitle="Select People For Whom You Are Requesting The Visit"
       />
-      <Form form={form} onFinish={onFinish} className="request-list__card-wrapper">
+      <Form
+        initialValues={{
+          other_data: patientsIds.other,
+          family_data: patientsIds.family,
+          personal_data: patientsIds.personal,
+          friends_data: patientsIds.friends
+        }}
+        form={form}
+        onFinish={onFinish}
+        className="request-list__card-wrapper"
+      >
         <Typography.Subtitle2 className="request-list__subtitle">You</Typography.Subtitle2>
         <Checkbox.Group
           className="request-list__info"
@@ -144,7 +171,9 @@ export const CreateRequest = () => {
                   </Checkbox.Single>
                   <Checkbox.Group
                     className="request-list__info"
-                    propsItem={{ name: `${type}_data` }}
+                    propsItem={{
+                      name: `${type}_data`
+                    }}
                     propsGroupCheckbox={{
                       value: checkedList[type as keyof PatientListType],
                       onChange: onChange(type),

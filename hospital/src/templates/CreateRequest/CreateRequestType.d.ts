@@ -19,3 +19,8 @@ export type PatientListType = {
   friends: string[]
   other: string[]
 }
+
+export interface ICreateRequest {
+  step: number
+  setStep: Dispatch<SetStateAction<number>>
+}

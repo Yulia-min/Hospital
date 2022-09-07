@@ -11,10 +11,11 @@ import { requestPatientsInfo, savePatientWithSymptoms } from 'src/redux/patients
 import { getChoosenPatientsInfo, getPatientsInfo } from 'src/redux/patients/selectors'
 import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
+import { ICreateRequest } from '../CreateRequestType'
 import './ChooseSymptoms.scss'
 import { PatientsWithSymptomsType } from './ChooseSymptomsType'
 
-export const ChooseSymptoms = () => {
+export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
   const dispatch = useAppDispatch()
 
   const { services } = useAppSelector(getServiceInfo)
@@ -59,15 +60,20 @@ export const ChooseSymptoms = () => {
     dispatch(savePatientWithSymptoms(Object.values(patientsWithSymptoms)))
   }
 
+  const backClickHandler = () => {
+    setStep((step: number) => step - 1)
+  }
+
   return (
     <div className="choose-symptoms">
       {isMobile ? (
         <div>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select Each Patient’s Symptoms"
+            onClick={backClickHandler}
           />
           <div className="choose-symptoms__collapse-wrapper">
             {Object.values(patientsWithSymptoms).map((patient) => (
@@ -120,10 +126,11 @@ export const ChooseSymptoms = () => {
       ) : (
         <>
           <Header.RequestPage
-            step={2}
+            step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
             subtitle="Select People For Whom You Are Requesting The Visit"
+            onClick={backClickHandler}
           />
           <Tabs
             className="choose-symptoms__tab"

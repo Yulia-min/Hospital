@@ -3,4 +3,5 @@ export type HeaderType = {
   strokeDasharray?: string
   title?: string
   subtitle?: string
+  onClick?: () => void
 }
