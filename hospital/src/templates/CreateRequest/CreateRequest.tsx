@@ -46,19 +46,21 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
 
   const patientsIds = {
     family: patients
-      .filter((item) => item.client_patient_relationship === 'family')
-      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .filter((patient) => patient.client_patient_relationship === 'family')
+      .filter((found_patient) => choosenPatient?.selectedPatientsIds.includes(found_patient.uuid))
       .map((item) => item.uuid),
     friends: patients
-      .filter((item) => item.client_patient_relationship === 'friends')
-      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .filter((patient) => patient.client_patient_relationship === 'friends')
+      .filter((found_patient) => choosenPatient?.selectedPatientsIds.includes(found_patient.uuid))
       .map((item) => item.uuid),
     other: patients
-      .filter((item) => item.client_patient_relationship === 'other')
-      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .filter((patient) => patient.client_patient_relationship === 'other')
+      .filter((found_patient) => choosenPatient?.selectedPatientsIds.includes(found_patient.uuid))
       .map((item) => item.uuid),
     personal: choosenPatient?.selectedPatientsIds.filter(
-      (item) => item === patients.find((item) => item.client_patient_relationship === null)?.uuid
+      (selectedPatientsId) =>
+        selectedPatientsId ===
+        patients.find((patient) => patient.client_patient_relationship === null)?.uuid
     )
   }
 
