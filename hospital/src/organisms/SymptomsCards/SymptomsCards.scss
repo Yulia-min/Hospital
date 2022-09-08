@@ -17,6 +17,12 @@
 
 @include media-desktop {
   .symptoms-cards {
-    width: 300px;
+    width: 400px;
+  }
+}
+
+@include media-mobile {
+  .symptoms-cards {
+    width: 277px;
   }
 }
