@@ -2,13 +2,12 @@
 
 .choose-symptoms {
   &__symptoms-list {
-    width: 500px;
     .ant-checkbox-group {
       display: grid;
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner,
     .ant-checkbox:hover .ant-checkbox-inner {
-      border-color: #5e6878;
+      border-color: $core_70;
     }
     .ant-checkbox-checked::after {
       border: none;
@@ -29,17 +28,18 @@
   }
 
   &__tab {
-    display: grid;
-    grid-template-columns: 400px 500px;
-    column-gap: 30px;
-    justify-items: end;
-
+    .ant-tabs-nav {
+      position: absolute;
+      left: 50px;
+    }
     .ant-tabs-tab.ant-tabs-tab {
       text-align: start;
     }
     .ant-tabs-content-holder {
       border: none;
-      margin-top: 8px;
+      margin-top: 7px;
+      display: grid;
+      justify-content: center;
     }
     .ant-tabs-ink-bar {
       display: none;
@@ -53,9 +53,11 @@
   }
   &__button-container {
     display: grid;
-    grid-template-columns: 810px 100px;
-    column-gap: 30px;
-    justify-items: end;
+    grid-template-columns: 1fr 539px 1fr;
+  }
+  &__button-wrapper {
+    display: flex;
+    justify-content: end;
   }
   &__cancel-button {
     width: 124px;
@@ -136,13 +138,11 @@
 
 @include media-tv {
   .choose-symptoms {
-    &__button-container {
-      display: grid;
-      grid-template-columns: 1010px 100px;
-    }
     &__tab {
-      grid-template-columns: 500px 600px;
-      column-gap: 30px;
+      .ant-tabs-nav {
+        position: absolute;
+        left: 220px;
+      }
     }
   }
 }

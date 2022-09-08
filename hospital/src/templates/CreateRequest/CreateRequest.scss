@@ -17,7 +17,7 @@
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner,
     .ant-checkbox:hover .ant-checkbox-inner {
-      border-color: #5e6878;
+      border-color: $core_70;
     }
     .ant-checkbox-checked::after {
       border: none;
@@ -83,7 +83,7 @@
       padding-top: 20px;
       display: flex;
       justify-content: space-around;
-      background: #ffffff;
+      background: $white;
       box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
     }
     &__next-button {

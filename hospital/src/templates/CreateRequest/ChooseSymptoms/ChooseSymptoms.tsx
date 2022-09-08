@@ -173,19 +173,22 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             ))}
           </Tabs>
           <div className="choose-symptoms__button-container">
-            <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
-              Cancel
-            </Button.Default>
-            <Button.Default
-              disabled={
-                !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
-              }
-              className="choose-symptoms__next-button"
-              variant="primary"
-              onClick={onClick}
-            >
-              Next
-            </Button.Default>
+            <div />
+            <div className="choose-symptoms__button-wrapper">
+              <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
+                Cancel
+              </Button.Default>
+              <Button.Default
+                disabled={
+                  !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
+                }
+                className="choose-symptoms__next-button"
+                variant="primary"
+                onClick={onClick}
+              >
+                Next
+              </Button.Default>
+            </div>
           </div>
         </>
       )}

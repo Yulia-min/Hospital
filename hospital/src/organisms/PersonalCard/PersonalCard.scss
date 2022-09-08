@@ -2,8 +2,9 @@
 
 .personal-card {
   &.wrapper {
-    width: 450px;
+    width: 430px;
     display: flex;
+    padding: 24px 0;
 
     &:hover {
       .personal-card__button {
@@ -14,20 +15,21 @@
   }
 
   &.default-wrapper {
-    width: 230px;
+    width: 292px;
     border: 1px solid $core_30;
     border-radius: 2px;
+    padding: 24px 0 5px 0;
   }
 
   &__info {
     width: 100%;
     overflow: hidden;
-    margin-left: 20px;
+    padding-left: 20px;
   }
 
   &__name {
     color: $core_100;
-    margin: 24px 0 8px 0;
+    margin-bottom: 8px;
   }
 
   &__birthday {
@@ -44,11 +46,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: $primary_70;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   &__edit {
-    margin: 5px 0 0 10px;
+    padding: 5px 0 0 10px;
     text-transform: uppercase;
     color: $primary_80;
   }
@@ -56,7 +58,6 @@
   &__button {
     display: flex;
     opacity: 0;
-    margin-top: 20px;
   }
 
   &__symptom-container {
@@ -71,13 +72,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  &__comment-container {
+    padding: 0 0 0 20px;
+  }
   &__comment-title {
-    color: #5e6878;
-    margin: 0 0 0 20px;
+    color: $core_70;
+    margin-bottom: 5px;
   }
   &__comment-content {
-    color: #090a0b;
-    margin: 2px 0 24px 20px;
+    color: $core_100;
   }
 }
 
