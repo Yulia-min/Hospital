@@ -162,7 +162,6 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
                     ))}
                   {!!patient.symptoms?.length && (
                     <Input.TextArea
-                      className="choose-symptoms__text-area"
                       propsTextArea={{ onChange: onInputChange(patient.uuid) }}
                       propsItem={{ label: 'Please Describe How You’re Feeling' }}
                       row={5}
