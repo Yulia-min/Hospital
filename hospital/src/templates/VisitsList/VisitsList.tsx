@@ -34,7 +34,7 @@ export const VisitsList = () => {
     const { cards, columnCount } = data
     const singleColumnIndex = columnIndex + rowIndex * columnCount
     const card = cards[singleColumnIndex]
-    return <div style={style}>{card && <RequestCards request={card} />}</div>
+    return <div style={style}>{card && <RequestCards card={card} />}</div>
   }
 
   const renderRequestCardsGrid = () => {
@@ -45,9 +45,9 @@ export const VisitsList = () => {
         ? 1400
         : window.innerWidth > 720
         ? 910
-        : 420
+        : 370
     const height = window.innerHeight > 800 ? 760 : 550
-    const cardWidth = window.innerWidth > 1600 ? 560 : window.innerWidth > 720 ? 450 : 410
+    const cardWidth = window.innerWidth > 1600 ? 560 : window.innerWidth > 720 ? 450 : 350
     const cardHeight = 555
     const columnCount = window.innerWidth > 1080 ? 3 : window.innerWidth > 720 ? 2 : 1
     const rowCount = Math.ceil(cards.length / columnCount)

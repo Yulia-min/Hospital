@@ -21,6 +21,7 @@
 
   &__info {
     width: 100%;
+    overflow: hidden;
     margin-left: 20px;
   }
 
@@ -40,6 +41,8 @@
   }
 
   &__email {
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: $primary_70;
     margin-bottom: 24px;
   }
@@ -81,7 +84,11 @@
 @include media-desktop {
   .personal-card {
     &.wrapper.wrapper {
-      width: 400px;
+      width: 390px;
+    }
+    &.default-wrapper {
+      border: none;
+      width: 420px;
     }
   }
 }
@@ -89,7 +96,7 @@
 @include media-mobile {
   .personal-card {
     &.wrapper {
-      width: 280px;
+      width: 260px;
     }
     &.default-wrapper {
       border: none;

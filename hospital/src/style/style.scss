@@ -34,9 +34,9 @@ $error_light_1: #fdc4c4;
 
 $success_dark: #166438;
 
-$mobile: 1200px;
-$monitor: 1600px;
-$desktop: 400px;
+$mobile: 480px;
+$desktop: 1200px;
+$tv: 1600px;
 
 @mixin media-max($max) {
   @media screen and (max-width: $max) {
@@ -57,7 +57,7 @@ $desktop: 400px;
 }
 
 @mixin media-desktop {
-  @include media-middle($desktop, $mobile) {
+  @include media-middle($mobile, $desktop) {
     @content;
   }
 }
@@ -68,8 +68,8 @@ $desktop: 400px;
   }
 }
 
-@mixin media-monitor {
-  @include media-min($monitor) {
+@mixin media-tv {
+  @include media-min($tv) {
     @content;
   }
 }

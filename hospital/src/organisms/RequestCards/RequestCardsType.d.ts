@@ -1,7 +1,7 @@
 import { STATUS_VARIANTS } from 'src/constants'
 
 export type RequestCardsType = {
-  request: {
+  card: {
     uuid: string
     is_grouped: boolean
     service_request_status: keyof typeof STATUS_VARIANTS

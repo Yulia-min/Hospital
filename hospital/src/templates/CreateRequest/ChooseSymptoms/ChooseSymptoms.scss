@@ -93,7 +93,41 @@
   }
 }
 
-@include media-monitor {
+@include media-desktop {
+  .choose-symptoms {
+    &__collapse {
+      display: grid;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+    &__symptoms-list {
+      width: 360px;
+      .ant-checkbox-wrapper {
+        margin: 8px 0 0 0;
+        border-radius: 10px;
+      }
+    }
+    &__collapse-wrapper {
+      min-height: calc(100vh - 250px);
+    }
+    &__button-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      margin: 0;
+      box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
+    }
+    &__cancel-button {
+      width: 124px;
+      margin-right: 20px;
+    }
+    &__next-button {
+      width: 162px;
+    }
+  }
+}
+
+@include media-tv {
   .choose-symptoms {
     &__button-container {
       display: grid;
