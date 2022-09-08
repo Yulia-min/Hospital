@@ -1,75 +1,81 @@
 @import '/src/style/style.scss';
 
-.request-card{
-    border: 1px solid $core_30;
-    border-radius: 2px;
-    background: $white;
-    height: 529px;
+.request-card {
+  border: 1px solid $core_30;
+  border-radius: 2px;
+  background: $white;
+  height: 529px;
 
-    &.container{
-        margin-right: 24px;
-    }
-    &__header{
-        display: flex;
-        justify-content: space-between;
-        margin: 44px 20px 25px 20px;
-    }
+  &.container {
+    margin-right: 24px;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 20px;
+  }
 
-    &__request-type{
-        color: $core_70;
-        letter-spacing: 0.1px;
-        text-transform: capitalize;
-        margin-top: 5px;
-    }
+  &__request-type {
+    color: $core_70;
+    letter-spacing: 0.1px;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+  }
 
-    &__urgency{
-        margin: 0 0 16px 12px;
-    }
+  &__urgency {
+    margin: 0 0 16px 12px;
+  }
 
-    &__body{
-        display: flex;
-        margin-left: 20px;
-    }
+  &__body {
+    display: flex;
+    margin-left: 20px;
+  }
 
-    &__body-title{
-        color: $core_70;
-    }
+  &__body-title {
+    color: $core_70;
+  }
 
-    
-    &__body-description{
-        color: $core_100;
-        margin: 0 0 0 8px;
-    }
+  &__body-description {
+    color: $core_100;
+    padding-left: 8px;
+  }
 
+  &__patient-name {
+    display: flex;
+    justify-content: center;
+    margin: 42px 0;
+  }
 
-    &__patient-name{
-        margin: 42px 0 42px 88px;
-    }
+  &__line {
+    height: 1px;
+    background: $core_30;
+    width: 90%;
+    margin: 0 auto;
+  }
 
-    &__line{
-        height: 1px;
-        background: $core_30;
-        width: 90%;
-        margin: 0 auto;
-    }
+  &__footer-title {
+    color: $core_70;
+    margin-bottom: 16px;
+  }
 
-    &__footer-title{
-        color: $core_70;
-        margin: 30px 0 0 20px;
-    }
+  &__footer-info {
+    padding: 30px 0 35px 20px;
+  }
 
-    &__footer-info{
-        display: flex;
-        margin: 16px 0 0 20px;
-    }
+  &__doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-    &__doctor-name{
-        margin: 10px 0 0 20px;
-        color: $core_100;
-    }
+  &__doctor-name {
+    color: $core_100;
+  }
 
-    &__button{
-        display: flex;
-        margin: 40px 0 52px 65%;
-    }
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
 }

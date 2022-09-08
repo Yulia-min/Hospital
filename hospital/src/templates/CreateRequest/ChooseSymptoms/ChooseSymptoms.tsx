@@ -1,6 +1,6 @@
 import { Tabs } from 'antd'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
-import { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { Button, Checkbox, Input } from 'src/atoms'
 import { useMobile } from 'src/hooks'
 import { Header } from 'src/molecules'
@@ -77,34 +77,38 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
           />
           <div className="choose-symptoms__collapse-wrapper">
             {Object.values(patientsWithSymptoms).map((patient) => (
-              <Collapse
-                className="choose-symptoms__collapse"
-                title={PersonalCard.DefaultCard(patient)}
-              >
-                <div>
-                  {services
-                    .filter((service) => service.name === 'common')
-                    .map((symptom) => (
-                      <Checkbox.Group
-                        className="choose-symptoms__symptoms-list"
-                        propsGroupCheckbox={{
-                          onChange: onSelectSymptomsChange(patient.uuid),
-                          options: symptom.symptoms.map((item) => ({
-                            value: item.name,
-                            label: SymptomsCards(item)
-                          }))
-                        }}
-                      />
-                    ))}
-                </div>
-                {!!patient.symptoms?.length && (
-                  <Input.TextArea
-                    row={5}
-                    propsTextArea={{ onChange: onInputChange(patient.uuid) }}
-                    propsItem={{ label: 'Please Describe How You’re Feeling' }}
-                  />
-                )}
-              </Collapse>
+              <React.Fragment key={patient.uuid}>
+                <Collapse
+                  className="choose-symptoms__collapse"
+                  title={PersonalCard.DefaultCard(patient)}
+                >
+                  <div>
+                    {services
+                      .filter((service) => service.name === 'common')
+                      .map((symptom) => (
+                        <React.Fragment key={symptom.name}>
+                          <Checkbox.Group
+                            className="choose-symptoms__symptoms-list"
+                            propsGroupCheckbox={{
+                              onChange: onSelectSymptomsChange(patient.uuid),
+                              options: symptom.symptoms.map((item) => ({
+                                value: item.name,
+                                label: SymptomsCards(item)
+                              }))
+                            }}
+                          />
+                        </React.Fragment>
+                      ))}
+                  </div>
+                  {!!patient.symptoms?.length && (
+                    <Input.TextArea
+                      row={5}
+                      propsTextArea={{ onChange: onInputChange(patient.uuid) }}
+                      propsItem={{ label: 'Please Describe How You’re Feeling' }}
+                    />
+                  )}
+                </Collapse>
+              </React.Fragment>
             ))}
           </div>
           <div className="choose-symptoms__button-container">
@@ -143,16 +147,18 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
                   {services
                     .filter((service) => service.name === 'common')
                     .map((symptom) => (
-                      <Checkbox.Group
-                        className="choose-symptoms__symptoms-list"
-                        propsGroupCheckbox={{
-                          onChange: onSelectSymptomsChange(patient.uuid),
-                          options: symptom.symptoms.map((item) => ({
-                            value: item.name,
-                            label: SymptomsCards(item)
-                          }))
-                        }}
-                      />
+                      <React.Fragment key={symptom.name}>
+                        <Checkbox.Group
+                          className="choose-symptoms__symptoms-list"
+                          propsGroupCheckbox={{
+                            onChange: onSelectSymptomsChange(patient.uuid),
+                            options: symptom.symptoms.map((item) => ({
+                              value: item.name,
+                              label: SymptomsCards(item)
+                            }))
+                          }}
+                        />
+                      </React.Fragment>
                     ))}
                   {!!patient.symptoms?.length && (
                     <Input.TextArea

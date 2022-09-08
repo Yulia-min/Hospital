@@ -78,8 +78,19 @@
   }
 }
 
+@include media-desktop {
+  .personal-card {
+    &.wrapper.wrapper {
+      width: 400px;
+    }
+  }
+}
+
 @include media-mobile {
   .personal-card {
+    &.wrapper {
+      width: 280px;
+    }
     &.default-wrapper {
       border: none;
       width: 320px;

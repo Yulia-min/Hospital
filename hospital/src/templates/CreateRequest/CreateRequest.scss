@@ -3,7 +3,7 @@
 .request-list {
   &__subtitle {
     color: $core_70;
-    margin-bottom: 10px;
+    margin: 0 0 10px 10px;
   }
 
   &__card-wrapper {
@@ -14,7 +14,6 @@
   &__info {
     .ant-checkbox-group {
       display: grid;
-      grid-template-columns: repeat(1, 1r);
     }
     .ant-checkbox-wrapper {
       width: 100%;
@@ -43,10 +42,51 @@
     &.active {
       position: fixed;
       height: 50px;
-      padding: 0 10px;
+      padding: 5px 10px;
       bottom: 0px;
       z-index: 40;
       background-color: $white;
+    }
+  }
+  &__checkbox-wrapper {
+    margin-left: 10px;
+  }
+}
+
+@include media-mobile {
+  .request-list {
+    &__info {
+      .ant-checkbox-wrapper {
+        box-shadow: 0px 1px 8px rgba(14, 67, 109, 0.16);
+        border-radius: 10px;
+      }
+    }
+    &__button-wrapper {
+      display: flex;
+      flex-direction: column;
+      &.active {
+        position: fixed;
+        height: 110px;
+        bottom: 0px;
+        z-index: 40;
+        background-color: $white;
+      }
+    }
+    &__button-container {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      background: #ffffff;
+      box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+    }
+    &__next-button {
+      width: 162px;
+    }
+    &__cancel-button {
+      width: 92px;
+    }
+    &__cancel-wrapper {
+      margin: 0 0 15px 10px;
     }
   }
 }

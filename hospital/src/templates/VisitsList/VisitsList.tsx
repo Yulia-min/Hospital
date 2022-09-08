@@ -6,7 +6,6 @@ import { getCardsInfo } from 'src/redux/cards/selectors'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { Typography } from 'src/Typography'
 import './VisitsList.scss'
-import moment from 'moment'
 import { FixedSizeGrid as Grid } from 'react-window'
 import { Header } from 'src/molecules'
 import { Form } from 'antd'
@@ -19,6 +18,7 @@ export const VisitsList = () => {
   const dispatch = useAppDispatch()
 
   const { cards } = useAppSelector(getCardsInfo)
+
   const { services } = useAppSelector(getServiceInfo)
 
   const [isServiceType, setIsServiceType] = useState<string>()
@@ -34,26 +34,7 @@ export const VisitsList = () => {
     const { cards, columnCount } = data
     const singleColumnIndex = columnIndex + rowIndex * columnCount
     const card = cards[singleColumnIndex]
-    return (
-      <div style={style}>
-        {card && (
-          <RequestCards
-            uuid={card.uuid}
-            is_grouped={card.is_grouped}
-            status={card.service_request_status}
-            urgency={card.urgency_type}
-            service={card.service_type}
-            time={
-              moment(card.application_can_start_at).format('HH:mm a') +
-              ' - ' +
-              moment(card.application_time).format('HH:mm a')
-            }
-            patient_name={card.patient_name}
-            doctor_name={card.doctor_name}
-          />
-        )}
-      </div>
-    )
+    return <div style={style}>{card && <RequestCards request={card} />}</div>
   }
 
   const renderRequestCardsGrid = () => {

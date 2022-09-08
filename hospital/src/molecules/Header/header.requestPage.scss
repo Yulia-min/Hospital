@@ -26,7 +26,9 @@
   }
 
   &__step-wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30px 450px;
+    column-gap: 20px;
     justify-content: center;
     margin: 30px 0 40px 0;
   }
@@ -63,6 +65,14 @@
       color: $core_100;
       display: flex;
       justify-content: center;
+    }
+  }
+}
+
+@include media-mobile {
+  .request-header {
+    &__step-wrapper {
+      grid-template-columns: 30px 310px;
     }
   }
 }

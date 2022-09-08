@@ -13,10 +13,12 @@ import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENT_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
 import React from 'react'
+import { useMobile } from 'src/hooks'
 
 export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
   const dispatch = useAppDispatch()
   const ref = useRef<HTMLDivElement>(null)
+  const isMobile = useMobile()
 
   const { patients } = useAppSelector(getPatientsInfo)
 
@@ -46,19 +48,21 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
 
   const patientsIds = {
     family: patients
-      .filter((item) => item.client_patient_relationship === 'family')
-      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .filter((patient) => patient.client_patient_relationship === 'family')
+      .filter((found_patient) => choosenPatient?.selectedPatientsIds.includes(found_patient.uuid))
       .map((item) => item.uuid),
     friends: patients
-      .filter((item) => item.client_patient_relationship === 'friends')
-      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .filter((patient) => patient.client_patient_relationship === 'friends')
+      .filter((found_patient) => choosenPatient?.selectedPatientsIds.includes(found_patient.uuid))
       .map((item) => item.uuid),
     other: patients
-      .filter((item) => item.client_patient_relationship === 'other')
-      .filter((item) => choosenPatient?.selectedPatientsIds.includes(item.uuid))
+      .filter((patient) => patient.client_patient_relationship === 'other')
+      .filter((found_patient) => choosenPatient?.selectedPatientsIds.includes(found_patient.uuid))
       .map((item) => item.uuid),
     personal: choosenPatient?.selectedPatientsIds.filter(
-      (item) => item === patients.find((item) => item.client_patient_relationship === null)?.uuid
+      (selectedPatientsId) =>
+        selectedPatientsId ===
+        patients.find((patient) => patient.client_patient_relationship === null)?.uuid
     )
   }
 
@@ -124,12 +128,22 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
 
   return (
     <div className="request-list wrapper" ref={ref}>
-      <Header.RequestPage
-        step={step}
-        strokeDasharray="15 85"
-        title="Who Needs The Visit?"
-        subtitle="Select People For Whom You Are Requesting The Visit"
-      />
+      {isMobile ? (
+        <Header.RequestPage
+          step={step}
+          strokeDasharray="15 85"
+          title="Who Needs The Visit?"
+          subtitle="Please Select Patients From Below And/Or Add New Patient"
+        />
+      ) : (
+        <Header.RequestPage
+          step={step}
+          strokeDasharray="15 85"
+          title="Who Needs The Visit?"
+          subtitle="Select People For Whom You Are Requesting The Visit"
+        />
+      )}
+
       <Form
         initialValues={{
           other_data: patientsIds.other,
@@ -160,6 +174,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               !!patientsList[type as keyof PatientListType].length && (
                 <React.Fragment key={type}>
                   <Checkbox.Single
+                    className="request-list__checkbox-wrapper"
                     propsChecbox={{
                       onChange: onCheckAllChange(type),
                       checked: checkedList[`${type}Checked` as keyof CheckedListType & boolean]
@@ -189,23 +204,49 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               )
           )}
         </div>
-        <div className={`request-list__button-wrapper ${showScrollButton ? 'active' : ''}`}>
-          <Button.Default variant="secondary">
-            <Typography.Button2>Cancel</Typography.Button2>
-          </Button.Default>
-          <div>
+        {isMobile ? (
+          <div className={`request-list__button-wrapper ${showScrollButton ? 'active' : ''}`}>
+            <div className="request-list__cancel-wrapper">
+              <Button.Default variant="secondary">
+                <Typography.Button2 className="request-list__cancel-button">
+                  Cancel
+                </Typography.Button2>
+              </Button.Default>
+            </div>
+            <div className="request-list__button-container">
+              <Button.Default variant="secondary">
+                <Typography.Button2 className="request-list__cancel-button">
+                  Cancel
+                </Typography.Button2>
+              </Button.Default>
+              <Button.Default
+                className="request-list__next-button"
+                variant="primary"
+                htmlType="submit"
+              >
+                <Typography.Button2>Next</Typography.Button2>
+              </Button.Default>
+            </div>
+          </div>
+        ) : (
+          <div className={`request-list__button-wrapper ${showScrollButton ? 'active' : ''}`}>
             <Button.Default variant="secondary">
               <Typography.Button2>Cancel</Typography.Button2>
             </Button.Default>
-            <Button.Default
-              className="request-list__next-button"
-              variant="primary"
-              htmlType="submit"
-            >
-              <Typography.Button2>Next</Typography.Button2>
-            </Button.Default>
+            <div>
+              <Button.Default variant="secondary">
+                <Typography.Button2>Cancel</Typography.Button2>
+              </Button.Default>
+              <Button.Default
+                className="request-list__next-button"
+                variant="primary"
+                htmlType="submit"
+              >
+                <Typography.Button2>Next</Typography.Button2>
+              </Button.Default>
+            </div>
           </div>
-        </div>
+        )}
       </Form>
     </div>
   )

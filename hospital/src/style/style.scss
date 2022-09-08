@@ -36,7 +36,7 @@ $success_dark: #166438;
 
 $mobile: 1200px;
 $monitor: 1600px;
-$desktop: 380px;
+$desktop: 400px;
 
 @mixin media-max($max) {
   @media screen and (max-width: $max) {

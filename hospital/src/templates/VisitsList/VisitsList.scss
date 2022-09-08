@@ -1,47 +1,39 @@
 @import '/src/style/style.scss';
 
-.visits-list{
-    &.wrapper{
-        margin-left: 5%;
+.visits-list {
+  &.wrapper {
+    margin-left: 5%;
+  }
+
+  &__layout {
+    &::-webkit-scrollbar {
+      width: 10px;
     }
 
-    &__layout{
-        &::-webkit-scrollbar {
-            width: 10px;
-          }
-    
-          &::-webkit-scrollbar-track {
-            border-radius: 5px;
-            background: $core_20;
-          }
-          
-          &::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: $core_40;
-          }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background: $core_20;
     }
 
-    &__title{
-        margin: 0 0 24px;
-        color: $core_100;
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: $core_40;
     }
-    
-    &__form{
-        display: flex;
-        flex-wrap: wrap;
-    
-        .request-button{
-            margin: 10px 0 0 30px;
-        }
-    }
+  }
 
-    &__subtitle{
-        margin-bottom: 32px;
-    }
+  &__title {
+    margin: 0 0 24px;
+    color: $core_100;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__subtitle {
+    margin-bottom: 32px;
+  }
 }
-
-
-
-
-
-
