@@ -74,8 +74,14 @@
 
 @include media-mobile {
   .request-header {
+    &__title {
+      color: $core_100;
+      display: grid;
+      grid-template-columns: 350px;
+      justify-content: center;
+    }
     &__step-wrapper {
-      grid-template-columns: 30px 260px;
+      grid-template-columns: 30px 265px;
       column-gap: 40px;
     }
   }

@@ -42,13 +42,13 @@ export const VisitsList = () => {
       window.innerWidth > 1600
         ? 1700
         : window.innerWidth > 1080
-        ? 1400
+        ? 1350
         : window.innerWidth > 720
         ? 910
         : 370
     const height = window.innerHeight > 800 ? 760 : 550
     const cardWidth = window.innerWidth > 1600 ? 560 : window.innerWidth > 720 ? 450 : 350
-    const cardHeight = 555
+    const cardHeight = 570
     const columnCount = window.innerWidth > 1080 ? 3 : window.innerWidth > 720 ? 2 : 1
     const rowCount = Math.ceil(cards.length / columnCount)
     return (

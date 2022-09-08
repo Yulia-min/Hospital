@@ -18,7 +18,7 @@
     width: 292px;
     border: 1px solid $core_30;
     border-radius: 2px;
-    padding: 24px 0 5px 0;
+    padding: 24px 0 10px 0;
   }
 
   &__info {
@@ -81,6 +81,7 @@
   }
   &__comment-content {
     color: $core_100;
+    padding-bottom: 7px;
   }
 }
 

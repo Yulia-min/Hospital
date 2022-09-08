@@ -7,17 +7,7 @@
 
   &__layout {
     &::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background: $core_20;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: $core_40;
+      width: 0;
     }
   }
 
