@@ -30,7 +30,6 @@
   &__tab {
     .ant-tabs-nav {
       position: absolute;
-      left: 50px;
     }
     .ant-tabs-tab.ant-tabs-tab {
       text-align: start;
@@ -53,7 +52,7 @@
   }
   &__button-container {
     display: grid;
-    grid-template-columns: 1fr 539px 1fr;
+    grid-template-columns: 1fr 690px 1fr;
   }
   &__button-wrapper {
     display: flex;
@@ -141,7 +140,7 @@
     &__tab {
       .ant-tabs-nav {
         position: absolute;
-        left: 220px;
+        left: 120px;
       }
     }
   }
