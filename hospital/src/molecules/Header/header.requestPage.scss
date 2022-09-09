@@ -21,7 +21,7 @@
   &__title {
     color: $core_100;
     &.mobile {
-      margin-left: 16px;
+      // margin-left: 16px;
     }
   }
 
@@ -39,7 +39,7 @@
 
   &__step-title {
     color: $core_100;
-    margin: 4px 0 8px 0;
+    margin: 0 0 8px 0;
   }
 
   &__step-subtitle {
@@ -77,12 +77,17 @@
     &__title {
       color: $core_100;
       display: grid;
-      grid-template-columns: 350px;
+      grid-template-columns: 342px;
       justify-content: center;
     }
     &__step-wrapper {
-      grid-template-columns: 30px 265px;
-      column-gap: 40px;
+      grid-template-columns: 60px 267px;
+      column-gap: 16px;
+    }
+    &__wrapper {
+      display: grid;
+      grid-template-columns: 384px;
+      justify-content: center;
     }
   }
 }

@@ -29,7 +29,7 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }:
   return (
     <>
       {isMobile ? (
-        <>
+        <div className="request-header__wrapper">
           <div className="request-header mobile">
             {step === 1 ? <div /> : <MainArrow onClick={onClick} />}
             <Cross onClick={showConfirm} />
@@ -37,7 +37,7 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }:
           <Typography.Headline6 className="request-header__title mobile">
             Requesting The Doctor
           </Typography.Headline6>
-        </>
+        </div>
       ) : (
         <div className="request-header">
           {step === 1 ? <div /> : <MainArrow onClick={onClick} />}
