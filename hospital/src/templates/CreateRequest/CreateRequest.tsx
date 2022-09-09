@@ -155,7 +155,9 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
         onFinish={onFinish}
         className="request-list__card-wrapper"
       >
-        <Typography.Subtitle2 className="request-list__subtitle">You</Typography.Subtitle2>
+        <div className="request-list__subtitle-container">
+          <Typography.Subtitle2 className="request-list__subtitle">You</Typography.Subtitle2>
+        </div>
         <Checkbox.Group
           className="request-list__info"
           propsItem={{ name: 'personal_data' }}
@@ -164,7 +166,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               .filter((patient) => patient.client_patient_relationship === null)
               .map((item) => ({
                 value: item.uuid,
-                label: PersonalCard.CheckboxCard(item)
+                label: <PersonalCard.CheckboxCard patient={item} />
               }))
           }}
         />
@@ -173,17 +175,18 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
             (type: string) =>
               !!patientsList[type as keyof PatientListType].length && (
                 <React.Fragment key={type}>
-                  <Checkbox.Single
-                    className="request-list__checkbox-wrapper"
-                    propsChecbox={{
-                      onChange: onCheckAllChange(type),
-                      checked: checkedList[`${type}Checked` as keyof CheckedListType & boolean]
-                    }}
-                  >
-                    <Typography.Subtitle2 className="request-list__subtitle">
-                      {type[0].toUpperCase() + type.substring(1)}
-                    </Typography.Subtitle2>
-                  </Checkbox.Single>
+                  <div className="request-list__checkbox-wrapper">
+                    <Checkbox.Single
+                      propsChecbox={{
+                        onChange: onCheckAllChange(type),
+                        checked: checkedList[`${type}Checked` as keyof CheckedListType & boolean]
+                      }}
+                    >
+                      <Typography.Subtitle2 className="request-list__subtitle">
+                        {type[0].toUpperCase() + type.substring(1)}
+                      </Typography.Subtitle2>
+                    </Checkbox.Single>
+                  </div>
                   <Checkbox.Group
                     className="request-list__info"
                     propsItem={{
@@ -196,7 +199,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
                         .filter((patient) => patient.client_patient_relationship === type)
                         .map((item) => ({
                           value: item.uuid,
-                          label: PersonalCard.CheckboxCard(item)
+                          label: <PersonalCard.CheckboxCard patient={item} />
                         }))
                     }}
                   />
@@ -207,17 +210,13 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
         {isMobile ? (
           <div className={`request-list__button-wrapper ${showScrollButton ? 'active' : ''}`}>
             <div className="request-list__cancel-wrapper">
-              <Button.Default variant="secondary">
-                <Typography.Button2 className="request-list__cancel-button">
-                  Cancel
-                </Typography.Button2>
+              <Button.Default variant="secondary" className="request-list__cancel-button">
+                <Typography.Button2>Cancel</Typography.Button2>
               </Button.Default>
             </div>
             <div className="request-list__button-container">
-              <Button.Default variant="secondary">
-                <Typography.Button2 className="request-list__cancel-button">
-                  Cancel
-                </Typography.Button2>
+              <Button.Default variant="secondary" className="request-list__cancel-button">
+                <Typography.Button2>Cancel</Typography.Button2>
               </Button.Default>
               <Button.Default
                 className="request-list__next-button"
@@ -230,10 +229,14 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
           </div>
         ) : (
           <div className={`request-list__button-wrapper ${showScrollButton ? 'active' : ''}`}>
-            <Button.Default variant="secondary">
-              <Typography.Button2>Cancel</Typography.Button2>
-            </Button.Default>
-            <div>
+            <div className="request-list__cancel-wrapper">
+              <Button.Default variant="secondary">
+                <Typography.Button2 className="request-list__cancel-button">
+                  Cancel
+                </Typography.Button2>
+              </Button.Default>
+            </div>
+            <div className="request-list__button-container">
               <Button.Default variant="secondary">
                 <Typography.Button2>Cancel</Typography.Button2>
               </Button.Default>

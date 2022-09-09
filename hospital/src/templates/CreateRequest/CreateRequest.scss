@@ -3,7 +3,7 @@
 .request-list {
   &__subtitle {
     color: $core_70;
-    margin: 0 0 10px 10px;
+    margin: 0 0 10px 21px;
   }
 
   &__card-wrapper {
@@ -11,13 +11,20 @@
     justify-content: center;
     grid-template-columns: 530px;
   }
-
+  .ant-form-item {
+    margin: 0;
+  }
+  .ant-checkbox-input:focus {
+    border-color: $core_70;
+  }
   &__info {
     .ant-checkbox-group {
       display: grid;
+      grid-template-columns: 664px;
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner,
-    .ant-checkbox:hover .ant-checkbox-inner {
+    .ant-checkbox:hover .ant-checkbox-inner,
+    .ant-checkbox-input:focus + .ant-checkbox-inner {
       border-color: $core_70;
     }
     .ant-checkbox-checked::after {
@@ -44,10 +51,12 @@
   }
 
   &__button-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 505px 200px;
     &.active {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
       position: fixed;
       height: 50px;
       padding: 5px 10px;
@@ -57,12 +66,25 @@
     }
   }
   &__checkbox-wrapper {
-    margin-left: 10px;
+    margin: 26px 0 14px 21px;
+    .ant-checkbox + span {
+      padding: 0;
+    }
   }
 }
 
 @include media-desktop {
   .request-list {
+    &__button-wrapper {
+      display: grid;
+      grid-template-columns: 290px 160px;
+    }
+    &__info {
+      .ant-checkbox-group {
+        grid-template-columns: 450px;
+      }
+    }
+
     &__card-wrapper {
       grid-template-columns: 450px;
     }
@@ -71,30 +93,53 @@
 
 @include media-mobile {
   .request-list {
+    .ant-form-item {
+      display: grid;
+      grid-template-columns: 343px;
+      justify-content: center;
+    }
+    &__subtitle-container {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: 360px;
+    }
     &__info {
       .ant-checkbox-wrapper {
         box-shadow: 0px 1px 8px rgba(14, 67, 109, 0.16);
         border-radius: 10px;
       }
+      .ant-checkbox-group {
+        grid-template-columns: 343px;
+      }
     }
+
     &__button-wrapper {
       display: flex;
       flex-direction: column;
       &.active {
+        .request-list__cancel-wrapper {
+          display: none;
+        }
+        .request-list__button-container {
+          display: flex;
+          justify-content: space-between;
+        }
+        padding: 0;
         position: fixed;
-        height: 110px;
+        height: 70px;
         bottom: 0px;
         z-index: 40;
         background-color: $white;
       }
     }
     &__card-wrapper {
-      grid-template-columns: 350px;
+      grid-template-columns: 1fr;
     }
     &__button-container {
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-around;
+      padding-top: 24px;
+      display: grid;
+      grid-template-columns: 160px 180px;
+      justify-content: center;
       background: $white;
       box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
     }
@@ -102,10 +147,13 @@
       width: 162px;
     }
     &__cancel-button {
-      width: 92px;
+      width: 124px;
     }
     &__cancel-wrapper {
-      margin: 0 0 15px 10px;
+      display: grid;
+      grid-template-columns: 200px 140px;
+      justify-content: center;
+      margin: 12px 0 24px 0;
     }
   }
 }

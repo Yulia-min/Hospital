@@ -3,38 +3,39 @@ import { PersonalCardType } from './PersonalCardType'
 import { Typography } from 'src/Typography'
 import { Chips } from 'src/atoms'
 
-export const DefaultCard = ({
-  first_name,
-  last_name,
-  date_of_birth,
-  phone_number,
-  email,
-  symptoms,
-  comment
-}: PersonalCardType) => {
+import { ReactComponent as Arrow } from 'src/public/CollapseArrow.svg'
+
+export const DefaultCard = ({ patient, isArrow = false }: PersonalCardType) => {
   return (
     <div className="personal-card default-wrapper">
       <div className="personal-card__info">
-        <Typography.Body1 className="personal-card__name">
-          {first_name} {last_name}
-        </Typography.Body1>
+        <div className="personal-card__name-container">
+          <Typography.Body1 className="personal-card__name">
+            {patient.first_name} {patient.last_name}
+          </Typography.Body1>
+          {isArrow && <Arrow className="rotate-arrow" />}
+        </div>
         <Typography.Body2 className="personal-card__birthday">
-          DOB: {date_of_birth}
+          DOB: {patient.date_of_birth}
         </Typography.Body2>
-        <Typography.Body2 className="personal-card__number">{phone_number}</Typography.Body2>
-        <Typography.Body2 className="personal-card__email">{email}</Typography.Body2>
+        <Typography.Body2 className="personal-card__number">
+          {patient.phone_number}
+        </Typography.Body2>
+        <Typography.Body2 className="personal-card__email">{patient.email}</Typography.Body2>
       </div>
       <div className="personal-card__symptom-container">
-        {symptoms?.map((item) => (
+        {patient.symptoms?.map((item) => (
           <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
         ))}
       </div>
-      {comment && (
+      {patient.comment && (
         <div className="personal-card__comment-container">
           <Typography.Subtitle2 className="personal-card__comment-title">
             Comment
           </Typography.Subtitle2>
-          <Typography.Body2 className="personal-card__comment-content">{comment}</Typography.Body2>
+          <Typography.Body2 className="personal-card__comment-content">
+            {patient.comment}
+          </Typography.Body2>
         </div>
       )}
     </div>

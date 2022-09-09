@@ -1,2 +1,2 @@
 export { CreateRequest } from './CreateRequest'
-export { ChooseSymptoms } from './ChooseSymptoms'
+export { ChooseSymptoms } from './ChooseSymptoms/ChooseSymptoms'

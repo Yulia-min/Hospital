@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
-import { ReactComponent as Arrow } from 'src/public/CollapseArrow.svg'
 import './Collapse.scss'
 import { CollapseType } from './CollapseType'
 
@@ -33,17 +32,12 @@ export const Collapse = ({ children, title, className }: CollapseType) => {
   return (
     <div className={classNames('collapse', className)}>
       <div className="collapse__transition">
-        {isOpen ? (
-          <div className="collapse__icon-button active" onClick={showCollapseHandler}>
-            <div>{title}</div>
-            <Arrow className="collapse__rotate-arrow down" />
-          </div>
-        ) : (
-          <div className="collapse__icon-button" onClick={showCollapseHandler}>
-            <div>{title}</div>
-            <Arrow className="collapse__rotate-arrow up" />
-          </div>
-        )}
+        <div
+          className={classNames('collapse__icon-button', isOpen && 'collapse__icon-button--active')}
+          onClick={showCollapseHandler}
+        >
+          {title}
+        </div>
 
         <div className="collapse__content" style={{ height }}>
           <div ref={ref}>

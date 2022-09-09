@@ -80,7 +80,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
               <React.Fragment key={patient.uuid}>
                 <Collapse
                   className="choose-symptoms__collapse"
-                  title={PersonalCard.DefaultCard(patient)}
+                  title={<PersonalCard.DefaultCard isArrow={true} patient={patient} />}
                 >
                   <div>
                     {services
@@ -142,7 +142,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             defaultActiveKey={choosenPatient?.selectedPatientsIds[0]}
           >
             {Object.values(patientsWithSymptoms).map((patient) => (
-              <Tabs.TabPane key={patient.uuid} tab={PersonalCard.DefaultCard(patient)}>
+              <Tabs.TabPane key={patient.uuid} tab={<PersonalCard.DefaultCard patient={patient} />}>
                 <>
                   {services
                     .filter((service) => service.name === 'common')

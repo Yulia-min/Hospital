@@ -2,9 +2,8 @@
 
 .personal-card {
   &.wrapper {
-    width: 580px;
+    width: 600px;
     display: flex;
-    padding: 24px 0;
 
     &:hover {
       .personal-card__button {
@@ -14,17 +13,21 @@
     }
   }
 
+  &__name-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &.default-wrapper {
     width: 292px;
     border: 1px solid $core_30;
     border-radius: 2px;
-    padding: 24px 0 10px 0;
   }
 
   &__info {
     width: 100%;
     overflow: hidden;
-    padding-left: 20px;
+    padding: 20px 26px 0 20px;
   }
 
   &__name {
@@ -50,12 +53,14 @@
   }
 
   &__edit {
-    padding: 5px 0 0 10px;
     text-transform: uppercase;
     color: $primary_80;
+    margin-top: 5px;
+    margin-left: 19px;
   }
 
   &__button {
+    padding: 15px 0 0 10px;
     display: flex;
     opacity: 0;
   }
@@ -63,7 +68,7 @@
   &__symptom-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5px;
+    padding: 0 8px;
   }
 
   &__symptom {
@@ -92,7 +97,7 @@
     }
     &.default-wrapper {
       border: none;
-      width: 420px;
+      width: 455px;
     }
   }
 }
@@ -104,7 +109,7 @@
     }
     &.default-wrapper {
       border: none;
-      width: 309px;
+      width: 343px;
     }
   }
 }

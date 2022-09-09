@@ -10,15 +10,11 @@
     transition: height 0.2s ease-in-out;
   }
 
-  &__rotate-arrow {
+  .rotate-arrow {
+    margin-top: 5px;
+    left: 0;
     transition: all 0.2s linear;
-    margin: 30px 20px 0 0;
-    &.down {
-      transform: rotate(180deg);
-    }
-    &.up {
-      transform: rotate(360deg);
-    }
+    transform: rotate(180deg);
   }
 
   &__icon-button {
@@ -28,7 +24,10 @@
     border: 1px solid $core_30;
     border-radius: 10px;
 
-    &.active {
+    &--active {
+      .rotate-arrow {
+        transform: rotate(360deg);
+      }
       box-shadow: 0px 1px 8px rgba(14, 67, 109, 0.16);
     }
   }
