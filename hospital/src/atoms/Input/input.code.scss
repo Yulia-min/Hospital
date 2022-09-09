@@ -1,7 +1,7 @@
 @import '/src/style/style.scss';
 
-.code-wrapper{
-  input{
+.code-wrapper {
+  input {
     height: 56px;
     border: none;
     border-bottom: 1px solid $core_50;
@@ -15,5 +15,13 @@
     font-size: 24px;
     line-height: 28px;
     color: $core_100;
+  }
+}
+
+@include media-mobile {
+  .code-wrapper {
+    input {
+      width: 34px;
+    }
   }
 }

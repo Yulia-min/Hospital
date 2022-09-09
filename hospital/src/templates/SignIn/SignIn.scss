@@ -1,5 +1,7 @@
-.login-button{
-    &.wrapper{
-        margin: 40px 35% 0 35%;
-    }
+.login-button {
+  &.wrapper {
+    margin-top: 10px;
+    display: grid;
+    justify-content: center;
+  }
 }

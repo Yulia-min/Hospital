@@ -9,6 +9,7 @@
   &__card-wrapper {
     display: grid;
     justify-content: center;
+    grid-template-columns: 530px;
   }
 
   &__info {
@@ -60,6 +61,14 @@
   }
 }
 
+@include media-desktop {
+  .request-list {
+    &__card-wrapper {
+      grid-template-columns: 450px;
+    }
+  }
+}
+
 @include media-mobile {
   .request-list {
     &__info {
@@ -78,6 +87,9 @@
         z-index: 40;
         background-color: $white;
       }
+    }
+    &__card-wrapper {
+      grid-template-columns: 350px;
     }
     &__button-container {
       padding-top: 20px;

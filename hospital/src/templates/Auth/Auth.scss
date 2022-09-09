@@ -1,9 +1,11 @@
-.auth-button{
-    &.wrapper{
-        margin: 40px 10% 0 20%;
-    
-        .resend-button{
-            margin-right: 30px;
-        }
+.auth-button {
+  &.wrapper {
+    margin-top: 10px;
+    display: grid;
+    justify-content: center;
+
+    .resend-button {
+      margin-right: 30px;
     }
+  }
 }

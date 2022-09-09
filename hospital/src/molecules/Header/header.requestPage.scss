@@ -20,15 +20,12 @@
 
   &__title {
     color: $core_100;
-    &.mobile {
-      // margin-left: 16px;
-    }
   }
 
   &__step-wrapper {
     display: grid;
-    grid-template-columns: 30px 560px;
-    column-gap: 50px;
+    grid-template-columns: 60px 450px;
+    column-gap: 20px;
     justify-content: center;
     margin: 30px 0 40px 0;
   }
@@ -67,7 +64,7 @@
       justify-content: center;
     }
     &__step-wrapper {
-      grid-template-columns: 30px 370px;
+      grid-template-columns: 60px 370px;
     }
   }
 }
