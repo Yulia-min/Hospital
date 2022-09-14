@@ -1,9 +1,15 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .choose-symptoms {
+  .ant-form-item {
+    margin: 0;
+  }
   &__symptoms-list {
-    .ant-checkbox-group {
-      display: grid;
+    .ant-checkbox + span {
+      padding: 0;
+    }
+    .ant-checkbox-group-item {
+      margin: 0;
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner,
     .ant-checkbox:hover .ant-checkbox-inner,
@@ -16,32 +22,27 @@
     .ant-checkbox-wrapper {
       display: flex;
       flex-direction: row-reverse;
-      justify-content: space-between;
+      align-items: center;
+      padding: 6px 27px 8px 14px;
       width: 100%;
-      margin-bottom: 12px;
       border: 1px solid $core_30;
       border-radius: 2px;
-    }
-    .ant-checkbox {
-      margin-right: 20px;
-      top: -13px;
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 24px;
+      }
     }
   }
-
-  &__text-area {
-    width: 665px;
-  }
-
   &__tab {
     display: grid;
-    grid-template-columns: 1fr 577px 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr 665px 1fr;
+    gap: 32px;
 
     .ant-tabs-nav {
       display: grid;
-      justify-content: end;
+      justify-content: flex-end;
     }
-    .ant-tabs-left > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane {
+    .ant-tabs-tabpane.ant-tabs-tabpane.ant-tabs-tabpane {
       padding-left: 0;
     }
     .ant-tabs-tab.ant-tabs-tab {
@@ -60,85 +61,93 @@
   }
   &__button-container {
     display: grid;
-    grid-template-columns: 1fr 800px 1fr;
+    grid-template-columns: 1fr 665px 1fr;
+    margin-top: 16px;
+    position: sticky;
+    bottom: 0;
   }
   &__button-wrapper {
-    display: flex;
-    justify-content: end;
-  }
-  &__cancel-button {
-    width: 124px;
-    margin-right: 20px;
-  }
-  &__next-button {
-    width: 124px;
+    display: grid;
+    grid-template-columns: repeat(2, 124px);
+    gap: 20px;
+    justify-content: flex-end;
   }
 }
 
 @include media-mobile {
   .choose-symptoms {
+    padding: 36px 16px 0 16px;
+    &__container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
     &__collapse {
       display: grid;
-      margin-bottom: 12px;
+      grid-template-columns: minmax(343px, 443px);
+      margin-bottom: 24px;
       justify-content: center;
     }
     &__symptoms-list {
-      width: 200px;
       .ant-checkbox-wrapper {
         margin: 8px 0 0 0;
         border-radius: 10px;
       }
     }
     &__collapse-wrapper {
-      min-height: calc(100vh - 250px);
+      flex: 1 0 auto;
     }
     &__button-container {
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-      margin: 0;
+      margin: 0 -16px;
+      flex: 0 0 auto;
+      padding: 24px 16px 16px;
+      background: $white;
       box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
+      grid-template-columns: 1fr minmax(300px, 400px) 1fr;
     }
-    &__cancel-button {
-      width: 124px;
-      margin-right: 20px;
-    }
-    &__next-button {
-      width: 162px;
+    &__button-wrapper {
+      display: grid;
+      grid-template-columns: 124px 162px;
+      justify-content: space-between;
     }
   }
 }
 
 @include media-desktop {
   .choose-symptoms {
+    padding: 36px 16px 0 16px;
+    &__container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
     &__collapse {
       display: grid;
-      margin-bottom: 12px;
+      grid-template-columns: minmax(400px, 650px);
+      margin-bottom: 24px;
       justify-content: center;
     }
     &__symptoms-list {
-      width: 450px;
       .ant-checkbox-wrapper {
         margin: 8px 0 0 0;
         border-radius: 10px;
       }
     }
     &__collapse-wrapper {
-      min-height: calc(100vh - 250px);
+      flex: 1 0 auto;
     }
     &__button-container {
-      display: flex;
-      justify-content: center;
+      margin: 0 -16px;
+      flex: 0 0 auto;
       padding: 20px;
-      margin: 0;
+      background: white;
       box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
+      grid-template-columns: 1fr minmax(300px, 650px) 1fr;
     }
-    &__cancel-button {
-      width: 124px;
-      margin-right: 20px;
-    }
-    &__next-button {
-      width: 162px;
+    &__button-wrapper {
+      display: grid;
+      grid-template-columns: 124px 162px;
+      justify-content: space-between;
     }
   }
 }

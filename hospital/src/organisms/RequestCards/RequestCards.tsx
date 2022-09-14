@@ -8,7 +8,7 @@ import moment from 'moment'
 
 export const RequestCards = ({ card }: RequestCardsType) => {
   return (
-    <div key={card.uuid} className="request-card container">
+    <div key={card.uuid} className="request-card">
       <div className="request-card__header">
         <Typography.Subtitle2 className="request-card__request-type">
           {card.is_grouped ? 'Group' : 'Single'} request

@@ -57,13 +57,11 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }:
         </div>
       </div>
       <Modal visible={isVisible} onCancel={handleCancel}>
-        <Typography.Headline4>Are you sure you want to close the visit?</Typography.Headline4>
-        <div className="request-header__button">
-          <Button.Default
-            onClick={handleCancel}
-            variant="secondary"
-            className="request-header__cancel-button"
-          >
+        <Typography.Headline4 className="request-header__modal-title">
+          Are you sure you want to close the visit?
+        </Typography.Headline4>
+        <div className="request-header__modal-button">
+          <Button.Default onClick={handleCancel} variant="secondary">
             <Typography.Button2>CANCEL</Typography.Button2>
           </Button.Default>
           <Button.Default onClick={handleOk} variant="primary">

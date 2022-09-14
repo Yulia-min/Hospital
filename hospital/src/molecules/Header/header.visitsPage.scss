@@ -1,30 +1,50 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
-.main {
-  &-header {
-    &.wrapper {
-      margin-bottom: 40px;
-    }
-    &__info {
-      margin: 15px 17px 15px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.main-header {
+  &__info {
+    padding: 20px 17px 19px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    &__title {
-      color: $core_70;
-    }
+  &__title {
+    color: $core_70;
+  }
 
-    &__icons {
-      .notification {
-        margin: 0 25px 3px 0;
-      }
-    }
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
 
-    &__line {
-      height: 1px;
-      background: $core_30;
+  &__line {
+    height: 1px;
+    background: $core_30;
+  }
+
+  &__burger {
+    position: relative;
+    width: 18px;
+    height: 10px;
+    span,
+    &::after,
+    &::before {
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      background: $core_70;
+    }
+    span {
+      top: 10px;
+    }
+    &::after {
+      content: '';
+      bottom: 8px;
+    }
+    &::before {
+      content: '';
+      top: 5px;
     }
   }
 }

@@ -25,7 +25,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
 
   const [patientsWithSymptoms, setPatientsWithSymptoms] = useState<PatientsWithSymptomsType>(
     patients
-      .filter((patient) => choosenPatient?.selectedPatientsIds.includes(patient.uuid))
+      .filter((patient) => choosenPatient.includes(patient.uuid))
       .reduce((prev, current) => ({ ...prev, [current.uuid]: current }), {})
   )
 
@@ -67,7 +67,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
   return (
     <div className="choose-symptoms">
       {isMobile ? (
-        <div>
+        <div className="choose-symptoms__container">
           <Header.RequestPage
             step={step}
             strokeDasharray="40 60"
@@ -100,31 +100,33 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
                         </React.Fragment>
                       ))}
                   </div>
-                  {!!patient.symptoms?.length && (
-                    <Input.TextArea
-                      row={5}
-                      propsTextArea={{ onChange: onInputChange(patient.uuid) }}
-                      propsItem={{ label: 'Please Describe How You’re Feeling' }}
-                    />
-                  )}
+
+                  <Input.TextArea
+                    row={5}
+                    propsTextArea={{ onChange: onInputChange(patient.uuid) }}
+                    propsItem={{ label: 'Please Describe How You’re Feeling' }}
+                  />
                 </Collapse>
               </React.Fragment>
             ))}
           </div>
           <div className="choose-symptoms__button-container">
-            <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
-              Cancel
-            </Button.Default>
-            <Button.Default
-              onClick={onClick}
-              disabled={
-                !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
-              }
-              className="choose-symptoms__next-button"
-              variant="primary"
-            >
-              Next
-            </Button.Default>
+            <div />
+            <div className="choose-symptoms__button-wrapper">
+              <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
+                Cancel
+              </Button.Default>
+              <Button.Default
+                onClick={onClick}
+                disabled={
+                  !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
+                }
+                className="choose-symptoms__next-button"
+                variant="primary"
+              >
+                Next
+              </Button.Default>
+            </div>
           </div>
         </div>
       ) : (
@@ -139,7 +141,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
           <Tabs
             className="choose-symptoms__tab"
             tabPosition="left"
-            defaultActiveKey={choosenPatient?.selectedPatientsIds[0]}
+            defaultActiveKey={choosenPatient[choosenPatient.length]}
           >
             {Object.values(patientsWithSymptoms).map((patient) => (
               <Tabs.TabPane key={patient.uuid} tab={<PersonalCard.DefaultCard patient={patient} />}>

@@ -1,8 +1,8 @@
 @import '/src/style/style.scss';
 
 .visits-list {
-  &.wrapper {
-    margin-left: 5%;
+  &__container {
+    padding: 40px 71px 0 71px;
   }
 
   &__layout {
@@ -10,10 +10,17 @@
       width: 0;
     }
   }
-
+  &__layout-height {
+    min-height: 100vh;
+  }
   &__title {
     margin: 0 0 24px;
     color: $core_100;
+  }
+  &__card-wrapper {
+    width: 100%;
+    max-width: 416px;
+    min-height: 343px;
   }
 
   &__form {
@@ -21,9 +28,39 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 30px;
+    margin-bottom: 24px;
+    .ant-form-item {
+      margin: 0;
+    }
   }
 
   &__subtitle {
     margin-bottom: 32px;
+  }
+}
+
+@include media-desktop {
+  .visits-list {
+    &__container {
+      padding: 24px 16px 0 16px;
+    }
+    &__title {
+      font-family: 'Avenir';
+      font-size: 22px;
+      line-height: 28px;
+    }
+  }
+}
+
+@include media-mobile {
+  .visits-list {
+    &__container {
+      padding: 24px 16px 0 16px;
+    }
+    &__title {
+      font-family: 'Avenir';
+      font-size: 22px;
+      line-height: 28px;
+    }
   }
 }

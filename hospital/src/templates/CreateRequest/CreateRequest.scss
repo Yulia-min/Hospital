@@ -6,10 +6,26 @@
     margin: 0 0 10px 21px;
   }
 
+  &__checkbox-wrapper {
+    .ant-checkbox-wrapper {
+      padding-left: 21px;
+    }
+    .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+    .ant-checkbox:hover .ant-checkbox-inner,
+    .ant-checkbox-input:focus + .ant-checkbox-inner {
+      border-color: $core_70;
+    }
+    .ant-checkbox-checked::after {
+      border: none;
+    }
+  }
+
   &__card-wrapper {
     display: grid;
     justify-content: center;
-    grid-template-columns: 530px;
+    .ant-checkbox + span {
+      padding: 0;
+    }
   }
   .ant-form-item {
     margin: 0;
@@ -18,9 +34,13 @@
     border-color: $core_70;
   }
   &__info {
+    .ant-checkbox-group-item {
+      margin: 0;
+    }
     .ant-checkbox-group {
       display: grid;
-      grid-template-columns: 664px;
+      justify-content: center;
+      gap: 12px;
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner,
     .ant-checkbox:hover .ant-checkbox-inner,
@@ -31,8 +51,6 @@
       border: none;
     }
     .ant-checkbox-wrapper {
-      width: 100%;
-      margin-bottom: 12px;
       border: 1px solid $core_30;
       border-radius: 2px;
 
@@ -40,120 +58,71 @@
         background: $primary_10;
       }
     }
-
     .ant-checkbox {
-      margin-left: 20px;
+      padding-left: 20px;
     }
   }
 
-  &__next-button {
-    margin-left: 20px;
-  }
-
-  &__button-wrapper {
+  &__button-container {
+    background: $white;
+    padding-top: 15px;
+    position: sticky;
+    bottom: 0;
     display: grid;
-    grid-template-columns: 505px 200px;
-    &.active {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      position: fixed;
-      height: 50px;
-      padding: 5px 10px;
-      bottom: 0px;
-      z-index: 40;
-      background-color: $white;
-    }
-  }
-  &__checkbox-wrapper {
-    margin: 26px 0 14px 21px;
-    .ant-checkbox + span {
-      padding: 0;
-    }
+    grid-template-columns: repeat(2, 124px);
+    gap: 20px;
+    justify-content: flex-end;
   }
 }
 
 @include media-desktop {
   .request-list {
+    &__wrapper {
+      padding: 36px 16px 0 16px;
+    }
+    &__button-container {
+      background: $white;
+      padding-top: 15px;
+      position: sticky;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: minmax(200px, 664px);
+    }
     &__button-wrapper {
       display: grid;
-      grid-template-columns: 290px 160px;
-    }
-    &__info {
-      .ant-checkbox-group {
-        grid-template-columns: 450px;
-      }
-    }
-
-    &__card-wrapper {
-      grid-template-columns: 450px;
+      grid-template-columns: 124px 162px;
+      gap: 20px;
+      justify-content: flex-end;
     }
   }
 }
 
 @include media-mobile {
   .request-list {
-    .ant-form-item {
-      display: grid;
-      grid-template-columns: 343px;
-      justify-content: center;
+    &__wrapper {
+      padding: 36px 16px 0 16px;
     }
-    &__subtitle-container {
-      display: grid;
-      justify-content: center;
-      grid-template-columns: 360px;
+    &__card-wrapper {
+      justify-content: stretch;
     }
     &__info {
       .ant-checkbox-wrapper {
         box-shadow: 0px 1px 8px rgba(14, 67, 109, 0.16);
         border-radius: 10px;
       }
-      .ant-checkbox-group {
-        grid-template-columns: 343px;
-      }
-    }
-
-    &__button-wrapper {
-      display: flex;
-      flex-direction: column;
-      &.active {
-        .request-list__cancel-wrapper {
-          display: none;
-        }
-        .request-list__button-container {
-          display: flex;
-          justify-content: space-between;
-        }
-        padding: 0;
-        position: fixed;
-        height: 70px;
-        bottom: 0px;
-        z-index: 40;
-        background-color: $white;
-      }
-    }
-    &__card-wrapper {
-      grid-template-columns: 1fr;
     }
     &__button-container {
-      padding-top: 24px;
-      display: grid;
-      grid-template-columns: 160px 180px;
-      justify-content: center;
+      margin: 0 -16px;
+      padding: 24px 16px 16px;
       background: $white;
-      box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
-    }
-    &__next-button {
-      width: 162px;
-    }
-    &__cancel-button {
-      width: 124px;
-    }
-    &__cancel-wrapper {
-      display: grid;
-      grid-template-columns: 200px 140px;
+      box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
       justify-content: center;
-      margin: 12px 0 24px 0;
+      grid-template-columns: minmax(200px, 500px);
+    }
+    &__button-wrapper {
+      display: grid;
+      grid-template-columns: 124px 162px;
+      justify-content: space-between;
     }
   }
 }

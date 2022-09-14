@@ -19,14 +19,10 @@ export interface IPatientWithSymptoms extends IPatient {
   comment?: string
 }
 
-export interface IChoosenPatient {
-  selectedPatientsIds: string[]
-}
-
 export interface IPatientState {
   patients: IPatient[]
   patientWithSymptoms: IPatientWithSymptoms[]
-  choosenPatient: IChoosenPatient | null
+  choosenPatient: string[]
   isLoading: boolean
   error: any | null
 }

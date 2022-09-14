@@ -1,12 +1,13 @@
-.checkbox-wrapper{
+@import 'src/style/style.scss';
 
-    .ant-checkbox-checked .ant-checkbox-inner{
-        background: #1E427B;
-        border-radius: 2px;
-        border: none;
-    }
+.checkbox-wrapper {
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background: $primary_80;
+    border-radius: 2px;
+    border: none;
+  }
 
-    .ant-checkbox-inner{
-        border: 2px solid #5E6878;
-    }
+  .ant-checkbox-inner {
+    border: 2px solid $core_70;
+  }
 }

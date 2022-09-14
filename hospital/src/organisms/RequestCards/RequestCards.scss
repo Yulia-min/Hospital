@@ -1,14 +1,10 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .request-card {
   border: 1px solid $core_30;
   border-radius: 2px;
   background: $white;
   padding: 40px 20px;
-
-  &.container {
-    margin-right: 24px;
-  }
   &__header {
     display: flex;
     justify-content: space-between;

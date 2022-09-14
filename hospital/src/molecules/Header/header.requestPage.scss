@@ -1,18 +1,17 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .request-header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 
   &.mobile {
     display: flex;
     justify-content: space-between;
-    margin: 20px 21px;
   }
 
   svg {
     cursor: pointer;
-    margin-top: 20px;
     path {
       fill: $core_70;
     }
@@ -24,14 +23,11 @@
 
   &__step-wrapper {
     display: grid;
-    grid-template-columns: 60px 450px;
+    grid-template-columns: 60px minmax(100px, 580px);
     column-gap: 20px;
+    align-items: center;
     justify-content: center;
-    margin: 30px 0 40px 0;
-  }
-
-  &__step-description {
-    margin: 5px 0 0 5px;
+    padding: 40px 0;
   }
 
   &__step-title {
@@ -43,14 +39,15 @@
     color: $core_70;
   }
 
-  &__button {
-    display: flex;
-    justify-content: end;
-    margin-top: 40px;
+  &__modal-title {
+    color: $core_100;
+    margin-bottom: 40px;
   }
 
-  &__cancel-button {
-    margin-right: 20px;
+  &__modal-button {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
   }
 }
 
@@ -58,13 +55,10 @@
   .request-header {
     &__title {
       font-size: 30px;
-      margin-top: -40px;
+      margin-top: -20px;
       color: $core_100;
       display: flex;
       justify-content: center;
-    }
-    &__step-wrapper {
-      grid-template-columns: 60px 370px;
     }
   }
 }
@@ -72,19 +66,7 @@
 @include media-mobile {
   .request-header {
     &__title {
-      color: $core_100;
-      display: grid;
-      grid-template-columns: 342px;
-      justify-content: center;
-    }
-    &__step-wrapper {
-      grid-template-columns: 60px 267px;
-      column-gap: 16px;
-    }
-    &__wrapper {
-      display: grid;
-      grid-template-columns: 370px;
-      justify-content: center;
+      margin-top: 28px;
     }
   }
 }

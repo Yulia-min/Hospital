@@ -1,31 +1,28 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
-.default-button{
-    &.icon{
-        height: 36px;
-        background: $primary_10;
-        border: 1px solid $primary_80;
-        border-radius: 2px;
-        color: $primary_80;
-        cursor: pointer;
-    
-        &:hover{
-            background: $primary_20;
-            border: 1px solid $primary_70;
-            color: $primary_70;
-        }
-    
-        &:active{
-            background: $primary_20;
-        }
-    
-        &:disabled{
-            background: $core_20;
-            color: $core_40;
-            border: 1px solid $core_40;
-        }
+.default-button {
+  &.icon {
+    height: 36px;
+    background: $primary_10;
+    border: 1px solid $primary_80;
+    border-radius: 2px;
+    color: $primary_80;
+    cursor: pointer;
+
+    &:hover {
+      background: $primary_20;
+      border: 1px solid $primary_70;
+      color: $primary_70;
     }
+
+    &:active {
+      background: $primary_20;
+    }
+
+    &:disabled {
+      background: $core_20;
+      color: $core_40;
+      border: 1px solid $core_40;
+    }
+  }
 }
-
-
-

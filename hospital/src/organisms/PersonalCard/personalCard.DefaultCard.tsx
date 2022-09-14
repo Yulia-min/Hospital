@@ -4,10 +4,11 @@ import { Typography } from 'src/Typography'
 import { Chips } from 'src/atoms'
 
 import { ReactComponent as Arrow } from 'src/public/CollapseArrow.svg'
+import React from 'react'
 
 export const DefaultCard = ({ patient, isArrow = false }: PersonalCardType) => {
   return (
-    <div className="personal-card default-wrapper">
+    <div className="personal-card personal-card__default-wrapper">
       <div className="personal-card__info">
         <div className="personal-card__name-container">
           <Typography.Body1 className="personal-card__name">
@@ -25,7 +26,9 @@ export const DefaultCard = ({ patient, isArrow = false }: PersonalCardType) => {
       </div>
       <div className="personal-card__symptom-container">
         {patient.symptoms?.map((item) => (
-          <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
+          <React.Fragment key={item}>
+            <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
+          </React.Fragment>
         ))}
       </div>
       {patient.comment && (

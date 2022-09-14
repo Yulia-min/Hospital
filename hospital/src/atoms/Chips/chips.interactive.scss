@@ -1,26 +1,25 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
-.chips{
-    display: inline-block;
-    background: $primary_20;
+.chips {
+  display: inline-block;
+  background: $primary_20;
 
-    &.interactive{
-        font-family: 'Google Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        border-radius: 16px;
-        color: #090A0B;
-        padding: 5px 13px;
+  &.interactive {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 16px;
+    color: #090a0b;
+    padding: 5px 13px;
+  }
+
+  &-cross {
+    cursor: pointer;
+    margin-left: 6px;
+    svg {
+      padding-top: 4px;
     }
-
-    &-cross{
-        cursor: pointer;
-        margin-left: 6px;
-        svg{
-            padding-top: 4px;
-        }
-    }
-    
+  }
 }

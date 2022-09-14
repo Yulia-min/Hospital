@@ -13,6 +13,7 @@ import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
 import { SERVICES_TYPE, ServiceType } from 'src/constants'
 import { useNavigate } from 'react-router-dom'
+import AutoSizer from 'react-virtualized-auto-sizer'
 
 export const VisitsList = () => {
   const dispatch = useAppDispatch()
@@ -34,38 +35,43 @@ export const VisitsList = () => {
     const { cards, columnCount } = data
     const singleColumnIndex = columnIndex + rowIndex * columnCount
     const card = cards[singleColumnIndex]
-    return <div style={style}>{card && <RequestCards card={card} />}</div>
-  }
-
-  const renderRequestCardsGrid = () => {
-    const width =
-      window.innerWidth > 1600
-        ? 1700
-        : window.innerWidth > 1080
-        ? 1350
-        : window.innerWidth > 720
-        ? 910
-        : 370
-    const height = window.innerHeight > 800 ? 760 : 550
-    const cardWidth = window.innerWidth > 1600 ? 560 : window.innerWidth > 720 ? 450 : 350
-    const cardHeight = 570
-    const columnCount = window.innerWidth > 1080 ? 3 : window.innerWidth > 720 ? 2 : 1
-    const rowCount = Math.ceil(cards.length / columnCount)
     return (
-      <Grid
-        className="visits-list__layout"
-        columnCount={columnCount}
-        columnWidth={cardWidth}
-        height={height}
-        rowCount={rowCount}
-        rowHeight={cardHeight}
-        width={width}
-        itemData={{ cards, columnCount }}
-      >
-        {requestCardsList}
-      </Grid>
+      <div style={style}>
+        {card && (
+          <div className="visits-list__card-wrapper">
+            <RequestCards card={card} />
+          </div>
+        )}
+      </div>
     )
   }
+
+  const renderRequestCardsGrid = () => (
+    <div className="visits-list__layout-height">
+      <AutoSizer>
+        {({ width, height }) => {
+          const cardWidth = innerWidth > 480 ? 438 : 343
+          const cardHeight = 556
+          const columnCount = Math.floor(width / cardWidth)
+          const rowCount = Math.ceil(cards.length / columnCount)
+          return (
+            <Grid
+              className="visits-list__layout"
+              columnCount={columnCount}
+              columnWidth={cardWidth}
+              height={height}
+              rowCount={rowCount}
+              rowHeight={cardHeight}
+              width={width}
+              itemData={{ cards, columnCount }}
+            >
+              {requestCardsList}
+            </Grid>
+          )
+        }}
+      </AutoSizer>
+    </div>
+  )
 
   const handleChange = (value: string) => {
     setIsServiceType(value)
@@ -78,7 +84,7 @@ export const VisitsList = () => {
   return (
     <>
       <Header.VisitsPage />
-      <div className="visits-list wrapper">
+      <div className="visits-list__container">
         <Typography.Headline1 className="visits-list__title">
           Would You Like The Doctor to Come See You Now?
         </Typography.Headline1>
