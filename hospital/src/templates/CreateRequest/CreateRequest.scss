@@ -1,4 +1,4 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .request-list {
   &__subtitle {
@@ -7,6 +7,9 @@
   }
 
   &__checkbox-wrapper {
+    .ant-form-item {
+      margin: 0;
+    }
     .ant-checkbox-wrapper {
       padding-left: 21px;
     }
@@ -34,12 +37,17 @@
     border-color: $core_70;
   }
   &__info {
+    &:last-child {
+      margin-bottom: 80px;
+    }
+    .ant-form-item {
+      margin-bottom: 27px;
+    }
     .ant-checkbox-group-item {
       margin: 0;
     }
     .ant-checkbox-group {
       display: grid;
-      justify-content: center;
       gap: 12px;
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner,
@@ -53,21 +61,29 @@
     .ant-checkbox-wrapper {
       border: 1px solid $core_30;
       border-radius: 2px;
+      padding: 24px 26px 24px 20px;
 
       &:hover {
         background: $primary_10;
       }
     }
     .ant-checkbox {
-      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 
   &__button-container {
     background: $white;
-    padding-top: 15px;
-    position: sticky;
+    padding: 24px 0 16px;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(200px, 664px) 1fr;
+    justify-content: flex-end;
+  }
+  &__button-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 124px);
     gap: 20px;
@@ -78,15 +94,10 @@
 @include media-desktop {
   .request-list {
     &__wrapper {
-      padding: 36px 16px 0 16px;
+      padding: 0 16px;
     }
     &__button-container {
-      background: $white;
-      padding-top: 15px;
-      position: sticky;
-      bottom: 0;
-      display: grid;
-      grid-template-columns: minmax(200px, 664px);
+      gap: 15px;
     }
     &__button-wrapper {
       display: grid;
@@ -112,15 +123,12 @@
       }
     }
     &__button-container {
-      margin: 0 -16px;
       padding: 24px 16px 16px;
       background: $white;
       box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
       justify-content: center;
-      grid-template-columns: minmax(200px, 500px);
     }
     &__button-wrapper {
-      display: grid;
       grid-template-columns: 124px 162px;
       justify-content: space-between;
     }

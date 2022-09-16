@@ -8,5 +8,7 @@ export type PersonalCardType = {
     symptoms?: CheckboxValueType[]
     comment?: string
   }
-  isArrow?: boolean
+  isShowEdit?: boolean
+  isChecbox?: boolean
+  isDefault?: boolean
 }

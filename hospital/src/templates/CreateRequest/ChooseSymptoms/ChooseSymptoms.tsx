@@ -11,6 +11,7 @@ import { requestPatientsInfo, savePatientWithSymptoms } from 'src/redux/patients
 import { getChoosenPatientsInfo, getPatientsInfo } from 'src/redux/patients/selectors'
 import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
+import { IPatientWithSymptoms } from 'src/redux/types/patientsTypes'
 import { ICreateRequest } from '../CreateRequestType'
 import './ChooseSymptoms.scss'
 import { PatientsWithSymptomsType } from './ChooseSymptomsType'
@@ -49,6 +50,37 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
     })
   }
 
+  const symptomsList = (patient: IPatientWithSymptoms) => (
+    <>
+      <div>
+        {services
+          .filter((service) => service.name === 'common')
+          .map((symptom) => (
+            <React.Fragment key={symptom.name}>
+              <Checkbox.Group
+                className="choose-symptoms__symptoms-list"
+                propsGroupCheckbox={{
+                  onChange: onSelectSymptomsChange(patient.uuid),
+                  options: symptom.symptoms.map((item) => ({
+                    value: item.name,
+                    label: SymptomsCards(item)
+                  }))
+                }}
+              />
+            </React.Fragment>
+          ))}
+      </div>
+      {!!patient.symptoms?.length && (
+        <Input.TextArea
+          className="choose-symptoms__text-area"
+          propsTextArea={{ onChange: onInputChange(patient.uuid) }}
+          propsItem={{ label: 'Please Describe How You’re Feeling' }}
+          row={5}
+        />
+      )}
+    </>
+  )
+
   const onInputChange = (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => {
     setPatientsWithSymptoms({
       ...patientsWithSymptoms,
@@ -76,57 +108,13 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             onClick={backClickHandler}
           />
           <div className="choose-symptoms__collapse-wrapper">
-            {Object.values(patientsWithSymptoms).map((patient) => (
-              <React.Fragment key={patient.uuid}>
-                <Collapse
-                  className="choose-symptoms__collapse"
-                  title={<PersonalCard.DefaultCard isArrow={true} patient={patient} />}
-                >
-                  <div>
-                    {services
-                      .filter((service) => service.name === 'common')
-                      .map((symptom) => (
-                        <React.Fragment key={symptom.name}>
-                          <Checkbox.Group
-                            className="choose-symptoms__symptoms-list"
-                            propsGroupCheckbox={{
-                              onChange: onSelectSymptomsChange(patient.uuid),
-                              options: symptom.symptoms.map((item) => ({
-                                value: item.name,
-                                label: SymptomsCards(item)
-                              }))
-                            }}
-                          />
-                        </React.Fragment>
-                      ))}
-                  </div>
-
-                  <Input.TextArea
-                    row={5}
-                    propsTextArea={{ onChange: onInputChange(patient.uuid) }}
-                    propsItem={{ label: 'Please Describe How You’re Feeling' }}
-                  />
-                </Collapse>
-              </React.Fragment>
-            ))}
-          </div>
-          <div className="choose-symptoms__button-container">
-            <div />
-            <div className="choose-symptoms__button-wrapper">
-              <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
-                Cancel
-              </Button.Default>
-              <Button.Default
-                onClick={onClick}
-                disabled={
-                  !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
-                }
-                className="choose-symptoms__next-button"
-                variant="primary"
-              >
-                Next
-              </Button.Default>
-            </div>
+            <Collapse
+              panel={Object.values(patientsWithSymptoms).map((patient) => ({
+                key: patient.uuid,
+                title: <PersonalCard patient={patient} isDefault={true} />,
+                children: symptomsList(patient)
+              }))}
+            />
           </div>
         </div>
       ) : (
@@ -144,56 +132,34 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             defaultActiveKey={choosenPatient[choosenPatient.length]}
           >
             {Object.values(patientsWithSymptoms).map((patient) => (
-              <Tabs.TabPane key={patient.uuid} tab={<PersonalCard.DefaultCard patient={patient} />}>
-                <>
-                  {services
-                    .filter((service) => service.name === 'common')
-                    .map((symptom) => (
-                      <React.Fragment key={symptom.name}>
-                        <Checkbox.Group
-                          className="choose-symptoms__symptoms-list"
-                          propsGroupCheckbox={{
-                            onChange: onSelectSymptomsChange(patient.uuid),
-                            options: symptom.symptoms.map((item) => ({
-                              value: item.name,
-                              label: SymptomsCards(item)
-                            }))
-                          }}
-                        />
-                      </React.Fragment>
-                    ))}
-                  {!!patient.symptoms?.length && (
-                    <Input.TextArea
-                      className="choose-symptoms__text-area"
-                      propsTextArea={{ onChange: onInputChange(patient.uuid) }}
-                      propsItem={{ label: 'Please Describe How You’re Feeling' }}
-                      row={5}
-                    />
-                  )}
-                </>
+              <Tabs.TabPane
+                key={patient.uuid}
+                tab={<PersonalCard patient={patient} isDefault={true} />}
+              >
+                {symptomsList(patient)}
               </Tabs.TabPane>
             ))}
           </Tabs>
-          <div className="choose-symptoms__button-container">
-            <div />
-            <div className="choose-symptoms__button-wrapper">
-              <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
-                Cancel
-              </Button.Default>
-              <Button.Default
-                disabled={
-                  !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
-                }
-                className="choose-symptoms__next-button"
-                variant="primary"
-                onClick={onClick}
-              >
-                Next
-              </Button.Default>
-            </div>
-          </div>
         </>
       )}
+      <div className="choose-symptoms__button-container">
+        <div />
+        <div className="choose-symptoms__button-wrapper">
+          <Button.Default className="choose-symptoms__cancel-button" variant="secondary">
+            Cancel
+          </Button.Default>
+          <Button.Default
+            onClick={onClick}
+            disabled={
+              !Object.values(patientsWithSymptoms).every((patient) => patient.symptoms?.length)
+            }
+            className="choose-symptoms__next-button"
+            variant="primary"
+          >
+            Next
+          </Button.Default>
+        </div>
+      </div>
     </div>
   )
 }

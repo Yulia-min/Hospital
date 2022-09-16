@@ -1,7 +1,7 @@
 import { Typography } from 'src/Typography'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { getChoosenPatientsInfo, getPatientsInfo } from 'src/redux/patients/selectors'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { requestPatientsInfo, saveChoosenPatient } from 'src/redux/patients/actions'
 import { Button, Checkbox } from 'src/atoms'
 import './CreateRequest.scss'
@@ -17,7 +17,6 @@ import { useMobile } from 'src/hooks'
 
 export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
   const dispatch = useAppDispatch()
-  const ref = useRef<HTMLDivElement>(null)
   const isMobile = useMobile()
 
   const { patients } = useAppSelector(getPatientsInfo)
@@ -99,7 +98,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
   }
 
   return (
-    <div className="request-list__wrapper" ref={ref}>
+    <div className="request-list__wrapper">
       {isMobile ? (
         <Header.RequestPage
           step={step}
@@ -115,7 +114,6 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
           subtitle="Select People For Whom You Are Requesting The Visit"
         />
       )}
-
       <Form
         initialValues={{
           other_data: patientsIds.other,
@@ -138,7 +136,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               .filter((patient) => patient.client_patient_relationship === null)
               .map((item) => ({
                 value: item.uuid,
-                label: <PersonalCard.CheckboxCard patient={item} />
+                label: <PersonalCard patient={item} isShowEdit={true} isChecbox={true} />
               }))
           }}
         />
@@ -171,7 +169,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
                         .filter((patient) => patient.client_patient_relationship === type)
                         .map((item) => ({
                           value: item.uuid,
-                          label: <PersonalCard.CheckboxCard patient={item} />
+                          label: <PersonalCard patient={item} isShowEdit={true} isChecbox={true} />
                         }))
                     }}
                   />
@@ -179,19 +177,9 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               )
           )}
         </div>
-        {isMobile ? (
-          <div className="request-list__button-container">
-            <div className="request-list__button-wrapper">
-              <Button.Default variant="secondary">
-                <Typography.Button2>Cancel</Typography.Button2>
-              </Button.Default>
-              <Button.Default variant="primary" htmlType="submit">
-                <Typography.Button2>Next</Typography.Button2>
-              </Button.Default>
-            </div>
-          </div>
-        ) : (
-          <div className="request-list__button-container">
+        <div className="request-list__button-container">
+          <div />
+          <div className="request-list__button-wrapper">
             <Button.Default variant="secondary">
               <Typography.Button2>Cancel</Typography.Button2>
             </Button.Default>
@@ -199,7 +187,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               <Typography.Button2>Next</Typography.Button2>
             </Button.Default>
           </div>
-        )}
+        </div>
       </Form>
     </div>
   )

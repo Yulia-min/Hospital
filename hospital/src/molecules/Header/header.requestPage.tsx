@@ -6,12 +6,9 @@ import { Button, Modal, Stepper } from 'src/atoms'
 import { HeaderType } from './HeaderType'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useMobile } from 'src/hooks'
 
 export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }: HeaderType) => {
   const [isVisible, setIsVisible] = useState(false)
-
-  const isMobile = useMobile()
 
   const navigate = useNavigate()
   const showConfirm = () => {
@@ -28,25 +25,18 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }:
 
   return (
     <>
-      {isMobile ? (
-        <div className="request-header__wrapper">
-          <div className="request-header mobile">
-            {step === 1 ? <div /> : <MainArrow onClick={onClick} />}
-            <Cross onClick={showConfirm} />
-          </div>
-          <Typography.Headline6 className="request-header__title mobile">
-            Requesting The Doctor
-          </Typography.Headline6>
-        </div>
-      ) : (
-        <div className="request-header">
+      <div className="request-header__wrapper">
+        <div className="request-header request-header--mobile">
           {step === 1 ? <div /> : <MainArrow onClick={onClick} />}
           <Typography.Headline1 className="request-header__title">
             Requesting The Doctor
           </Typography.Headline1>
           <Cross onClick={showConfirm} />
         </div>
-      )}
+        <Typography.Headline6 className="request-header__mobile-title">
+          Requesting The Doctor
+        </Typography.Headline6>
+      </div>
       <div className="request-header__step-wrapper">
         <Stepper strokeDasharray={strokeDasharray} step={step} />
         <div className="request-header__step-description">

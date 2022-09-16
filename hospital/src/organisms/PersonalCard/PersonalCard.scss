@@ -1,9 +1,16 @@
 @import 'src/style/style.scss';
 
 .personal-card {
+  &__default-wrapper {
+    display: grid;
+    grid-template-columns: minmax(50px, 246px);
+    border: 1px solid $core_30;
+    border-radius: 2px;
+    padding: 24px 24px 24px 20px;
+  }
   &__checkbox-wrapper {
     display: grid;
-    grid-template-columns: minmax(303px, 626px);
+    grid-template-columns: minmax(239px, 580px);
 
     &:hover {
       .personal-card__button {
@@ -18,21 +25,15 @@
     justify-content: space-between;
   }
 
-  &__default-wrapper {
-    display: grid;
-    grid-template-columns: minmax(100px, 292px);
-    border: 1px solid $core_30;
-    border-radius: 2px;
-  }
-
   &__info {
     width: 100%;
-    padding: 24px 26px 24px 20px;
   }
 
   &__name {
     color: $core_100;
     margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__birthday {
@@ -66,21 +67,18 @@
   &__symptom-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 8px;
+    margin: 0 -15px;
   }
 
   &__symptom {
-    margin: 0 5px 15px 0;
+    margin: 10px 5px 0px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  &__comment-container {
-    padding: 0 20px;
-  }
-
   &__comment-title {
+    margin-top: 16px;
     color: $core_70;
   }
 
@@ -88,13 +86,14 @@
     white-space: pre-line;
     overflow-wrap: break-word;
     color: $core_100;
-    padding: 8px 0 24px 0;
+    padding: 8px 0 0 0;
   }
 }
 
 @include media-desktop {
   .personal-card {
     &__default-wrapper {
+      padding: 0;
       border: none;
       grid-template-columns: minmax(400px, 650px);
     }
@@ -104,8 +103,9 @@
 @include media-mobile {
   .personal-card {
     &__default-wrapper {
+      padding: 0;
       border: none;
-      grid-template-columns: minmax(343px, 443px);
+      grid-template-columns: minmax(273px, 443px);
     }
   }
 }
