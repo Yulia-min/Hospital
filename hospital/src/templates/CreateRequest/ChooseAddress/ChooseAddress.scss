@@ -1,0 +1,74 @@
+@import 'src/style/style.scss';
+
+.choose-address {
+  &__form-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(328px, 665px);
+    gap: 40px;
+  }
+  &__input-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(128px, 328px));
+    gap: 8px;
+    .ant-form-item {
+      margin: 0;
+    }
+  }
+  &__button-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 124px);
+    gap: 20px;
+    justify-content: flex-end;
+  }
+  &__suggestions-container {
+    position: absolute;
+    width: 328px;
+    z-index: 10;
+    background: $white;
+    box-shadow: 0px 4px 16px 4px rgba(18, 40, 75, 0.12);
+    border-radius: 10px;
+  }
+  &__suggestions {
+    padding: 12px 16px;
+    &:hover {
+      background: $primary_20;
+      cursor: pointer;
+    }
+  }
+}
+
+@include media-desktop {
+  .choose-address {
+    padding: 32px 16px 0;
+  }
+}
+
+@include media-mobile {
+  .choose-address {
+    padding: 32px 16px 0;
+    &__input-container {
+      grid-template-columns: repeat(auto-fill, minmax(343px, 500px));
+    }
+    &__button-container {
+      display: grid;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      grid-template-columns: 1fr minmax(200px, 664px) 1fr;
+      padding: 24px 16px 16px;
+      background: $white;
+      box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
+      justify-content: center;
+    }
+    &__button-wrapper {
+      grid-template-columns: 124px 162px;
+      justify-content: space-between;
+    }
+    &__suggestions-container {
+      width: 92%;
+    }
+  }
+}

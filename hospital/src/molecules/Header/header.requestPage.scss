@@ -22,7 +22,7 @@
 
   &__step-wrapper {
     display: grid;
-    grid-template-columns: 60px minmax(100px, 580px);
+    grid-template-columns: 60px minmax(100px, 585px);
     column-gap: 20px;
     align-items: center;
     justify-content: center;
@@ -31,7 +31,6 @@
 
   &__step-title {
     color: $core_100;
-    margin: 0 0 8px 0;
   }
 
   &__step-subtitle {
@@ -73,6 +72,10 @@
     }
     &__title {
       display: none;
+    }
+    &__step-title {
+      letter-spacing: 0.15px;
+      font-size: 18px;
     }
   }
 }

@@ -90,6 +90,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
 
   const onClick = () => {
     dispatch(savePatientWithSymptoms(Object.values(patientsWithSymptoms)))
+    setStep((step: number) => step + 1)
   }
 
   const backClickHandler = () => {

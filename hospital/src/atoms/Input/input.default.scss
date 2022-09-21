@@ -2,23 +2,33 @@
 
 .input-wrapper {
   .ant-form-item-label > label {
+    z-index: 6;
     position: absolute;
-    top: -5px;
+    top: 0px;
     font-family: 'Avenir';
-    left: 5px;
-    background: $white;
+    left: 12px;
     color: $core_90;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
   }
+  .ant-form-item-label {
+    padding: 0;
+  }
+  .ant-input[disabled]:hover {
+    border: 1px solid $core_50;
+  }
+
+  .ant-form-item-label {
+    overflow: visible;
+  }
 
   .ant-input {
-    width: 328px;
     height: 56px;
     border: 1px solid $core_50;
     border-radius: 2px;
     padding-top: 15px;
+    box-shadow: none;
   }
 
   .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled) {

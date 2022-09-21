@@ -19,8 +19,27 @@ export interface IPatientWithSymptoms extends IPatient {
   comment?: string
 }
 
+export interface IPatientsAddress {
+  patientsAddress: {
+    full_address: {
+      address: string
+      city: string | undefined
+      state: string | undefined
+      street: string | undefined
+    }[]
+    latLng: {
+      lat: number
+      lng: number
+    }
+    zip_code: string
+    suite?: string
+    additional_info?: string
+  }
+}
+
 export interface IPatientState {
   patients: IPatient[]
+  patientsAddress: IPatientsAddress | null
   patientWithSymptoms: IPatientWithSymptoms[]
   choosenPatient: string[]
   isLoading: boolean
