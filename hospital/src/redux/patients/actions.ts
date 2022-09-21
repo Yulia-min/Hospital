@@ -6,9 +6,10 @@ import {
   loading,
   loadingSuccess,
   setPatient,
-  setPatientsWithSymptoms
+  setPatientsWithSymptoms,
+  setPatientsAddress
 } from '../reducers/patientsSlice'
-import { IChoosenPatient, IPatientWithSymptoms } from '../types/patientsTypes'
+import { IPatientsAddress, IPatientWithSymptoms } from '../types/patientsTypes'
 
 export const requestPatientsInfo = (): AppThunk => async (dispatch) => {
   try {
@@ -23,7 +24,7 @@ export const requestPatientsInfo = (): AppThunk => async (dispatch) => {
 }
 
 export const saveChoosenPatient =
-  (values: IChoosenPatient): AppThunk =>
+  (values: string[]): AppThunk =>
   async (dispatch) => {
     dispatch(setPatient(values))
   }
@@ -32,4 +33,10 @@ export const savePatientWithSymptoms =
   (data: IPatientWithSymptoms[]): AppThunk =>
   async (dispatch) => {
     dispatch(setPatientsWithSymptoms(data))
+  }
+
+export const savePatientAddress =
+  (data: IPatientsAddress): AppThunk =>
+  async (dispatch) => {
+    dispatch(setPatientsAddress(data))
   }

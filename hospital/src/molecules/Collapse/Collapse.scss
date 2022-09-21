@@ -1,35 +1,42 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .collapse {
-  &__transition {
-    transition: 0.3s;
+  &.ant-collapse-borderless {
+    background: $white;
   }
-
-  &__content {
-    overflow: hidden;
-    transition: height 0.2s ease-in-out;
+  .ant-collapse-content > .ant-collapse-content-box {
+    padding: 0;
   }
-
-  &__rotate-arrow {
-    transition: all 0.2s linear;
-    margin-top: 30px;
-    &.down {
-      transform: rotate(180deg);
-    }
-    &.up {
-      transform: rotate(360deg);
-    }
+  &.ant-collapse-borderless
+    > .ant-collapse-item
+    > .ant-collapse-content
+    > .ant-collapse-content-box {
+    padding: 0;
+    margin-bottom: 24px;
   }
-
-  &__icon-button {
+  &.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding: 20px 20px 20px 0;
     display: flex;
-    cursor: pointer;
-    background: none;
+    flex-direction: row-reverse;
     border: 1px solid $core_30;
     border-radius: 10px;
-
-    &.active {
-      box-shadow: 0px 1px 8px rgba(14, 67, 109, 0.16);
+  }
+  &.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+    margin: 0;
+  }
+  &.ant-collapse-borderless > .ant-collapse-item {
+    border: none;
+    margin-bottom: 12px;
+    &:last-child {
+      margin-bottom: 60px;
+    }
+  }
+  .rotate-arrow {
+    left: 0;
+    transition: all 0.2s linear;
+    transform: rotate(0deg);
+    &--active {
+      transform: rotate(180deg);
     }
   }
 }

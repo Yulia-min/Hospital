@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { Button as DefaultButton } from 'antd'
-import './button.default.scss'
+import './button.icon.scss'
 import { ButtonType } from './ButtonType'
 
 export const Icon = ({ disabled, children, onClick, className, htmlType }: ButtonType) => {

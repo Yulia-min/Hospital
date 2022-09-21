@@ -1,19 +1,17 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
-.modal{
-    &__title{
-        color: $core_100;
-    }
+.modal {
+  &__title {
+    color: $core_100;
+  }
 
-    &__description{
-        margin-top: 15px;
-        color: $core_60;
-    }
+  &__description {
+    margin-top: 15px;
+    color: $core_60;
+  }
 
-    &__form{
-        margin: 20px 10% 40px 15%;
-    }
+  &__form {
+    display: grid;
+    justify-content: center;
+  }
 }
-
-
-

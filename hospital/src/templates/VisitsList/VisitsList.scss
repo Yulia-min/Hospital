@@ -1,47 +1,68 @@
 @import '/src/style/style.scss';
 
-.visits-list{
-    &.wrapper{
-        margin-left: 5%;
+.visits-list {
+  &__container {
+    padding: 40px 72px 0;
+  }
+  &__select {
+    width: 328px;
+  }
+  &__layout {
+    &::-webkit-scrollbar {
+      width: 0;
     }
+  }
+  &__layout-height {
+    min-height: 100vh;
+  }
+  &__title {
+    margin: 0 0 24px;
+    color: $core_100;
+  }
+  &__card-wrapper {
+    width: 100%;
+    max-width: 416px;
+    min-height: 343px;
+  }
 
-    &__layout{
-        &::-webkit-scrollbar {
-            width: 10px;
-          }
-    
-          &::-webkit-scrollbar-track {
-            border-radius: 5px;
-            background: $core_20;
-          }
-          
-          &::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: $core_40;
-          }
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 24px;
+    .ant-form-item {
+      margin: 0;
     }
+  }
 
-    &__title{
-        margin: 0 0 24px;
-        color: $core_100;
-    }
-    
-    &__form{
-        display: flex;
-        flex-wrap: wrap;
-    
-        .request-button{
-            margin: 10px 0 0 30px;
-        }
-    }
-
-    &__subtitle{
-        margin-bottom: 32px;
-    }
+  &__subtitle {
+    margin-bottom: 32px;
+  }
 }
 
+@include media-desktop {
+  .visits-list {
+    &__container {
+      padding: 24px 16px 0 16px;
+    }
+    &__title {
+      font-family: 'Avenir';
+      font-size: 22px;
+      line-height: 28px;
+    }
+  }
+}
 
-
-
-
-
+@include media-mobile {
+  .visits-list {
+    &__container {
+      padding: 24px 16px 0 16px;
+    }
+    &__title {
+      font-family: 'Avenir';
+      font-size: 22px;
+      line-height: 28px;
+    }
+  }
+}

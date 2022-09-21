@@ -1,34 +1,43 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .input-wrapper {
-    .ant-form-item-label > label{
-        position: absolute;
-        top: -5px;
-        font-family: 'Avenir';
-        left: 5px;
-        background: $white;
-        color: $core_90;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 20px;
-    }
+  .ant-form-item-label > label {
+    z-index: 6;
+    position: absolute;
+    top: 0px;
+    font-family: 'Avenir';
+    left: 12px;
+    color: $core_90;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .ant-form-item-label {
+    padding: 0;
+  }
+  .ant-input[disabled]:hover {
+    border: 1px solid $core_50;
+  }
 
-    .ant-input {
-        width:328px;
-        height: 56px;
-        border: 1px solid $core_50;;
-        border-radius: 2px;
-        padding-top: 15px;
-    }
+  .ant-form-item-label {
+    overflow: visible;
+  }
 
-    .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled){
-        &:hover{
-            border: 1px solid $core_50;
-        }
-    }
+  .ant-input {
+    border: 1px solid $core_50;
+    border-radius: 2px;
+    padding: 24px 12px 10px;
+    box-shadow: none;
+  }
 
-    .ant-input-affix-wrapper-focused{
-        box-shadow: none;
-        border: 1px solid $primary_80;
+  .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled) {
+    &:hover {
+      border: 1px solid $core_50;
     }
+  }
+
+  .ant-input-affix-wrapper-focused {
+    box-shadow: none;
+    border: 1px solid $primary_80;
+  }
 }

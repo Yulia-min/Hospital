@@ -8,7 +8,8 @@ export const store = configureStore({
     cards: cardsSlice,
     services: servicesSlice,
     patients: patientsSlice,
-    choosenPatient: patientsSlice
+    choosenPatient: patientsSlice,
+    patientsAddress: patientsSlice
   }
 })
 

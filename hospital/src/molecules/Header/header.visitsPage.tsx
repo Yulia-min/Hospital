@@ -6,12 +6,15 @@ import './header.visitsPage.scss'
 
 export const VisitsPage = () => {
   return (
-    <div className="main-header wrapper">
+    <div className="main-header">
       <div className="main-header__info">
+        <div className="main-header__burger">
+          <span />
+        </div>
         <Logo />
         <Typography.Subtitle1 className="main-header__title">Shedule</Typography.Subtitle1>
         <div className="main-header__icons">
-          <Notification className="notification" />
+          <Notification />
           <Profile />
         </div>
       </div>

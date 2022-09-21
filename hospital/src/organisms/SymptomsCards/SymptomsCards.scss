@@ -1,22 +1,16 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .symptoms-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: 45px minmax(100px, 606px);
   align-items: center;
-  width: 450px;
+  gap: 12px;
+  margin-right: 5px;
   &__image {
     border-radius: 100%;
     border: 1px solid $core_30;
-    margin: 5px 20px 0 0;
   }
-
   &__name {
     color: $core_100;
-  }
-}
-
-@include media-mobile {
-  .symptoms-cards {
-    width: 300px;
   }
 }

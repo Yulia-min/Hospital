@@ -1,10 +1,19 @@
-@import '/src/style/style.scss';
+@import 'src/style/style.scss';
 
 .personal-card {
-  &.wrapper {
-    width: 450px;
-    display: flex;
-
+  &__default-wrapper {
+    display: grid;
+    grid-template-columns: minmax(50px, 292px);
+    border: 1px solid $core_30;
+    border-radius: 2px;
+    padding: 24px 0;
+  }
+  &__info-wrapper {
+    padding: 0 24px;
+  }
+  &__checkbox-wrapper {
+    display: grid;
+    grid-template-columns: minmax(239px, 580px);
     &:hover {
       .personal-card__button {
         opacity: 1;
@@ -12,77 +21,83 @@
       }
     }
   }
-
-  &.default-wrapper {
-    width: 230px;
-    border: 1px solid $core_30;
-    border-radius: 2px;
+  &__name-container {
+    display: flex;
+    justify-content: space-between;
   }
-
   &__info {
     width: 100%;
-    margin-left: 20px;
   }
-
   &__name {
     color: $core_100;
-    margin: 24px 0 8px 0;
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-
   &__birthday {
     color: $core_70;
     margin-bottom: 8px;
   }
-
   &__number {
     color: $primary_70;
     margin-bottom: 8px;
   }
-
   &__email {
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: $primary_70;
-    margin-bottom: 24px;
   }
-
   &__edit {
-    margin: 5px 0 0 10px;
     text-transform: uppercase;
     color: $primary_80;
+    margin-top: 5px;
+    margin-left: 16px;
   }
-
   &__button {
     display: flex;
     opacity: 0;
-    margin-top: 20px;
   }
-
   &__symptom-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 5px;
+    gap: 4px;
+    padding: 10px 5px 0;
   }
-
+  &__comment-container {
+    padding: 8px 20px 0;
+  }
   &__symptom {
-    margin: 0 5px 15px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   &__comment-title {
-    color: #5e6878;
-    margin: 0 0 0 20px;
+    color: $core_70;
   }
   &__comment-content {
-    color: #090a0b;
-    margin: 2px 0 24px 20px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    color: $core_100;
+    padding: 8px 0 0 0;
+  }
+}
+
+@include media-desktop {
+  .personal-card {
+    &__default-wrapper {
+      padding: 0;
+      border: none;
+      grid-template-columns: minmax(300px, 650px);
+    }
   }
 }
 
 @include media-mobile {
   .personal-card {
-    &.default-wrapper {
+    &__default-wrapper {
+      padding: 0;
       border: none;
-      width: 320px;
+      grid-template-columns: minmax(273px, 443px);
     }
   }
 }

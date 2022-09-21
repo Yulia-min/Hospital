@@ -45,8 +45,8 @@ export const Auth = () => {
       form={form}
     >
       <Input.Code propsItem={{ name: 'validation_code' }} />
-      <Form.Item className="auth-button wrapper">
-        <Button.Default className="resend-button" variant="secondary">
+      <Form.Item className="auth-button__wrapper">
+        <Button.Default className="auth-button__resend-button" variant="secondary">
           Resend
         </Button.Default>
         <Button.Default htmlType="submit" variant="primary">

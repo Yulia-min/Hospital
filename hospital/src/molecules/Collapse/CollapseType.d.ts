@@ -1,5 +1,4 @@
 export type CollapseType = {
-  title: React.ReactNode
-  children: ReactNode
   className?: string
+  panel?: { title: React.ReactNode; key: string; children: React.ReactNode }[]
 }

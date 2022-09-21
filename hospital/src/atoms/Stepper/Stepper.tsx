@@ -3,7 +3,7 @@ import { StepperType } from './StepperType'
 
 export const Stepper = ({ step, strokeDasharray }: StepperType) => {
   return (
-    <svg viewBox="0 0 40 40" className="stepper">
+    <svg viewBox="0 0 35 40" className="stepper">
       <circle cx="13" cy="11" r="15.91549430918954" fill="#fff" />
       <circle
         cx="17"
@@ -24,10 +24,10 @@ export const Stepper = ({ step, strokeDasharray }: StepperType) => {
         strokeDashoffset="25"
       />
       <g>
-        <text x="17%" y="60%" fill="darkblue">
+        <text x="18%" y="60%" fill="darkblue">
           {step} of
         </text>
-        <text x="58%" y="60%" fill="gray">
+        <text x="63%" y="60%" fill="gray">
           5
         </text>
       </g>

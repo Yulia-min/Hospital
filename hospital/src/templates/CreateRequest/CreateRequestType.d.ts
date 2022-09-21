@@ -24,3 +24,13 @@ export interface ICreateRequest {
   step: number
   setStep: Dispatch<SetStateAction<number>>
 }
+
+export type CoordinatesType = {
+  lat: number
+  lng: number
+}
+
+export type PatientsAddressType = {
+  suite?: string
+  additional_info?: string
+}
