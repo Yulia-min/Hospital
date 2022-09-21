@@ -15,7 +15,7 @@
     margin-bottom: 24px;
   }
   &.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     display: flex;
     flex-direction: row-reverse;
     border: 1px solid $core_30;
@@ -32,7 +32,6 @@
     }
   }
   .rotate-arrow {
-    margin-top: 35px;
     left: 0;
     transition: all 0.2s linear;
     transform: rotate(0deg);

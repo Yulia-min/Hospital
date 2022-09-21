@@ -3,15 +3,17 @@
 .personal-card {
   &__default-wrapper {
     display: grid;
-    grid-template-columns: minmax(50px, 246px);
+    grid-template-columns: minmax(50px, 292px);
     border: 1px solid $core_30;
     border-radius: 2px;
-    padding: 24px 24px 24px 20px;
+    padding: 24px 0;
+  }
+  &__info-wrapper {
+    padding: 0 24px;
   }
   &__checkbox-wrapper {
     display: grid;
     grid-template-columns: minmax(239px, 580px);
-
     &:hover {
       .personal-card__button {
         opacity: 1;
@@ -19,69 +21,59 @@
       }
     }
   }
-
   &__name-container {
     display: flex;
     justify-content: space-between;
   }
-
   &__info {
     width: 100%;
   }
-
   &__name {
     color: $core_100;
     margin-bottom: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   &__birthday {
     color: $core_70;
     margin-bottom: 8px;
   }
-
   &__number {
     color: $primary_70;
     margin-bottom: 8px;
   }
-
   &__email {
     overflow: hidden;
     text-overflow: ellipsis;
     color: $primary_70;
   }
-
   &__edit {
     text-transform: uppercase;
     color: $primary_80;
     margin-top: 5px;
     margin-left: 19px;
   }
-
   &__button {
     display: flex;
     opacity: 0;
   }
-
   &__symptom-container {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -15px;
+    gap: 5px;
+    padding: 10px 5px 0;
   }
-
+  &__comment-container {
+    padding: 8px 20px 0;
+  }
   &__symptom {
-    margin: 10px 5px 0px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   &__comment-title {
-    margin-top: 16px;
     color: $core_70;
   }
-
   &__comment-content {
     white-space: pre-line;
     overflow-wrap: break-word;
@@ -95,7 +87,7 @@
     &__default-wrapper {
       padding: 0;
       border: none;
-      grid-template-columns: minmax(400px, 650px);
+      grid-template-columns: minmax(300px, 650px);
     }
   }
 }

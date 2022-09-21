@@ -4,7 +4,9 @@
   &__container {
     padding: 40px 71px 0 71px;
   }
-
+  &__select {
+    width: 328px;
+  }
   &__layout {
     &::-webkit-scrollbar {
       width: 0;

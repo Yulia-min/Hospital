@@ -90,6 +90,7 @@ export const VisitsList = () => {
         </Typography.Headline1>
         <Form className="visits-list__form" onFinish={onFinish}>
           <Select.Single
+            className="visits-list__select"
             propsItem={{ name: 'request_type' }}
             propsSelect={{
               placeholder: 'Select request type',

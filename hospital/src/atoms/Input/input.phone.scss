@@ -1,8 +1,8 @@
 @import 'src/style/style.scss';
 
 .phone-wrapper {
+  padding: 10px 0;
   .react-tel-input .form-control {
-    height: 56px;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $core_50;
