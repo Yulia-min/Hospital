@@ -51,7 +51,7 @@
     text-transform: uppercase;
     color: $primary_80;
     margin-top: 5px;
-    margin-left: 19px;
+    margin-left: 16px;
   }
   &__button {
     display: flex;
@@ -60,7 +60,7 @@
   &__symptom-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 4px;
     padding: 10px 5px 0;
   }
   &__comment-container {
