@@ -84,7 +84,7 @@ export const ChooseAddress = ({ setStep, step }: ICreateRequest) => {
         <div className="choose-address__input-container">
           <PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect}>
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-              <div>
+              <div className="choose-address__input-wrapper">
                 <Input.Default
                   propsItem={{ label: 'Address', colon: false }}
                   propsInput={{ ...getInputProps({ placeholder: 'Address' }) }}
