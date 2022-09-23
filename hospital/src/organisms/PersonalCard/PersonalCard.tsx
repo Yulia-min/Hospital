@@ -40,17 +40,16 @@ export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: Pers
           <Typography.Body2 className="personal-card__email">{patient.email}</Typography.Body2>
         </div>
       </div>
-      <div
-        className={cn({
-          'personal-card__symptom-container': isDefault
-        })}
-      >
-        {patient.symptoms?.map((item) => (
-          <React.Fragment key={item}>
-            <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
-          </React.Fragment>
-        ))}
-      </div>
+      {patient.symptoms && (
+        <div className="personal-card__symptom-container">
+          {patient.symptoms?.map((item) => (
+            <React.Fragment key={item}>
+              <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
+            </React.Fragment>
+          ))}
+        </div>
+      )}
+
       {patient.comment && (
         <div className="personal-card__comment-container">
           <Typography.Subtitle2 className="personal-card__comment-title">

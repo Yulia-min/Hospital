@@ -52,8 +52,11 @@
       margin-bottom: 80px;
     }
     .ant-tabs-tab.ant-tabs-tab {
+      display: grid;
+      grid-template-columns: minmax(50px, 292px);
       text-align: start;
       padding: 0;
+      border: 1px solid $core_30;
     }
     .ant-tabs-content-holder {
       border: none;

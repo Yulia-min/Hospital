@@ -34,3 +34,10 @@ export type PatientsAddressType = {
   suite?: string
   additional_info?: string
 }
+
+export type PatientWithSymptomsListType = {
+  family: string[]
+  friends: string[]
+  other: string[]
+  you: string[]
+}

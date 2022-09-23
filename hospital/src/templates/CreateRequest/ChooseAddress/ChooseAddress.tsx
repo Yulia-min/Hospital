@@ -24,27 +24,26 @@ export const ChooseAddress = ({ setStep, step }: ICreateRequest) => {
       requestPostZipCode({ zip_code: form.getFieldValue(['zip_code']) }).then(() => {
         dispatch(
           savePatientAddress({
-            patientsAddress: {
-              latLng: coordinates,
-              zip_code: zipCode,
-              suite: value.suite,
-              additional_info: value.additional_info,
-              full_address: fullAddress.map((result) => ({
-                address: result.formatted_address,
-                street: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'street_number')
-                )?.long_name,
-                city: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'locality')
-                )?.long_name,
-                state: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'administrative_area_level_1')
-                )?.short_name
-              }))
-            }
+            latLng: coordinates,
+            zip_code: zipCode,
+            suite: value.suite,
+            additional_info: value.additional_info,
+            full_address: fullAddress.map((result) => ({
+              address: result.formatted_address,
+              street: result.address_components.find((item) =>
+                item.types.find((i) => i === 'street_number')
+              )?.long_name,
+              city: result.address_components.find((item) =>
+                item.types.find((i) => i === 'locality')
+              )?.long_name,
+              state: result.address_components.find((item) =>
+                item.types.find((i) => i === 'administrative_area_level_1')
+              )?.short_name
+            }))
           })
         )
       })
+    setStep((step: number) => step + 2)
   }
 
   const backClickHandler = () => {
