@@ -8,7 +8,11 @@ import {
 
 const initialState: IPatientState = {
   patients: [],
-  patientsAddress: null,
+  patientsAddress: {
+    full_address: [],
+    latLng: { lat: 0, lng: 0 },
+    zip_code: ''
+  },
   patientWithSymptoms: [],
   choosenPatient: [],
   isLoading: false,

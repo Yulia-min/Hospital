@@ -2,9 +2,6 @@
 
 .personal-card {
   &__default-wrapper {
-    display: grid;
-    grid-template-columns: minmax(50px, 292px);
-    border: 1px solid $core_30;
     border-radius: 2px;
     padding: 24px 0;
   }
@@ -86,8 +83,6 @@
   .personal-card {
     &__default-wrapper {
       padding: 0;
-      border: none;
-      grid-template-columns: minmax(300px, 650px);
     }
   }
 }
@@ -96,8 +91,6 @@
   .personal-card {
     &__default-wrapper {
       padding: 0;
-      border: none;
-      grid-template-columns: minmax(273px, 443px);
     }
   }
 }

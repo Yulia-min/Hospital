@@ -20,6 +20,7 @@
     flex-direction: row-reverse;
     border: 1px solid $core_30;
     border-radius: 10px;
+    justify-content: space-between;
   }
   &.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
     margin: 0;

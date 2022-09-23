@@ -16,6 +16,7 @@
     "antd": "4.20.7",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
+    "google-map-react": "^2.2.0",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-auth-code-input": "^3.2.1",
@@ -64,6 +65,7 @@
     ]
   },
   "devDependencies": {
+    "@types/google-map-react": "^2.1.7",
     "@types/react-input-mask": "^3.0.1",
     "@types/react-places-autocomplete": "^7.2.9",
     "@types/react-virtualized": "^9.21.21",
