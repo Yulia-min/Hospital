@@ -35,10 +35,17 @@ export interface IPatientsAddress {
   additional_info?: string
 }
 
+export interface IPatientsDate {
+  request_type: string
+  date: string
+  time: string
+}
+
 export interface IPatientState {
   patients: IPatient[]
   patientsAddress: IPatientsAddress
   patientWithSymptoms: IPatientWithSymptoms[]
+  patientsDate: IPatientsDate
   choosenPatient: string[]
   isLoading: boolean
   error: any | null

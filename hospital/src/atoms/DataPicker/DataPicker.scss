@@ -1,0 +1,87 @@
+@import 'src/style/style.scss';
+
+.data-picker-wrapper {
+  .ant-form-item-label > label {
+    position: absolute;
+    top: -6px;
+    left: 12px;
+  }
+  .ant-form-item-label {
+    overflow: visible;
+    z-index: 4;
+  }
+  .ant-picker {
+    border: 1px solid $core_50;
+    border-radius: 2px;
+    padding: 18px 12px;
+  }
+  .ant-picker:hover {
+    border: 1px solid $core_50;
+  }
+  .ant-picker-focused {
+    box-shadow: none;
+  }
+}
+
+.popup {
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+    background: $primary_80;
+    border-radius: 100%;
+  }
+  .ant-picker-cell .ant-picker-cell-inner {
+    border-radius: 100%;
+  }
+  .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner {
+    background: $primary_20;
+    color: $core_100;
+    &::before {
+      border: none;
+    }
+  }
+  .ant-picker-header {
+    border: none;
+  }
+  .ant-picker-header-view {
+    flex: none;
+    color: $core_70;
+    font-family: 'Avenir';
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .ant-picker-cell-disabled::before {
+    background: none;
+  }
+  .ant-picker-header-prev-btn {
+    position: absolute;
+    left: 160px;
+  }
+  .ant-picker-header-next-btn {
+    position: absolute;
+    right: 20px;
+  }
+  .ant-picker-cell-disabled .ant-picker-cell-inner {
+    background: $core_20;
+  }
+  .ant-picker-prev-icon::before {
+    border: 0 solid $core_70;
+    border-width: 2px 0 0 2px;
+  }
+  .ant-picker-today-btn {
+    position: absolute;
+    top: 2px;
+    right: 50px;
+    font-family: 'Avenir';
+    color: $core_70;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .ant-picker-next-icon::before {
+    border: 0 solid $core_70;
+    border-width: 2px 0 0 2px;
+  }
+  .ant-picker-footer {
+    border: none;
+    min-width: 0;
+  }
+}

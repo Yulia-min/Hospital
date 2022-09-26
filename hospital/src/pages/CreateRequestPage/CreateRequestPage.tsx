@@ -1,5 +1,11 @@
 import { useState } from 'react'
-import { BookingRequest, ChooseAddress, ChooseSymptoms, CreateRequest } from 'src/templates'
+import {
+  BookingRequest,
+  ChooseAddress,
+  ChooseSymptoms,
+  ChooseTime,
+  CreateRequest
+} from 'src/templates'
 
 export const CreateRequestPage = () => {
   const [step, setStep] = useState<number>(1)
@@ -11,6 +17,8 @@ export const CreateRequestPage = () => {
         <ChooseSymptoms setStep={setStep} step={step} />
       ) : step === 3 ? (
         <ChooseAddress setStep={setStep} step={step} />
+      ) : step === 4 ? (
+        <ChooseTime setStep={setStep} step={step} />
       ) : (
         step === 5 && <BookingRequest setStep={setStep} step={step} />
       )}

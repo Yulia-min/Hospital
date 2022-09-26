@@ -7,3 +7,4 @@ export const getPaientsWithSymptoms = (state: { patientWithSymptoms: IPatientSta
   state.patientWithSymptoms
 export const getPaientsAddress = (state: { patientsAddress: IPatientState }) =>
   state.patientsAddress
+export const getPatientsDate = (state: { patientsDate: IPatientState }) => state.patientsDate
