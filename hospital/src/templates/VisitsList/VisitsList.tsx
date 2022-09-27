@@ -14,15 +14,15 @@ import { getServiceInfo } from 'src/redux/services/selectors'
 import { SERVICES_TYPE, ServiceType } from 'src/constants'
 import { useNavigate } from 'react-router-dom'
 import AutoSizer from 'react-virtualized-auto-sizer'
+import { saveRequestType } from 'src/redux/patients/actions'
 
 export const VisitsList = () => {
   const dispatch = useAppDispatch()
 
   const { cards } = useAppSelector(getCardsInfo)
-
   const { services } = useAppSelector(getServiceInfo)
 
-  const [isServiceType, setIsServiceType] = useState<string>()
+  const [serviceType, setServiceType] = useState<string>('')
 
   const navigate = useNavigate()
 
@@ -74,10 +74,11 @@ export const VisitsList = () => {
   )
 
   const handleChange = (value: string) => {
-    setIsServiceType(value)
+    setServiceType(value)
   }
 
   const onFinish = () => {
+    dispatch(saveRequestType(serviceType))
     navigate('/create-request')
   }
 
@@ -104,7 +105,7 @@ export const VisitsList = () => {
           <Form.Item>
             <Button.Default
               htmlType="submit"
-              disabled={!isServiceType}
+              disabled={!serviceType}
               variant="primary"
               className="request-button"
             >

@@ -1,7 +1,12 @@
 import { HTTP_METHODS } from 'src/helper/api'
 import { IPatient } from 'src/redux/types/patientsTypes'
 import Fetcher from 'src/services/fetcher'
-import { PatientDateInfoType, PatientsDateInfo, PatientsZipCode } from './PatientsType'
+import {
+  PatientDateInfoType,
+  PatientsDateInfo,
+  PatientsRequest,
+  PatientsZipCode
+} from './PatientsType'
 
 const fetcher = new Fetcher()
 
@@ -28,4 +33,11 @@ export const getAvailableTime = (
     url: 'shifts/day-slots/',
     params: { date, zip_code, patients_number, address_line },
     method: HTTP_METHODS.GET
+  })
+
+export const createRequest = (data: PatientsRequest) =>
+  fetcher.requestToReceive<PatientsRequest, {}>({
+    url: 'service-requests/',
+    method: HTTP_METHODS.POST,
+    data
   })
