@@ -19,6 +19,7 @@ const initialState: IPatientState = {
     date: '',
     time: ''
   },
+  choosenRequestType: '',
   patientWithSymptoms: [],
   choosenPatient: [],
   isLoading: false,
@@ -49,6 +50,9 @@ export const patientsSlice = createSlice({
     setPatientsDate(state: IPatientState, action: PayloadAction<IPatientsDate>) {
       state.patientsDate = action.payload
     },
+    setRequestType(state: IPatientState, action: PayloadAction<string>) {
+      state.choosenRequestType = action.payload
+    },
     finish(state: IPatientState) {
       state.isLoading = false
     },
@@ -68,5 +72,6 @@ export const {
   setPatient,
   setPatientsWithSymptoms,
   setPatientsAddress,
-  setPatientsDate
+  setPatientsDate,
+  setRequestType
 } = patientsSlice.actions

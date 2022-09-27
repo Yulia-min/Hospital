@@ -15,6 +15,7 @@ export interface IPatient {
 }
 
 export interface IPatientWithSymptoms extends IPatient {
+  symptomsId: CheckboxValueType[]
   symptoms?: CheckboxValueType[]
   comment?: string
 }
@@ -47,6 +48,7 @@ export interface IPatientState {
   patientWithSymptoms: IPatientWithSymptoms[]
   patientsDate: IPatientsDate
   choosenPatient: string[]
+  choosenRequestType: string
   isLoading: boolean
   error: any | null
 }

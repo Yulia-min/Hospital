@@ -103,10 +103,7 @@ export const ChooseTime = ({ setStep, step }: ICreateRequest) => {
                   placeholder: 'Please Specify Your Time',
                   onChange: onSelectChange,
                   options: time?.map((item) => ({
-                    value:
-                      moment(item.start).format('HH:mm a') +
-                      ' - ' +
-                      moment(item.end).format('HH:mm a'),
+                    value: `${item.start},${item.end}`,
                     label:
                       moment(item.start).format('HH:mm a') +
                       ' - ' +

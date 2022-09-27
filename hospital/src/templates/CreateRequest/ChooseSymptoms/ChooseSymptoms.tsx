@@ -44,7 +44,11 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
         ...patientsWithSymptoms,
         [id]: {
           ...patientsWithSymptoms[id],
-          symptoms: checkedValues
+          symptomsId: checkedValues,
+          symptoms: services
+            .find((service_type) => service_type.name === 'common')
+            ?.symptoms.filter((symptom) => checkedValues?.includes(symptom.uuid))
+            .map((item) => item.name)
         }
       }
     })
@@ -62,7 +66,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
                 propsGroupCheckbox={{
                   onChange: onSelectSymptomsChange(patient.uuid),
                   options: symptom.symptoms.map((item) => ({
-                    value: item.name,
+                    value: item.uuid,
                     label: SymptomsCards(item)
                   }))
                 }}
