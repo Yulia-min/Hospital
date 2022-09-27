@@ -43,7 +43,7 @@ export const ChooseAddress = ({ setStep, step }: ICreateRequest) => {
           })
         )
       })
-    setStep((step: number) => step + 2)
+    setStep((step: number) => step + 1)
   }
 
   const backClickHandler = () => {

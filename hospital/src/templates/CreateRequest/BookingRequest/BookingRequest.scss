@@ -68,6 +68,9 @@
     display: flex;
     gap: 8px;
   }
+  &__time-container {
+    flex-grow: 0.05;
+  }
   &__first-title {
     color: $core_70;
   }

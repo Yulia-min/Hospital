@@ -7,6 +7,7 @@ import { ReactComponent as AddressMarker } from 'src/public/Marker.svg'
 import {
   getPaientsAddress,
   getPaientsWithSymptoms,
+  getPatientsDate,
   getPatientsInfo
 } from 'src/redux/patients/selectors'
 import { Typography } from 'src/Typography'
@@ -16,16 +17,18 @@ import './BookingRequest.scss'
 import { Link } from 'react-router-dom'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENTS_TYPE } from 'src/constants'
+import moment from 'moment'
 
 export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
   const { patients } = useAppSelector(getPatientsInfo)
   const { patientWithSymptoms } = useAppSelector(getPaientsWithSymptoms)
   const { patientsAddress } = useAppSelector(getPaientsAddress)
+  const { patientsDate } = useAppSelector(getPatientsDate)
 
   const [disabled, isDisabled] = useState(true)
 
   const backClickHandler = () => {
-    setStep((step: number) => step - 2)
+    setStep((step: number) => step - 1)
   }
 
   const currentPatient = patients.find((patient) => patient.client_patient_relationship === null)
@@ -91,14 +94,17 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
         <div className="booking-request__first-block">
           <div className="booking-request__first-block-bottom">
             <Chips.Default className="booking-request__block-item-wrapper" variant="request">
-              Now request
+              {patientsDate.request_type === 'now' ? 'Now' : 'Later'} request
             </Chips.Default>
             <div className="booking-request__time-wrapper">
               <Typography.Subtitle1 className="booking-request__first-title">
                 Time:
               </Typography.Subtitle1>
+              <Typography.Subtitle1 className="booking-request__second-title booking-request__time-container">
+                {patientsDate.date === moment().format('DD/MM/YYYY') ? 'Today' : patientsDate.date}
+              </Typography.Subtitle1>
               <Typography.Subtitle1 className="booking-request__second-title">
-                Today In 60 Mins
+                {patientsDate.time ? patientsDate.time : 'In 60 Mins'}
               </Typography.Subtitle1>
             </div>
             <div className="booking-request__line" />

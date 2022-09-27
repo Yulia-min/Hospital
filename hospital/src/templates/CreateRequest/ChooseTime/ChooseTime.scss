@@ -1,0 +1,98 @@
+@import 'src/style/style.scss';
+
+.choose-time {
+  &__info-wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(200px, 664px);
+  }
+  &__city-wrapper {
+    justify-self: center;
+    margin-bottom: 40px;
+  }
+  &__button-mark {
+    &::after {
+      content: url('../../../public/Mark.svg');
+      margin-left: 12px;
+    }
+  }
+  &__line {
+    height: 1px;
+    background: $core_30;
+    margin-bottom: 40px;
+  }
+  &__data-picker-wrapper {
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 230px));
+    gap: 8px;
+    margin-bottom: 40px;
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
+  &__data-picker {
+    .ant-picker {
+      width: 100%;
+      max-width: 230px;
+      min-width: 200px;
+    }
+  }
+  &__send-buttons-wrapper {
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 189px 170px;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  &__button-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 124px);
+    gap: 20px;
+    justify-content: flex-end;
+  }
+}
+@include media-desktop {
+  .choose-time {
+    padding: 32px 16px 0;
+  }
+}
+
+@include media-mobile {
+  .choose-time {
+    padding: 32px 16px 0;
+    &__data-picker-wrapper {
+      justify-self: stretch;
+      grid-template-columns: 100%;
+      gap: 24px;
+      margin-bottom: 88px;
+    }
+    &__send-buttons-wrapper {
+      justify-self: stretch;
+      grid-template-columns: 100%;
+    }
+    &__data-picker {
+      .ant-picker {
+        width: 100%;
+        max-width: 448px;
+        min-width: 200px;
+      }
+    }
+    &__button-container {
+      display: grid;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      grid-template-columns: 1fr minmax(200px, 664px) 1fr;
+      padding: 24px 16px 16px;
+      background: $white;
+      box-shadow: 0px -2px 8px rgba(9, 68, 114, 0.08);
+      justify-content: center;
+    }
+    &__button-wrapper {
+      grid-template-columns: 124px 162px;
+      justify-content: space-between;
+    }
+  }
+}
