@@ -1,0 +1,78 @@
+@import 'src/style/style.scss';
+
+.request-details {
+  &__info-contanier {
+    padding: 136px 16px 75px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(300px, 664px);
+  }
+  &__patients-container {
+    padding: 24px 20px;
+    border: 1px solid $core_30;
+    border-radius: 2px;
+    margin-bottom: 30px;
+  }
+  &__time-container {
+    z-index: 2;
+    padding: 18px 20px;
+    border: 1px solid $core_30;
+    border-radius: 2px;
+    background: $white;
+    margin-bottom: 20px;
+  }
+  &__time-title {
+    color: $primary_80;
+  }
+  &__patients {
+    padding: 16px 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__request-ticket-wrapper {
+    margin-bottom: 30px;
+  }
+  &__map-card-wrapper {
+    margin-bottom: 30px;
+  }
+  &__patients-title {
+    color: $core_70;
+  }
+  &__show-all-button {
+    justify-self: flex-end;
+    width: 104px;
+  }
+  &__more-patients {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+  }
+  &__more-title {
+    color: $primary_70;
+  }
+}
+
+@include media-desktop {
+  .request-details {
+    &__time-container {
+      border-radius: 10px;
+    }
+    &__patients-container {
+      border-radius: 10px;
+    }
+  }
+}
+
+@include media-mobile {
+  .request-details {
+    &__time-container {
+      border-radius: 10px;
+    }
+    &__patients-container {
+      border-radius: 10px;
+    }
+    &__patients {
+      grid-template-columns: 1fr;
+    }
+  }
+}

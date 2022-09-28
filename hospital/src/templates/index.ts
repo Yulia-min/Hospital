@@ -8,3 +8,4 @@ export {
   BookingRequest,
   ChooseTime
 } from './CreateRequest'
+export { RequestDetails } from './RequestDetails'

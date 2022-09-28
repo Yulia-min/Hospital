@@ -1,144 +1,31 @@
 @import 'src/style/style.scss';
 
-@mixin corner {
-  content: '';
-  display: block;
-  background: $white;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  border: 1px solid $core_30;
-}
-
 .booking-request {
   &__info-wrapper {
     display: grid;
     justify-content: center;
     grid-template-columns: minmax(50px, 664px);
   }
-  &__first-block {
-    background: $white;
-    position: relative;
-    overflow: hidden;
+  &__map-card-wrapper {
+    margin-bottom: 30px;
   }
-  &__address-wrapper {
-    margin-bottom: 16px;
-  }
-  &__first-block-bottom {
-    padding: 30px 12px;
-    border: 1px solid $core_30;
-    border-bottom: 1px dashed $core_40;
-    &::before {
-      @include corner();
-      bottom: -10px;
-      left: -10px;
-    }
-    &::after {
-      @include corner();
-      bottom: -10px;
-      right: -10px;
-    }
-  }
-  &__second-block {
-    position: relative;
-    overflow: hidden;
+  &__request-type-wrapper {
     margin-bottom: 32px;
-    &::before {
-      @include corner();
-      top: -10px;
-      left: -10px;
-    }
-    &::after {
-      @include corner();
-      top: -10px;
-      right: -10px;
-    }
   }
   &__block-item-wrapper {
     margin-bottom: 8px;
   }
-  &__second-block-bottom {
-    background: $core_20;
-    border: 1px solid $core_30;
-    border-top: none;
-    height: 71px;
-  }
-  &__time-wrapper {
-    display: flex;
-    gap: 8px;
-  }
-  &__time-container {
-    flex-grow: 0.05;
-  }
-  &__first-title {
+  &__checkbox-title {
     color: $core_70;
   }
-  &__second-title {
+  &__agreement-title {
     color: $core_100;
     a {
       color: $primary_70;
     }
   }
-  &__third-title {
-    color: $primary_70;
-  }
-  &__line {
-    background: $core_30;
-    height: 1px;
-    margin: 30px 0;
-  }
   &__checkbox-title-wrapper {
     margin: 0 0 12px 24px;
-  }
-  &__marker {
-    background: rgba($primary_70, 0.2);
-    width: 90px;
-    height: 90px;
-    transform: translate(-50%, -50%);
-    border-radius: 100%;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 24px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      height: 24px;
-      background: $primary_70;
-      border: 2px solid $white;
-      border-radius: 100%;
-    }
-  }
-  &__request-type-container {
-    display: grid;
-    grid-template-columns: minmax(220px, 540px) minmax(100px, 140px);
-    margin-bottom: 16px;
-  }
-  &__request-type {
-    display: flex;
-    gap: 8px;
-  }
-  &__request-type-price {
-    display: flex;
-    justify-content: space-between;
-  }
-  &__price {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 32px;
-  }
-  &__map-wrapper {
-    height: 173px;
-    width: 100%;
-    margin-bottom: 30px;
-    border: 1px solid $core_30;
-    border-radius: 2px;
-  }
-  &__marker-container {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 14px;
   }
   &__cards-block-wrapper {
     margin-bottom: 24px;
@@ -190,15 +77,6 @@
       border-radius: 10px;
       padding: 20px 0;
     }
-    &__map-wrapper {
-      border-radius: 6px;
-    }
-    &__first-block-bottom {
-      border-radius: 10px;
-    }
-    &__second-block-bottom {
-      border-radius: 10px;
-    }
     &__button-container {
       flex: 0 0 auto;
       padding: 16px;
@@ -219,17 +97,6 @@
     &__card-wrapper {
       border-radius: 10px;
       padding: 20px 0;
-    }
-    &__map-wrapper {
-      border-radius: 6px;
-    }
-    &__first-block-bottom {
-      border-radius: 10px;
-      border-bottom: 1px dashed $core_70;
-    }
-    &__second-block-bottom {
-      border-radius: 10px;
-      background: $core_10;
     }
     &__button-container {
       flex: 0 0 auto;

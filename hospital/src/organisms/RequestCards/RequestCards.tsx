@@ -5,8 +5,13 @@ import './RequestCards.scss'
 import { RequestCardsType } from './RequestCardsType'
 import { STATUS_VARIANTS } from 'src/constants'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 
 export const RequestCards = ({ card }: RequestCardsType) => {
+  const navigate = useNavigate()
+  const openDetailsHandler = (requestId: string) => () => {
+    navigate(`/request/${requestId}`)
+  }
   return (
     <div key={card.uuid} className="request-card">
       <div className="request-card__header">
@@ -56,7 +61,7 @@ export const RequestCards = ({ card }: RequestCardsType) => {
             </div>
           </div>
           <div className="request-card__button">
-            <Button.Default variant="text">
+            <Button.Default variant="text" onClick={openDetailsHandler(card.uuid)}>
               <Typography.Button2>Open Details</Typography.Button2>
             </Button.Default>
           </div>

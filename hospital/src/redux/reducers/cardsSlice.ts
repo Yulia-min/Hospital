@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICard, ICardsState } from '../types/cardsTypes'
+import { ICard, ICardsState, IRequestDetails } from '../types/cardsTypes'
 
 const initialState: ICardsState = {
   cards: [],
+  requestDetails: null,
   isLoading: false,
   isLoaded: false,
   error: null
@@ -20,6 +21,13 @@ export const cardsSlice = createSlice({
       state.isLoading = false
       state.cards = action.payload
     },
+    setRequestDetails(state: ICardsState, action: PayloadAction<IRequestDetails>) {
+      state.isLoading = false
+      state.requestDetails = action.payload
+    },
+    setClearRequestDetails(state: ICardsState) {
+      state.requestDetails = null
+    },
     finish(state: ICardsState) {
       state.isLoading = false
     },
@@ -31,4 +39,5 @@ export const cardsSlice = createSlice({
 })
 
 export default cardsSlice.reducer
-export const { loading, loadingSuccess, finish, error } = cardsSlice.actions
+export const { loading, loadingSuccess, setRequestDetails, setClearRequestDetails, finish, error } =
+  cardsSlice.actions

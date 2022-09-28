@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Select } from 'src/atoms'
 import { RequestCards } from 'src/organisms'
-import { requestCardsInfo } from 'src/redux/cards/actions'
+import { clearRequestDetails, requestCardsInfo } from 'src/redux/cards/actions'
 import { getCardsInfo } from 'src/redux/cards/selectors'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { Typography } from 'src/Typography'
@@ -29,6 +29,9 @@ export const VisitsList = () => {
   useEffect(() => {
     dispatch(requestCardsInfo())
     dispatch(requestServiceType())
+    return () => {
+      dispatch(clearRequestDetails())
+    }
   }, [])
 
   const requestCardsList = ({ columnIndex, data, rowIndex, style }: any) => {

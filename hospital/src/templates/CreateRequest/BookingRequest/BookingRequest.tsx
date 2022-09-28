@@ -1,10 +1,9 @@
-import { useMemo, useState } from 'react'
-import { Button, Checkbox, Chips } from 'src/atoms'
+import { useState } from 'react'
+import { Button, Checkbox } from 'src/atoms'
 import { Header } from 'src/molecules'
-import { PersonalCard } from 'src/organisms'
+import { MapCard, PersonalCard, RequestTicket, RequestTypeCard } from 'src/organisms'
 import { v4 as uuidv4 } from 'uuid'
 import { useAppSelector } from 'src/redux/hooks'
-import { ReactComponent as AddressMarker } from 'src/public/Marker.svg'
 import {
   getPaientsAddress,
   getPaientsWithSymptoms,
@@ -14,9 +13,8 @@ import {
 } from 'src/redux/patients/selectors'
 import { Typography } from 'src/Typography'
 import { ICreateRequest, PatientWithSymptomsListType } from '../CreateRequestType'
-import GoogleMapReact from 'google-map-react'
 import './BookingRequest.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { PATIENTS_TYPE } from 'src/constants'
 import moment from 'moment'
@@ -30,6 +28,8 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
   const { patientsDate } = useAppSelector(getPatientsDate)
   const { choosenRequestType } = useAppSelector(getRequestType)
   const { services } = useAppSelector(getServiceInfo)
+
+  const navigate = useNavigate()
 
   const price = services.find((service) => service.name === choosenRequestType)?.price
 
@@ -66,38 +66,6 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
     isDisabled(!e.target.checked)
   }
 
-  const Marker = ({}: any) => <div className="booking-request__marker" />
-
-  const map = useMemo(
-    () =>
-      patientsAddress.latLng.lat &&
-      patientsAddress.latLng.lng && (
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyDdm7tYTjT39nEbzBKakm7PZGy8xYGtN_s' }}
-          defaultCenter={{
-            lat: patientsAddress?.latLng.lat,
-            lng: patientsAddress?.latLng.lng
-          }}
-          defaultZoom={16}
-          options={{
-            styles: [
-              {
-                stylers: [
-                  { saturation: -90 },
-                  { lightness: 10 },
-                  { visibility: 'on' },
-                  { hue: '#CAD2D3' }
-                ]
-              }
-            ]
-          }}
-        >
-          <Marker lat={patientsAddress?.latLng.lat} lng={patientsAddress?.latLng.lng} />
-        </GoogleMapReact>
-      ),
-    [patientsAddress.latLng.lat, patientsAddress.latLng.lng]
-  )
-
   const patientsFullInfo = {
     idempotency_key: uuidv4(),
     urgency_type: patientsDate.request_type,
@@ -127,7 +95,7 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
   const completeBookingHandler = () => {
     createRequest(
       patientsDate.request_type === 'now' ? patientsFullInfo : { ...patientsFullInfo, ...timeList }
-    )
+    ).then(() => navigate('/visits-list'))
   }
 
   return (
@@ -139,51 +107,27 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
         onClick={backClickHandler}
       />
       <div className="booking-request__info-wrapper">
-        <div className="booking-request__first-block">
-          <div className="booking-request__first-block-bottom">
-            <Chips.Default className="booking-request__block-item-wrapper" variant="request">
-              {patientsDate.request_type === 'now' ? 'Now' : 'Later'} request
-            </Chips.Default>
-            <div className="booking-request__time-wrapper">
-              <Typography.Subtitle1 className="booking-request__first-title">
-                Time:
-              </Typography.Subtitle1>
-              <Typography.Subtitle1 className="booking-request__second-title booking-request__time-container">
-                {patientsDate.date === moment().format('DD/MM/YYYY') ? 'Today' : patientsDate.date}
-              </Typography.Subtitle1>
-              <Typography.Subtitle1 className="booking-request__second-title">
-                {patientsDate.time
-                  ? moment(patientsDate.time.split(',')[0]).format('HH:mm a') +
-                    ' - ' +
-                    moment(patientsDate.time.split(',')[1]).format('HH:mm a')
-                  : 'In 60 Mins'}
-              </Typography.Subtitle1>
-            </div>
-            <div className="booking-request__line" />
-            <Typography.Subtitle1 className="booking-request__first-title booking-request__block-item-wrapper">
-              Requested By:
-            </Typography.Subtitle1>
-            <Typography.Subtitle1 className="booking-request__second-title booking-request__block-item-wrapper">
-              {currentPatient?.first_name} {currentPatient?.last_name}
-            </Typography.Subtitle1>
-            <Typography.Body2 className="booking-request__third-title booking-request__block-item-wrapper">
-              {currentPatient?.phone_number}
-            </Typography.Body2>
-            <Typography.Body2 className="booking-request__third-title">
-              {currentPatient?.email}
-            </Typography.Body2>
-          </div>
-        </div>
-        <div className="booking-request__second-block">
-          <div className="booking-request__second-block-bottom" />
-        </div>
+        <RequestTicket
+          request_type={patientsDate.request_type}
+          date={patientsDate.date}
+          isTime={patientsDate.time}
+          time={
+            moment(patientsDate.time.split(',')[0]).format('HH:mm a') +
+            ' - ' +
+            moment(patientsDate.time.split(',')[1]).format('HH:mm a')
+          }
+          first_name={currentPatient?.first_name}
+          last_name={currentPatient?.last_name}
+          phone_number={currentPatient?.phone_number}
+          email={currentPatient?.email}
+        />
         <div>
           {PATIENTS_TYPE.map(
             (type: string) =>
               !!patientsWithSymptomsList[type as keyof PatientWithSymptomsListType].length && (
                 <div className="booking-request__cards-block-wrapper">
                   <div className="booking-request__checkbox-title-wrapper">
-                    <Typography.Subtitle2 className="booking-request__first-title">
+                    <Typography.Subtitle2 className="booking-request__checkbox-title">
                       {type[0].toUpperCase() + type.substring(1)}
                     </Typography.Subtitle2>
                   </div>
@@ -198,47 +142,22 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
               )
           )}
         </div>
-        <Typography.Subtitle2 className="booking-request__first-title booking-request__address-wrapper">
-          Address
-        </Typography.Subtitle2>
-        <div className="booking-request__marker-container">
-          <AddressMarker />
-          <Typography.Subtitle1 className="booking-request__second-title">
-            {patientsAddress.full_address.map((address) => address.address)}
-          </Typography.Subtitle1>
-        </div>
-        <div className="booking-request__map-wrapper">{map}</div>
-        <div className="booking-request__request-type-container">
-          <div className="booking-request__request-type">
-            <Typography.Subtitle1 className="booking-request__third-title">
-              Type:
-            </Typography.Subtitle1>
-            <Typography.Subtitle1 className="booking-request__first-title">
-              {choosenRequestType}
-            </Typography.Subtitle1>
-          </div>
-          <div className="booking-request__request-type-price">
-            <Typography.Subtitle1 className="booking-request__third-title">
-              x{patientWithSymptoms.length}
-            </Typography.Subtitle1>
-            <Typography.Subtitle1 className="booking-request__third-title">
-              ${price}
-            </Typography.Subtitle1>
-          </div>
-        </div>
-        <div className="booking-request__price">
-          <Typography.Subtitle1 className="booking-request__third-title">
-            Price:
-          </Typography.Subtitle1>
-          <Typography.Subtitle1 className="booking-request__third-title">
-            ${price && price * patientWithSymptoms.length}
-          </Typography.Subtitle1>
-        </div>
+        <MapCard
+          className="booking-request__map-card-wrapper"
+          address_line={patientsAddress.full_address.map((item) => item.address)}
+          coordinates={patientsAddress?.latLng}
+        />
+        <RequestTypeCard
+          className="booking-request__request-type-wrapper"
+          request_type={choosenRequestType}
+          patients_number={patientWithSymptoms.length}
+          total_visit_price={price}
+        />
         <Checkbox.Single
           className="booking-request__checkbox-wrapper"
           propsChecbox={{ onChange: checkboxSelectHandler }}
         >
-          <Typography.Subtitle1 className="booking-request__second-title">
+          <Typography.Subtitle1 className="booking-request__agreement-title">
             By Clicking “Send Doctor” You Agree To The <Link to={''}>HIPAA</Link>,
             <Link to={''}> Financial Disclosures </Link>
             And <Link to={''}>User Agreement</Link>
