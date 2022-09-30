@@ -15,7 +15,7 @@ import { STATUS_VARIANTS } from 'src/constants'
 
 export const RequestDetails = () => {
   const dispatch = useAppDispatch()
-  const { requestId } = useParams()
+  const { requestId } = useParams() as { requestId: string }
   const { requestDetails } = useAppSelector(getRequestDetails)
 
   const [coordinates, setCoordinates] = useState<CoordinatesType>({ lat: 0, lng: 0 })
@@ -28,7 +28,7 @@ export const RequestDetails = () => {
   }, [requestDetails])
 
   useEffect(() => {
-    requestId && dispatch(getRequestDetailsInfo(requestId))
+    dispatch(getRequestDetailsInfo(requestId))
   }, [])
 
   return (

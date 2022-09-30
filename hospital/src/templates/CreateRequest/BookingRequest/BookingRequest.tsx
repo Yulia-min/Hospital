@@ -66,36 +66,37 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
     isDisabled(!e.target.checked)
   }
 
-  const patientsFullInfo = {
-    idempotency_key: uuidv4(),
-    urgency_type: patientsDate.request_type,
-    service_type: choosenRequestType,
-    location: {
-      zip_code: patientsAddress.zip_code,
-      address_line: patientsAddressList.full_address?.address,
-      apartment: null,
-      comment: patientsAddress.additional_info,
-      address: patientsAddressList.full_address?.street,
-      state: patientsAddressList.full_address?.state,
-      city: patientsAddressList.full_address?.city
-    },
-    single_service_requests: patientWithSymptoms.map((item) => ({
-      service_type: choosenRequestType,
-      symptoms: item.symptomsId,
-      patient: item.uuid
-    })),
-    payment_profile_id: '1517080046'
-  }
-
-  const timeList = {
-    application_can_start_at: patientsDate.time.split(',')[0],
-    application_time: patientsDate.time.split(',')[1]
-  }
-
   const completeBookingHandler = () => {
-    createRequest(
-      patientsDate.request_type === 'now' ? patientsFullInfo : { ...patientsFullInfo, ...timeList }
-    ).then(() => navigate('/visits-list'))
+    let patientsFullInfo = {
+      idempotency_key: uuidv4(),
+      urgency_type: patientsDate.request_type,
+      service_type: choosenRequestType,
+      location: {
+        zip_code: patientsAddress.zip_code,
+        address_line: patientsAddressList.full_address?.address,
+        apartment: null,
+        comment: patientsAddress.additional_info,
+        address: patientsAddressList.full_address?.street,
+        state: patientsAddressList.full_address?.state,
+        city: patientsAddressList.full_address?.city
+      },
+      single_service_requests: patientWithSymptoms.map((item) => ({
+        service_type: choosenRequestType,
+        symptoms: item.symptomsId,
+        patient: item.uuid
+      })),
+      payment_profile_id: '1517080046'
+    }
+
+    if (patientsDate.request_type === 'later') {
+      const timeList = {
+        application_can_start_at: patientsDate.time.split(',')[0],
+        application_time: patientsDate.time.split(',')[1]
+      }
+      patientsFullInfo = { ...patientsFullInfo, ...timeList }
+    }
+
+    createRequest(patientsFullInfo).then(() => navigate('/visits-list'))
   }
 
   return (
@@ -108,6 +109,7 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
       />
       <div className="booking-request__info-wrapper">
         <RequestTicket
+          className="booking-request__request-ticket"
           request_type={patientsDate.request_type}
           date={patientsDate.date}
           isTime={patientsDate.time}
