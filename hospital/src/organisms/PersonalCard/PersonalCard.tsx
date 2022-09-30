@@ -1,7 +1,7 @@
 import { Typography } from 'src/Typography'
 import { PersonalCardType } from './PersonalCardType'
 import { ReactComponent as Edit } from 'src/public/Edit.svg'
-import { ReactComponent as Avatar } from 'src/public/Avatar.svg'
+import { ReactComponent as Avatar64 } from 'src/public/Avatar64.svg'
 import './PersonalCard.scss'
 import { Chips } from 'src/atoms'
 import React from 'react'
@@ -21,7 +21,7 @@ export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: Pers
         })}
       >
         <div className="personal-card__content-wrapper">
-          <Avatar />
+          <Avatar64 />
           <div className="personal-card__info">
             <div className="personal-card__name-container">
               <Typography.Body1 className="personal-card__name">

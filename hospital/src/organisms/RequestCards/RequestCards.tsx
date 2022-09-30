@@ -2,7 +2,7 @@ import { Status, Chips, Button } from 'src/atoms'
 import { Typography } from 'src/Typography'
 import { ReactComponent as Doctor } from 'src/public/Doctor.svg'
 import './RequestCards.scss'
-import { ReactComponent as Avatar } from 'src/public/Avatar.svg'
+import { ReactComponent as Avatar44 } from 'src/public/Avatar44.svg'
 import { RequestCardsType } from './RequestCardsType'
 import { STATUS_VARIANTS } from 'src/constants'
 import moment from 'moment'
@@ -40,7 +40,7 @@ export const RequestCards = ({ card }: RequestCardsType) => {
         </Typography.Subtitle1>
       </div>
       <div className="request-card__patient-info-wrapper">
-        <Avatar />
+        <Avatar44 />
         <Typography.Subtitle1 className="request-card__patient-name">
           {card.patient_name}
         </Typography.Subtitle1>
