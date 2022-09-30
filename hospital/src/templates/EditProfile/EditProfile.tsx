@@ -30,36 +30,8 @@ export const EditProfile = () => {
   }, [currentPatient])
 
   const savePatientInfo = async (values: PatientInfoType) => {
-    const geoCode =
-      form.getFieldValue(['home_address', 'address_line']) &&
-      (await geocodeByAddress(form.getFieldValue(['home_address', 'address_line'])))
-
-    const address = {
-      home_address:
-        geoCode &&
-        geoCode.map(
-          (result: {
-            address_components: google.maps.GeocoderAddressComponent[]
-            formatted_address: string
-          }) => ({
-            zip_code: result.address_components.find((item) =>
-              item.types.find((i: string) => i === 'postal_code')
-            )?.long_name,
-            address_line: result.formatted_address,
-            apartment: null,
-            address: result.address_components.find((item) =>
-              item.types.find((i: string) => i === 'route')
-            )?.long_name,
-            city: result.address_components.find((item) =>
-              item.types.find((i: string) => i === 'locality')
-            )?.long_name,
-            state: result.address_components.find((item) =>
-              item.types.find((i: string) => i === 'administrative_area_level_1')
-            )?.short_name
-          })
-        )[0]
-    }
-    const patientFullInfo = {
+    const address_line = form.getFieldValue(['home_address', 'address_line'])
+    let patientFullInfo = {
       twilio_sid: 'USb66aa16e1c5c4de3a38c004ef70b537e',
       date_of_birth: values.date_of_birth,
       email: values.email,
@@ -69,9 +41,35 @@ export const EditProfile = () => {
       sex: values.sex,
       uuid: patientId
     }
-    const request = geoCode ? { ...patientFullInfo, ...address } : { ...patientFullInfo }
 
-    saveEditInfo(patientId, request).then(() => navigate('/profile'))
+    if (address_line) {
+      const geoCode = await geocodeByAddress(address_line)
+      const address = {
+        home_address: {
+          zip_code: geoCode[0].address_components.find((item) =>
+            item.types.find((i) => i === 'postal_code')
+          )?.long_name,
+          address_line: geoCode[0].formatted_address,
+          apartment: null,
+          address: geoCode[0].address_components.find((item) =>
+            item.types.find((i) => i === 'route')
+          )?.long_name,
+          city: geoCode[0].address_components.find((item) =>
+            item.types.find((i) => i === 'locality')
+          )?.long_name,
+          state: geoCode[0].address_components.find((item) =>
+            item.types.find((i) => i === 'administrative_area_level_1')
+          )?.short_name
+        }
+      }
+
+      patientFullInfo = {
+        ...patientFullInfo,
+        ...address
+      }
+    }
+
+    saveEditInfo(patientId, patientFullInfo).then(() => navigate('/profile'))
   }
 
   const backClickHandler = () => {

@@ -11,12 +11,12 @@ import './Profile.scss'
 
 export const Profile = () => {
   const dispatch = useAppDispatch()
-  const uuid = localStorage.getItem('uuid')
+  const uuid = localStorage.getItem('uuid') as string
   const { currentPatient } = useAppSelector(getCurrentPatient)
 
   useEffect(() => {
-    uuid && dispatch(getPatientInfo(uuid))
-  }, [])
+    dispatch(getPatientInfo(uuid))
+  }, [uuid])
 
   return (
     <div className="profile">
