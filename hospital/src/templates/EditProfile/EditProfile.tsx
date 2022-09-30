@@ -3,7 +3,7 @@ import { ReactComponent as MainArrow } from 'src/public/MainArrow.svg'
 import { Header } from 'src/molecules'
 import { Typography } from 'src/Typography'
 import './EditProfile.scss'
-import { SetStateAction, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks'
 import { getCurrentPatient } from 'src/redux/patients/selectors'
 import { getPatientInfo } from 'src/redux/patients/actions'
@@ -12,47 +12,53 @@ import { Form } from 'antd'
 import { geocodeByAddress } from 'react-places-autocomplete'
 import { saveEditInfo } from 'src/api/Patients/Patients'
 import { GENDER_TYPE } from 'src/constants'
-import { PatientHomeAddressType, PatientInfoType } from './EditProfileType'
+import { PatientInfoType } from './EditProfileType'
 
 export const EditProfile = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [form] = Form.useForm()
-  const { patientId } = useParams()
+  const { patientId } = useParams() as { patientId: string }
   const { currentPatient } = useAppSelector(getCurrentPatient)
-  const [geoCode, setGeoCode] = useState<PatientHomeAddressType>()
-  const [address, setAddress] = useState<string>('')
 
   useEffect(() => {
-    patientId && dispatch(getPatientInfo(patientId))
+    dispatch(getPatientInfo(patientId))
   }, [patientId])
 
   useEffect(() => {
     form.setFieldsValue(currentPatient)
   }, [currentPatient])
 
-  useEffect(() => {
-    geocodeByAddress(address).then((results) => {
-      setGeoCode({
-        home_address: results.map((result) => ({
-          zip_code: result.address_components.find((item) =>
-            item.types.find((i) => i === 'postal_code')
-          )?.long_name,
-          address_line: result.formatted_address,
-          apartment: null,
-          address: result.address_components.find((item) => item.types.find((i) => i === 'route'))
-            ?.long_name,
-          city: result.address_components.find((item) => item.types.find((i) => i === 'locality'))
-            ?.long_name,
-          state: result.address_components.find((item) =>
-            item.types.find((i) => i === 'administrative_area_level_1')
-          )?.short_name
-        }))[0]
-      })
-    })
-  }, [address])
+  const savePatientInfo = async (values: PatientInfoType) => {
+    const geoCode =
+      form.getFieldValue(['home_address', 'address_line']) &&
+      (await geocodeByAddress(form.getFieldValue(['home_address', 'address_line'])))
 
-  const savePatientInfo = (values: PatientInfoType) => {
+    const address = {
+      home_address:
+        geoCode &&
+        geoCode.map(
+          (result: {
+            address_components: google.maps.GeocoderAddressComponent[]
+            formatted_address: string
+          }) => ({
+            zip_code: result.address_components.find((item) =>
+              item.types.find((i: string) => i === 'postal_code')
+            )?.long_name,
+            address_line: result.formatted_address,
+            apartment: null,
+            address: result.address_components.find((item) =>
+              item.types.find((i: string) => i === 'route')
+            )?.long_name,
+            city: result.address_components.find((item) =>
+              item.types.find((i: string) => i === 'locality')
+            )?.long_name,
+            state: result.address_components.find((item) =>
+              item.types.find((i: string) => i === 'administrative_area_level_1')
+            )?.short_name
+          })
+        )[0]
+    }
     const patientFullInfo = {
       twilio_sid: 'USb66aa16e1c5c4de3a38c004ef70b537e',
       date_of_birth: values.date_of_birth,
@@ -60,24 +66,16 @@ export const EditProfile = () => {
       first_name: values.first_name,
       last_name: values.last_name,
       phone_number: values.phone_number,
-      sex: values.sex
+      sex: values.sex,
+      uuid: patientId
     }
+    const request = geoCode ? { ...patientFullInfo, ...address } : { ...patientFullInfo }
 
-    patientId &&
-      saveEditInfo(
-        patientId,
-        form.getFieldValue(['home_address', 'address_line'])
-          ? { ...patientFullInfo, ...geoCode, uuid: patientId }
-          : { ...patientFullInfo, uuid: patientId }
-      ).then(() => navigate('/profile'))
+    saveEditInfo(patientId, request).then(() => navigate('/profile'))
   }
 
   const backClickHandler = () => {
     navigate('/profile')
-  }
-
-  const onAddressChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setAddress(e.target.value)
   }
 
   return (
@@ -115,7 +113,6 @@ export const EditProfile = () => {
             />
             <Input.Default propsItem={{ name: 'email', label: 'Email', colon: false }} />
             <Input.Default
-              propsInput={{ value: address, onChange: onAddressChange }}
               propsItem={{
                 name: ['home_address', 'address_line'],
                 label: 'Home address',
