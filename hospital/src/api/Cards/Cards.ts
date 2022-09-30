@@ -1,5 +1,5 @@
 import { HTTP_METHODS } from 'src/helper/api'
-import { ICard } from 'src/redux/types/cardsTypes'
+import { ICard, IRequestDetails } from 'src/redux/types/cardsTypes'
 import { IService } from 'src/redux/types/servicesTypes'
 import Fetcher from 'src/services/fetcher'
 
@@ -14,5 +14,11 @@ export const requestCardsInfo = () =>
 export const requestServiceType = () =>
   fetcher.requestToReceive<{}, IService[]>({
     url: 'service-requests/types/',
+    method: HTTP_METHODS.GET
+  })
+
+export const getRequestDetailsInfo = (uuid: string) =>
+  fetcher.requestToReceive<string, IRequestDetails>({
+    url: `service-requests/${uuid}/`,
     method: HTTP_METHODS.GET
   })
