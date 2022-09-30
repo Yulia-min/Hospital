@@ -37,9 +37,7 @@
   }
 
   &__patient-name {
-    display: flex;
-    justify-content: center;
-    margin: 42px 0;
+    color: $core_100;
   }
 
   &__line {
@@ -71,5 +69,11 @@
   &__button {
     display: flex;
     justify-content: flex-end;
+  }
+  &__patient-info-wrapper {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 }
