@@ -50,7 +50,7 @@ export interface IPatientById {
   home_address?: {
     zip_code: string | undefined
     address_line: string
-    apartment: {} | null
+    apartment: string | null
     address: string | undefined
     state: string | undefined
     city: string | undefined

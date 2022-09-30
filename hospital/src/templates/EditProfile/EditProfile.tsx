@@ -23,54 +23,54 @@ export const EditProfile = () => {
 
   useEffect(() => {
     patientId && dispatch(getPatientInfo(patientId))
-  }, [])
+  }, [patientId])
 
   useEffect(() => {
     form.setFieldsValue(currentPatient)
   }, [currentPatient])
 
   const savePatientInfo = (values: PatientInfoType) => {
+    const patientFullInfo = {
+      twilio_sid: 'USb66aa16e1c5c4de3a38c004ef70b537e',
+      date_of_birth: values.date_of_birth,
+      email: values.email,
+      first_name: values.first_name,
+      last_name: values.last_name,
+      phone_number: values.phone_number,
+      sex: values.sex
+    }
+
     form.getFieldValue(['home_address', 'address_line'])
       ? geocodeByAddress(form.getFieldValue(['home_address', 'address_line'])).then((results) => {
+          const address = {
+            home_address: results.map((result) => ({
+              zip_code: result.address_components.find((item) =>
+                item.types.find((i) => i === 'postal_code')
+              )?.long_name,
+              address_line: result.formatted_address,
+              apartment: null,
+              address: result.address_components.find((item) =>
+                item.types.find((i) => i === 'route')
+              )?.long_name,
+              city: result.address_components.find((item) =>
+                item.types.find((i) => i === 'locality')
+              )?.long_name,
+              state: result.address_components.find((item) =>
+                item.types.find((i) => i === 'administrative_area_level_1')
+              )?.short_name
+            }))[0]
+          }
           patientId &&
             saveEditInfo(patientId, {
-              home_address: results.map((result) => ({
-                zip_code: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'postal_code')
-                )?.long_name,
-                address_line: result.formatted_address,
-                apartment: null,
-                address: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'route')
-                )?.long_name,
-                city: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'locality')
-                )?.long_name,
-                state: result.address_components.find((item) =>
-                  item.types.find((i) => i === 'administrative_area_level_1')
-                )?.short_name
-              }))[0],
-              twilio_sid: 'USb66aa16e1c5c4de3a38c004ef70b537e',
-              uuid: patientId,
-              date_of_birth: values.date_of_birth,
-              email: values.email,
-              first_name: values.first_name,
-              last_name: values.last_name,
-              phone_number: values.phone_number,
-              sex: values.sex
+              ...patientFullInfo,
+              ...address,
+              uuid: patientId
             }).then(() => navigate('/profile'))
         })
       : patientId &&
-        saveEditInfo(patientId, {
-          twilio_sid: 'USb66aa16e1c5c4de3a38c004ef70b537e',
-          uuid: patientId,
-          date_of_birth: values.date_of_birth,
-          email: values.email,
-          first_name: values.first_name,
-          last_name: values.last_name,
-          phone_number: values.phone_number,
-          sex: values.sex
-        }).then(() => navigate('/profile'))
+        saveEditInfo(patientId, { ...patientFullInfo, uuid: patientId }).then(() =>
+          navigate('/profile')
+        )
   }
 
   const backClickHandler = () => {
