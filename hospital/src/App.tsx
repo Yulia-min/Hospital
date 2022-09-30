@@ -5,7 +5,7 @@ import {
   VisitsListPage,
   CreateRequestPage,
   ProfilePage,
-  EditProfilePage
+  EditProfilePage,
   RequestDetailsPage
 } from 'src/pages'
 
