@@ -22,6 +22,11 @@
     display: flex;
     justify-content: space-between;
   }
+  &__content-wrapper {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+  }
   &__info {
     width: 100%;
   }

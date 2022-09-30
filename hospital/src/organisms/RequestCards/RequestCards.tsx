@@ -2,6 +2,7 @@ import { Status, Chips, Button } from 'src/atoms'
 import { Typography } from 'src/Typography'
 import { ReactComponent as Doctor } from 'src/public/Doctor.svg'
 import './RequestCards.scss'
+import { ReactComponent as Avatar } from 'src/public/Avatar.svg'
 import { RequestCardsType } from './RequestCardsType'
 import { STATUS_VARIANTS } from 'src/constants'
 import moment from 'moment'
@@ -38,9 +39,12 @@ export const RequestCards = ({ card }: RequestCardsType) => {
             moment(card.application_time).format('HH:mm a')}
         </Typography.Subtitle1>
       </div>
-      <Typography.Subtitle1 className="request-card__patient-name">
-        {card.patient_name}
-      </Typography.Subtitle1>
+      <div className="request-card__patient-info-wrapper">
+        <Avatar />
+        <Typography.Subtitle1 className="request-card__patient-name">
+          {card.patient_name}
+        </Typography.Subtitle1>
+      </div>
       {!!card.doctor_uuid && (
         <>
           <div className="request-card__line" />

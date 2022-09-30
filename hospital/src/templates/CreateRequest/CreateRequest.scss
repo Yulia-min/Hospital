@@ -59,6 +59,8 @@
       border: none;
     }
     .ant-checkbox-wrapper {
+      display: flex;
+      align-items: flex-start;
       border: 1px solid $core_30;
       border-radius: 2px;
       padding: 24px 26px 24px 20px;
