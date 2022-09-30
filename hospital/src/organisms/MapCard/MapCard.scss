@@ -1,0 +1,59 @@
+@import 'src/style/style.scss';
+
+.map-card {
+  &__address-wrapper {
+    margin-bottom: 16px;
+  }
+  &__title {
+    color: $core_70;
+  }
+  &__address-line {
+    color: $core_100;
+  }
+  &__marker {
+    background: rgba($primary_70, 0.2);
+    width: 90px;
+    height: 90px;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 24px;
+      background: $primary_70;
+      border: 2px solid $white;
+      border-radius: 100%;
+    }
+  }
+  &__map-wrapper {
+    height: 173px;
+    width: 100%;
+    border: 1px solid $core_30;
+    border-radius: 2px;
+  }
+  &__marker-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+}
+
+@include media-desktop {
+  .map-card {
+    &__map-wrapper {
+      border-radius: 6px;
+    }
+  }
+}
+
+@include media-mobile {
+  .map-card {
+    &__map-wrapper {
+      border-radius: 6px;
+    }
+  }
+}

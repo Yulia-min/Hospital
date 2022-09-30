@@ -6,6 +6,7 @@ import {
   CreateRequestPage,
   ProfilePage,
   EditProfilePage
+  RequestDetailsPage
 } from 'src/pages'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="login/doctor" element={<SignInPage />} />
         <Route path="auth" element={<AuthPage />} />
         <Route path="visits-list" element={<VisitsListPage />} />
+        <Route path="request/:requestId" element={<RequestDetailsPage />} />
         <Route path="create-request" element={<CreateRequestPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="edit-profile/:patientId" element={<EditProfilePage />} />

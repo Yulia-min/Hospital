@@ -1,0 +1,30 @@
+@import 'src/style/style.scss';
+
+.request-type-card {
+  &__type-title {
+    color: $core_70;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+  &__title {
+    color: $primary_70;
+  }
+  &__request-type-container {
+    display: grid;
+    grid-template-columns: minmax(220px, 540px) minmax(100px, 140px);
+    margin-bottom: 16px;
+  }
+  &__request-type {
+    display: flex;
+    gap: 8px;
+  }
+  &__request-type-price {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__price {
+    display: flex;
+    justify-content: space-between;
+  }
+}

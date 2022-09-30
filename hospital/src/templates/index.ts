@@ -10,3 +10,4 @@ export {
 } from './CreateRequest'
 export { Profile } from './Profile'
 export { EditProfile } from './EditProfile'
+export { RequestDetails } from './RequestDetails'
