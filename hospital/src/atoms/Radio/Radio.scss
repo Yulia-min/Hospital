@@ -1,0 +1,22 @@
+@import 'src/style/style.scss';
+
+.radio {
+  .ant-radio-input:focus + .ant-radio-inner {
+    box-shadow: none;
+  }
+  .ant-radio-checked .ant-radio-inner {
+    border: 2px solid $primary_80;
+  }
+  .ant-radio-inner {
+    border: 2px solid $core_70;
+  }
+  .ant-radio-inner::after {
+    background: $primary_80;
+  }
+  .ant-radio:hover .ant-radio-inner {
+    border: 2px solid $core_70;
+  }
+  .ant-radio-checked::after {
+    border: 2px solid $primary_80;
+  }
+}

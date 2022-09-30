@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
   IPatient,
+  IPatientById,
   IPatientsAddress,
   IPatientsDate,
   IPatientState,
@@ -9,6 +10,7 @@ import {
 
 const initialState: IPatientState = {
   patients: [],
+  currentPatient: null,
   patientsAddress: {
     full_address: [],
     latLng: { lat: 0, lng: 0 },
@@ -53,6 +55,10 @@ export const patientsSlice = createSlice({
     setRequestType(state: IPatientState, action: PayloadAction<string>) {
       state.choosenRequestType = action.payload
     },
+    setCurrentPatient(state: IPatientState, action: PayloadAction<IPatientById>) {
+      state.isLoading = false
+      state.currentPatient = action.payload
+    },
     finish(state: IPatientState) {
       state.isLoading = false
     },
@@ -73,5 +79,6 @@ export const {
   setPatientsWithSymptoms,
   setPatientsAddress,
   setPatientsDate,
-  setRequestType
+  setRequestType,
+  setCurrentPatient
 } = patientsSlice.actions

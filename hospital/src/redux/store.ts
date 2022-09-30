@@ -12,7 +12,8 @@ export const store = configureStore({
     patientsAddress: patientsSlice,
     patientWithSymptoms: patientsSlice,
     patientsDate: patientsSlice,
-    choosenRequestType: patientsSlice
+    choosenRequestType: patientsSlice,
+    currentPatient: patientsSlice
   }
 })
 

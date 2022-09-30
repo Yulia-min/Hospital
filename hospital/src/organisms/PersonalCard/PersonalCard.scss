@@ -8,15 +8,19 @@
   &__info-wrapper {
     padding: 0 24px;
   }
+  &:hover {
+    .personal-card__button {
+      cursor: pointer;
+      opacity: 1;
+      display: flex;
+    }
+  }
+  &__avatar {
+    margin-right: 16px;
+  }
   &__checkbox-wrapper {
     display: grid;
     grid-template-columns: minmax(239px, 580px);
-    &:hover {
-      .personal-card__button {
-        opacity: 1;
-        display: flex;
-      }
-    }
   }
   &__name-container {
     display: flex;
@@ -43,6 +47,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: $primary_70;
+  }
+  &__home-address {
+    color: $core_70;
+    margin-top: 8px;
   }
   &__edit {
     text-transform: uppercase;

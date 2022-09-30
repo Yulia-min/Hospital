@@ -1,5 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { AuthPage, SignInPage, VisitsListPage, CreateRequestPage } from 'src/pages'
+import {
+  AuthPage,
+  SignInPage,
+  VisitsListPage,
+  CreateRequestPage,
+  ProfilePage,
+  EditProfilePage
+} from 'src/pages'
 
 function App() {
   return (
@@ -11,6 +18,8 @@ function App() {
         <Route path="auth" element={<AuthPage />} />
         <Route path="visits-list" element={<VisitsListPage />} />
         <Route path="create-request" element={<CreateRequestPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="edit-profile/:patientId" element={<EditProfilePage />} />
       </Routes>
     </BrowserRouter>
   )

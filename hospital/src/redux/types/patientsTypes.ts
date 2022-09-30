@@ -42,8 +42,28 @@ export interface IPatientsDate {
   time: string
 }
 
+export interface IPatientById {
+  uuid: string
+  date_of_birth: string
+  email: string
+  first_name: string
+  home_address?: {
+    zip_code: string | undefined
+    address_line: string
+    apartment: {} | null
+    address: string | undefined
+    state: string | undefined
+    city: string | undefined
+  }
+  last_name: string
+  phone_number: string
+  sex: string
+  twilio_sid: string
+}
+
 export interface IPatientState {
   patients: IPatient[]
+  currentPatient: IPatientById | null
   patientsAddress: IPatientsAddress
   patientWithSymptoms: IPatientWithSymptoms[]
   patientsDate: IPatientsDate

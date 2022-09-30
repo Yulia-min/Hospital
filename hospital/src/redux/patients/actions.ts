@@ -1,4 +1,5 @@
 import { requestPatientsInfo as requestPatientsInfoAPI } from 'src/api/Patients/Patients'
+import { getPatientInfo as getPatientInfoAPI } from 'src/api/Patients/Patients'
 import { AppThunk } from '../store'
 import {
   error,
@@ -9,7 +10,8 @@ import {
   setPatientsWithSymptoms,
   setPatientsAddress,
   setPatientsDate,
-  setRequestType
+  setRequestType,
+  setCurrentPatient
 } from '../reducers/patientsSlice'
 import { IPatientsAddress, IPatientsDate, IPatientWithSymptoms } from '../types/patientsTypes'
 
@@ -53,4 +55,18 @@ export const saveRequestType =
   (data: string): AppThunk =>
   async (dispatch) => {
     dispatch(setRequestType(data))
+  }
+
+export const getPatientInfo =
+  (uuid: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(loading())
+      const response = await getPatientInfoAPI(uuid)
+      dispatch(setCurrentPatient(response.data))
+    } catch (err) {
+      dispatch(error({ error: err }))
+    } finally {
+      dispatch(finish())
+    }
   }
