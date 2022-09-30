@@ -6,14 +6,31 @@ import './PersonalCard.scss'
 import { Chips } from 'src/atoms'
 import React from 'react'
 import cn from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
-export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: PersonalCardType) => {
+export const PersonalCard = ({
+  patient,
+  isShowEdit,
+  isChecbox,
+  isDefault,
+  className,
+  isHomeAddress
+}: PersonalCardType) => {
+  const navigate = useNavigate()
+
+  const editPatientClick = (patientId: string) => () => {
+    navigate(`/edit-profile/${patientId}`)
+  }
   return (
     <div
-      className={cn('personal-card', {
-        'personal-card__checkbox-wrapper': isChecbox,
-        'personal-card__default-wrapper': isDefault
-      })}
+      className={cn(
+        'personal-card',
+        {
+          'personal-card__checkbox-wrapper': isChecbox,
+          'personal-card__default-wrapper': isDefault
+        },
+        className
+      )}
     >
       <div
         className={cn({
@@ -53,7 +70,6 @@ export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: Pers
           ))}
         </div>
       )}
-
       {patient.comment && (
         <div className="personal-card__comment-container">
           <Typography.Subtitle2 className="personal-card__comment-title">

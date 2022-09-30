@@ -1,0 +1,63 @@
+@import 'src/style/style.scss';
+
+.edit-profile {
+  svg {
+    cursor: pointer;
+  }
+  &__content-wrapper {
+    padding: 40px 16px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(300px, 664px);
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  &__header-title {
+    color: $core_100;
+  }
+  &__input-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 328px));
+    gap: 24px 8px;
+    &:nth-last-child(2) {
+      margin-bottom: 40px;
+    }
+  }
+  &__form-wrapper {
+    display: grid;
+    .ant-form-item {
+      margin: 0;
+    }
+  }
+  &__button-wrapper {
+    justify-self: flex-end;
+    display: grid;
+    grid-template-columns: repeat(2, 124px);
+    gap: 20px;
+  }
+  &__title {
+    color: $core_70;
+  }
+  &__radio-title-wrapper {
+    margin: 24px 0 12px;
+  }
+  &__radio-wrapper {
+    &.ant-form-item {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@include media-mobile {
+  .edit-profile {
+    &__input-wrapper {
+      display: grid;
+      grid-template-columns: minmax(343px, 450px);
+      gap: 8px;
+    }
+  }
+}

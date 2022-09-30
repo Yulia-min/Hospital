@@ -8,6 +8,10 @@
     align-items: center;
   }
 
+  svg {
+    cursor: pointer;
+  }
+
   &__title {
     color: $core_70;
   }
