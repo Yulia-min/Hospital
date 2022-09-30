@@ -10,3 +10,4 @@ export const getPaientsAddress = (state: { patientsAddress: IPatientState }) =>
 export const getPatientsDate = (state: { patientsDate: IPatientState }) => state.patientsDate
 export const getRequestType = (state: { choosenRequestType: IPatientState }) =>
   state.choosenRequestType
+export const getCurrentPatient = (state: { currentPatient: IPatientState }) => state.currentPatient

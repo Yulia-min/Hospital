@@ -5,14 +5,31 @@ import './PersonalCard.scss'
 import { Chips } from 'src/atoms'
 import React from 'react'
 import cn from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
-export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: PersonalCardType) => {
+export const PersonalCard = ({
+  patient,
+  isShowEdit,
+  isChecbox,
+  isDefault,
+  className,
+  isHomeAddress
+}: PersonalCardType) => {
+  const navigate = useNavigate()
+
+  const editPatientClick = (patientId: string) => () => {
+    navigate(`/edit-profile/${patientId}`)
+  }
   return (
     <div
-      className={cn('personal-card', {
-        'personal-card__checkbox-wrapper': isChecbox,
-        'personal-card__default-wrapper': isDefault
-      })}
+      className={cn(
+        'personal-card',
+        {
+          'personal-card__checkbox-wrapper': isChecbox,
+          'personal-card__default-wrapper': isDefault
+        },
+        className
+      )}
     >
       <div
         className={cn({
@@ -25,7 +42,7 @@ export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: Pers
               {patient.first_name} {patient.last_name}
             </Typography.Body1>
             {isShowEdit && (
-              <div className="personal-card__button">
+              <div className="personal-card__button" onClick={editPatientClick(patient.uuid)}>
                 <Edit />
                 <Typography.Button2 className="personal-card__edit">Edit</Typography.Button2>
               </div>
@@ -38,6 +55,9 @@ export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: Pers
             {patient.phone_number}
           </Typography.Body2>
           <Typography.Body2 className="personal-card__email">{patient.email}</Typography.Body2>
+          <Typography.Body2 className="personal-card__home-address">
+            {isHomeAddress && patient.home_address && patient.home_address.address_line}
+          </Typography.Body2>
         </div>
       </div>
       {patient.symptoms && (
@@ -49,7 +69,6 @@ export const PersonalCard = ({ patient, isShowEdit, isChecbox, isDefault }: Pers
           ))}
         </div>
       )}
-
       {patient.comment && (
         <div className="personal-card__comment-container">
           <Typography.Subtitle2 className="personal-card__comment-title">
