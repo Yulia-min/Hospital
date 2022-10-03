@@ -4,7 +4,7 @@ import { ReactComponent as Cross } from 'src/public/Cross.svg'
 import './header.requestPage.scss'
 import { Button, Modal, Stepper } from 'src/atoms'
 import { HeaderType } from './HeaderType'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 
@@ -14,15 +14,22 @@ export const RequestPage = ({
   title,
   subtitle,
   onClick,
-  isStep,
   headerTitle,
-  isFirstType,
-  isSecondType,
+  isHeaderFixed,
   className
 }: HeaderType) => {
-  const [isVisible, setIsVisible] = useState(false)
-
   const navigate = useNavigate()
+  const [isVisible, setIsVisible] = useState(false)
+  const [scroll, setScroll] = useState(0)
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleScroll = () => {
+    setScroll(window.scrollY)
+  }
   const showConfirm = () => {
     setIsVisible(true)
   }
@@ -39,15 +46,14 @@ export const RequestPage = ({
     <>
       <div
         className={cn(
-          'request-header-wrapper',
           {
-            'request-header__first-type': isFirstType,
-            'request-header__second-type': isSecondType
+            'request-header__request-details-header': isHeaderFixed,
+            'request-header__fixed-header': isHeaderFixed && scroll > 300
           },
           className
         )}
       >
-        <div className="request-header request-header--mobile">
+        <div className="request-header__wrapper request-header--mobile">
           {onClick ? <MainArrow onClick={onClick} /> : <div />}
           <Typography.Headline1 className="request-header__title">
             {headerTitle}
@@ -58,8 +64,7 @@ export const RequestPage = ({
           {headerTitle}
         </Typography.Headline6>
       </div>
-
-      {isStep && (
+      {step !== undefined && (
         <div className="request-header__step-wrapper">
           <Stepper strokeDasharray={strokeDasharray} step={step} />
           <div className="request-header__step-description">

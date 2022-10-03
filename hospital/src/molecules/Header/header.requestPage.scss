@@ -1,38 +1,34 @@
 @import 'src/style/style.scss';
 
 .request-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  &__first-type {
-    .request-header__title {
-      color: $core_100;
-    }
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     svg {
+      cursor: pointer;
       path {
         fill: $core_70;
       }
     }
   }
-  &__second-type {
+
+  &__title {
+    color: $core_100;
+  }
+
+  &__request-details-header {
     .request-header__title {
       color: $white;
     }
     svg {
+      cursor: pointer;
       path {
         fill: $white;
       }
     }
   }
-  svg {
-    cursor: pointer;
-  }
-  &__block {
-    position: absolute;
-    width: 100%;
-    height: 300px;
-    background: $primary_80;
-  }
+
   &__mobile-title {
     display: none;
   }
@@ -58,6 +54,18 @@
     display: flex;
     justify-content: end;
     gap: 20px;
+  }
+  &__fixed-header {
+    z-index: 2;
+    position: fixed;
+    background: $primary_80;
+    height: 120px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    .request-header__wrapper {
+      margin: 28px 0 0 0;
+    }
   }
 }
 

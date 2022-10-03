@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { PATIENTS_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
 import { PersonalCard } from 'src/organisms'
@@ -10,17 +10,17 @@ import { requestServiceType } from 'src/redux/services/actions'
 import { getServiceInfo } from 'src/redux/services/selectors'
 import { ListOfPatientsType } from 'src/templates/CreateRequest/CreateRequestType'
 import { Typography } from 'src/Typography'
+import { IRequestDetails } from '../RequestDetailsType'
 import './ListOfPatients.scss'
 
-export const ListOfPatients = () => {
-  const navigate = useNavigate()
+export const ListOfPatients = ({ setPage }: IRequestDetails) => {
   const dispatch = useAppDispatch()
   const { requestId } = useParams() as { requestId: string }
   const { requestDetails } = useAppSelector(getRequestDetails)
   const { services } = useAppSelector(getServiceInfo)
 
   const backClickHandler = () => {
-    navigate(`/request/${requestId}`)
+    setPage((page: number) => page - 1)
   }
 
   const listOfPatients = {
@@ -52,7 +52,7 @@ export const ListOfPatients = () => {
         className="request-list__header-wrapper"
         onClick={backClickHandler}
         headerTitle="List Of Patients"
-        isSecondType={true}
+        isHeaderFixed
       />
       {PATIENTS_TYPE.map(
         (type: string) =>

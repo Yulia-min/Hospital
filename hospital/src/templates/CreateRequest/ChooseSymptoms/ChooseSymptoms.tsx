@@ -106,8 +106,6 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
       {isMobile ? (
         <div className="choose-symptoms__container">
           <Header.RequestPage
-            isFirstType={true}
-            isStep={true}
             headerTitle="Requesting The Doctor"
             step={step}
             strokeDasharray="40 60"
@@ -135,8 +133,6 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
       ) : (
         <>
           <Header.RequestPage
-            isFirstType={true}
-            isStep={true}
             headerTitle="Requesting The Doctor"
             step={step}
             strokeDasharray="40 60"

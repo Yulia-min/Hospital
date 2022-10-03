@@ -1,1 +1,0 @@
-export { ListOfPatientsPage } from './ListOfPatientsPage'

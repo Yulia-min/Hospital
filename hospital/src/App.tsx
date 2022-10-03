@@ -6,8 +6,7 @@ import {
   CreateRequestPage,
   ProfilePage,
   EditProfilePage,
-  RequestDetailsPage,
-  ListOfPatientsPage
+  RequestDetailsPage
 } from 'src/pages'
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         <Route path="auth" element={<AuthPage />} />
         <Route path="visits-list" element={<VisitsListPage />} />
         <Route path="request/:requestId" element={<RequestDetailsPage />} />
-        <Route path="request/:requestId/list-of-patients" element={<ListOfPatientsPage />} />
         <Route path="create-request" element={<CreateRequestPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="edit-profile/:patientId" element={<EditProfilePage />} />

@@ -101,8 +101,6 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
     <div className="request-list__wrapper">
       {isMobile ? (
         <Header.RequestPage
-          isFirstType={true}
-          isStep={true}
           headerTitle="Requesting The Doctor"
           step={step}
           strokeDasharray="15 85"
@@ -111,8 +109,6 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
         />
       ) : (
         <Header.RequestPage
-          isFirstType={true}
-          isStep={true}
           headerTitle="Requesting The Doctor"
           step={step}
           strokeDasharray="15 85"

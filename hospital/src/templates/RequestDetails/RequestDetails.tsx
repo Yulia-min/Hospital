@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Button } from 'src/atoms'
 import { Header } from 'src/molecules'
 import { MapCard, RequestTicket, RequestTypeCard } from 'src/organisms'
@@ -12,17 +12,16 @@ import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import './RequestDetails.scss'
 import { CoordinatesType } from '../CreateRequest/CreateRequestType'
 import { STATUS_VARIANTS } from 'src/constants'
+import { IRequestDetails } from './RequestDetailsType'
 
-export const RequestDetails = () => {
+export const RequestDetails = ({ setPage }: IRequestDetails) => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const { requestId } = useParams() as { requestId: string }
   const { requestDetails } = useAppSelector(getRequestDetails)
 
   const [coordinates, setCoordinates] = useState<CoordinatesType>({ lat: 0, lng: 0 })
-
   const showAllClick = () => {
-    navigate(`/request/${requestId}/list-of-patients`)
+    setPage((page: number) => page + 1)
   }
 
   useEffect(() => {
@@ -41,7 +40,7 @@ export const RequestDetails = () => {
       <Header.RequestPage
         className="request-details__header-wrapper"
         headerTitle="Request Details"
-        isSecondType={true}
+        isHeaderFixed
       />
       <div className="request-details__info-contanier">
         <div className="request-details__time-container">
