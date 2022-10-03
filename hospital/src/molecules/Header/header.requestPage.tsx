@@ -64,7 +64,7 @@ export const RequestPage = ({
           {headerTitle}
         </Typography.Headline6>
       </div>
-      {step !== undefined && (
+      {step && (
         <div className="request-header__step-wrapper">
           <Stepper strokeDasharray={strokeDasharray} step={step} />
           <div className="request-header__step-description">
