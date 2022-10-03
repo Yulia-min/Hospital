@@ -66,7 +66,7 @@ export const RequestDetails = ({ setPage }: IRequestDetails) => {
               email={requestDetails.client_user_info.email}
               is_group={requestDetails.is_group}
               status={requestDetails.status as keyof typeof STATUS_VARIANTS}
-              isRequestStatus={true}
+              isRequestStatus
             />
           )}
         </div>

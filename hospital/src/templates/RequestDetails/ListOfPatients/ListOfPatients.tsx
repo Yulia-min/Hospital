@@ -71,7 +71,7 @@ export const ListOfPatients = ({ setPage }: IRequestDetails) => {
                       )
                       .map((item) => item.name)}
                     patient={item.patient_info}
-                    isDefault={true}
+                    isDefault
                   />
                 </div>
               ))}

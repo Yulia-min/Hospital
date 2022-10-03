@@ -138,7 +138,7 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
                     <div key={item.uuid} className="booking-request__card-wrapper">
                       <PersonalCard
                         patient={item}
-                        isDefault={true}
+                        isDefault
                         symptoms={item.symptoms}
                         comment={item.comment}
                       />

@@ -1,15 +1,13 @@
 @import 'src/style/style.scss';
 
 .request-header {
-  &__wrapper {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    svg {
-      cursor: pointer;
-      path {
-        fill: $core_70;
-      }
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  svg {
+    cursor: pointer;
+    path {
+      fill: $core_70;
     }
   }
 
@@ -71,19 +69,13 @@
 
 @include media-desktop {
   .request-header {
-    &__second-type {
+    &__request-details-header {
       .request-header__title {
         color: $white;
       }
     }
-    &__first-type {
-      .request-header__title {
-        color: $core_100;
-      }
-    }
     &__title {
       font-size: 30px;
-
       display: flex;
       justify-content: center;
     }
@@ -92,14 +84,9 @@
 
 @include media-mobile {
   .request-header {
-    &__second-type {
+    &__request-details-header {
       .request-header__mobile-title {
         color: $white;
-      }
-    }
-    &__first-type {
-      .request-header__title {
-        color: $core_100;
       }
     }
     &__mobile-title {

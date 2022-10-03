@@ -53,7 +53,7 @@ export const RequestPage = ({
           className
         )}
       >
-        <div className="request-header__wrapper request-header--mobile">
+        <div className="request-header request-header--mobile">
           {onClick ? <MainArrow onClick={onClick} /> : <div />}
           <Typography.Headline1 className="request-header__title">
             {headerTitle}

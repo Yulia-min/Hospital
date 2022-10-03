@@ -138,7 +138,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               .filter((patient) => patient.client_patient_relationship === null)
               .map((item) => ({
                 value: item.uuid,
-                label: <PersonalCard patient={item} isShowEdit={true} isChecbox={true} />
+                label: <PersonalCard patient={item} isShowEdit isChecbox />
               }))
           }}
         />
@@ -171,7 +171,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
                         .filter((patient) => patient.client_patient_relationship === type)
                         .map((item) => ({
                           value: item.uuid,
-                          label: <PersonalCard patient={item} isShowEdit={true} isChecbox={true} />
+                          label: <PersonalCard patient={item} isShowEdit isChecbox />
                         }))
                     }}
                   />

@@ -120,7 +120,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
                 title: (
                   <PersonalCard
                     patient={patient}
-                    isDefault={true}
+                    isDefault
                     symptoms={patient.symptoms}
                     comment={patient.comment}
                   />
@@ -151,7 +151,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
                 tab={
                   <PersonalCard
                     patient={patient}
-                    isDefault={true}
+                    isDefault
                     symptoms={patient.symptoms}
                     comment={patient.comment}
                   />
