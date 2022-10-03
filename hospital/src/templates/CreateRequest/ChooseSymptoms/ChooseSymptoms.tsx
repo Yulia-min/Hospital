@@ -116,7 +116,14 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             <Collapse
               panel={Object.values(patientsWithSymptoms).map((patient) => ({
                 key: patient.uuid,
-                title: <PersonalCard patient={patient} isDefault={true} />,
+                title: (
+                  <PersonalCard
+                    patient={patient}
+                    isDefault={true}
+                    symptoms={patient.symptoms}
+                    comment={patient.comment}
+                  />
+                ),
                 children: symptomsList(patient)
               }))}
             />
@@ -139,7 +146,14 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             {Object.values(patientsWithSymptoms).map((patient) => (
               <Tabs.TabPane
                 key={patient.uuid}
-                tab={<PersonalCard patient={patient} isDefault={true} />}
+                tab={
+                  <PersonalCard
+                    patient={patient}
+                    isDefault={true}
+                    symptoms={patient.symptoms}
+                    comment={patient.comment}
+                  />
+                }
               >
                 {symptomsList(patient)}
               </Tabs.TabPane>

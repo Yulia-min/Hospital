@@ -90,6 +90,10 @@
     color: $core_100;
     padding: 8px 0 0 0;
   }
+  &__address {
+    margin-top: 8px;
+    color: $core_70;
+  }
 }
 
 @include media-desktop {

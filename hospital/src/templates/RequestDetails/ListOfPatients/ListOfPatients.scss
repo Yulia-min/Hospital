@@ -1,0 +1,43 @@
+@import 'src/style/style.scss';
+
+.request-list {
+  &__card {
+    z-index: 4;
+    background: $white;
+    border: 1px solid $core_30;
+    border-radius: 2px;
+  }
+  &__title {
+    z-index: 4;
+    color: $white;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  &__title-wrapper {
+    margin: 0 0 12px 16px;
+  }
+  &__personal-card-wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(200px, 664px);
+    padding: 168px 16px 30px;
+  }
+}
+
+@include media-desktop {
+  .request-list {
+    &__card {
+      padding: 24px 0;
+    }
+  }
+}
+
+@include media-mobile {
+  .request-list {
+    &__card {
+      padding: 24px 0;
+      border-radius: 10px;
+    }
+  }
+}

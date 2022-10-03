@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from 'src/atoms'
 import { Header } from 'src/molecules'
 import { MapCard, RequestTicket, RequestTypeCard } from 'src/organisms'
@@ -15,10 +15,15 @@ import { STATUS_VARIANTS } from 'src/constants'
 
 export const RequestDetails = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const { requestId } = useParams() as { requestId: string }
   const { requestDetails } = useAppSelector(getRequestDetails)
 
   const [coordinates, setCoordinates] = useState<CoordinatesType>({ lat: 0, lng: 0 })
+
+  const showAllClick = () => {
+    navigate(`/request/${requestId}/list-of-patients`)
+  }
 
   useEffect(() => {
     requestDetails &&
@@ -80,7 +85,11 @@ export const RequestDetails = () => {
                 </Typography.Button2>
               )}
             </div>
-            <Button.Default variant="text" className="request-details__show-all-button">
+            <Button.Default
+              variant="text"
+              className="request-details__show-all-button"
+              onClick={showAllClick}
+            >
               <Typography.Button2>SHOW ALL</Typography.Button2>
             </Button.Default>
           </div>
