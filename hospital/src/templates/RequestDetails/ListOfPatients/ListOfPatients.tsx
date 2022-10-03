@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PATIENTS_TYPE } from 'src/constants'
 import { Header } from 'src/molecules'
 import { PersonalCard } from 'src/organisms'
@@ -13,24 +13,29 @@ import { Typography } from 'src/Typography'
 import './ListOfPatients.scss'
 
 export const ListOfPatients = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { requestId } = useParams() as { requestId: string }
   const { requestDetails } = useAppSelector(getRequestDetails)
   const { services } = useAppSelector(getServiceInfo)
 
+  const backClickHandler = () => {
+    navigate(`/request/${requestId}`)
+  }
+
   const listOfPatients = {
-    you: requestDetails?.patients
-      ?.filter((patient) => patient.patient_info.client_patient_relationship === null)
-      .map((item) => item),
-    family: requestDetails?.patients
-      ?.filter((patient) => patient.patient_info.client_patient_relationship === 'family')
-      .map((item) => item),
-    friends: requestDetails?.patients
-      ?.filter((patient) => patient.patient_info.client_patient_relationship === 'friends')
-      .map((item) => item),
-    other: requestDetails?.patients
-      ?.filter((patient) => patient.patient_info.client_patient_relationship === 'other')
-      .map((item) => item)
+    you: requestDetails?.patients?.filter(
+      (patient) => patient.patient_info.client_patient_relationship === null
+    ),
+    family: requestDetails?.patients?.filter(
+      (patient) => patient.patient_info.client_patient_relationship === 'family'
+    ),
+    friends: requestDetails?.patients?.filter(
+      (patient) => patient.patient_info.client_patient_relationship === 'friends'
+    ),
+    other: requestDetails?.patients?.filter(
+      (patient) => patient.patient_info.client_patient_relationship === 'other'
+    )
   }
 
   useEffect(() => {
@@ -43,7 +48,12 @@ export const ListOfPatients = () => {
 
   return (
     <div className="request-list">
-      <Header.RequestDetails isArrow={true} />
+      <Header.RequestPage
+        className="request-list__header-wrapper"
+        onClick={backClickHandler}
+        headerTitle="List Of Patients"
+        isSecondType={true}
+      />
       {PATIENTS_TYPE.map(
         (type: string) =>
           !!listOfPatients[type as keyof ListOfPatientsType]?.length && (

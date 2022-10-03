@@ -34,11 +34,15 @@ export const RequestDetails = () => {
 
   useEffect(() => {
     dispatch(getRequestDetailsInfo(requestId))
-  }, [])
+  }, [requestId])
 
   return (
     <div className="request-details">
-      <Header.RequestDetails />
+      <Header.RequestPage
+        className="request-details__header-wrapper"
+        headerTitle="Request Details"
+        isSecondType={true}
+      />
       <div className="request-details__info-contanier">
         <div className="request-details__time-container">
           <Typography.Subtitle2 className="request-details__time-title">

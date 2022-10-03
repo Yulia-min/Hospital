@@ -102,6 +102,9 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
   return (
     <div className="booking-request">
       <Header.RequestPage
+        isFirstType={true}
+        isStep={true}
+        headerTitle="Requesting The Doctor"
         step={step}
         strokeDasharray="100 0"
         title="Review Your Information Before Requesting"

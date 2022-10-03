@@ -4,5 +4,9 @@ export type HeaderType = {
   title?: string
   subtitle?: string
   onClick?: () => void
-  isArrow?: boolean
+  isStep?: boolean
+  headerTitle: string
+  isFirstType?: boolean
+  isSecondType?: boolean
+  className?: string
 }

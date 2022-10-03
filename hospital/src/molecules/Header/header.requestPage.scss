@@ -4,22 +4,38 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-
-  svg {
-    cursor: pointer;
-    path {
-      fill: $core_70;
+  &__first-type {
+    .request-header__title {
+      color: $core_100;
+    }
+    svg {
+      path {
+        fill: $core_70;
+      }
     }
   }
-
-  &__title {
-    color: $core_100;
+  &__second-type {
+    .request-header__title {
+      color: $white;
+    }
+    svg {
+      path {
+        fill: $white;
+      }
+    }
   }
-
+  svg {
+    cursor: pointer;
+  }
+  &__block {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background: $primary_80;
+  }
   &__mobile-title {
     display: none;
   }
-
   &__step-wrapper {
     display: grid;
     grid-template-columns: 60px minmax(100px, 585px);
@@ -28,20 +44,16 @@
     justify-content: center;
     padding: 40px 0;
   }
-
   &__step-title {
     color: $core_100;
   }
-
   &__step-subtitle {
     color: $core_70;
   }
-
   &__modal-title {
     color: $core_100;
     margin-bottom: 40px;
   }
-
   &__modal-button {
     display: flex;
     justify-content: end;
@@ -51,9 +63,19 @@
 
 @include media-desktop {
   .request-header {
+    &__second-type {
+      .request-header__title {
+        color: $white;
+      }
+    }
+    &__first-type {
+      .request-header__title {
+        color: $core_100;
+      }
+    }
     &__title {
       font-size: 30px;
-      color: $core_100;
+
       display: flex;
       justify-content: center;
     }
@@ -62,6 +84,16 @@
 
 @include media-mobile {
   .request-header {
+    &__second-type {
+      .request-header__mobile-title {
+        color: $white;
+      }
+    }
+    &__first-type {
+      .request-header__title {
+        color: $core_100;
+      }
+    }
     &__mobile-title {
       display: flex;
       margin-top: 28px;

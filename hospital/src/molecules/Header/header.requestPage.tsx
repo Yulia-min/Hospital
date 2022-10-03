@@ -6,8 +6,20 @@ import { Button, Modal, Stepper } from 'src/atoms'
 import { HeaderType } from './HeaderType'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import cn from 'classnames'
 
-export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }: HeaderType) => {
+export const RequestPage = ({
+  step,
+  strokeDasharray,
+  title,
+  subtitle,
+  onClick,
+  isStep,
+  headerTitle,
+  isFirstType,
+  isSecondType,
+  className
+}: HeaderType) => {
   const [isVisible, setIsVisible] = useState(false)
 
   const navigate = useNavigate()
@@ -25,27 +37,41 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }:
 
   return (
     <>
-      <div className="request-header__wrapper">
+      <div
+        className={cn(
+          'request-header-wrapper',
+          {
+            'request-header__first-type': isFirstType,
+            'request-header__second-type': isSecondType
+          },
+          className
+        )}
+      >
         <div className="request-header request-header--mobile">
-          {step === 1 ? <div /> : <MainArrow onClick={onClick} />}
+          {onClick ? <MainArrow onClick={onClick} /> : <div />}
           <Typography.Headline1 className="request-header__title">
-            Requesting The Doctor
+            {headerTitle}
           </Typography.Headline1>
           <Cross onClick={showConfirm} />
         </div>
         <Typography.Headline6 className="request-header__mobile-title">
-          Requesting The Doctor
+          {headerTitle}
         </Typography.Headline6>
       </div>
-      <div className="request-header__step-wrapper">
-        <Stepper strokeDasharray={strokeDasharray} step={step} />
-        <div className="request-header__step-description">
-          <Typography.Headline6 className="request-header__step-title">
-            {title}
-          </Typography.Headline6>
-          <Typography.Body1 className="request-header__step-subtitle">{subtitle}</Typography.Body1>
+
+      {isStep && (
+        <div className="request-header__step-wrapper">
+          <Stepper strokeDasharray={strokeDasharray} step={step} />
+          <div className="request-header__step-description">
+            <Typography.Headline6 className="request-header__step-title">
+              {title}
+            </Typography.Headline6>
+            <Typography.Body1 className="request-header__step-subtitle">
+              {subtitle}
+            </Typography.Body1>
+          </div>
         </div>
-      </div>
+      )}
       <Modal visible={isVisible} onCancel={handleCancel}>
         <Typography.Headline4 className="request-header__modal-title">
           Are you sure you want to close the visit?
