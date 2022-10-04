@@ -12,7 +12,7 @@ import {
   getRequestType
 } from 'src/redux/patients/selectors'
 import { Typography } from 'src/Typography'
-import { ICreateRequest, PatientWithSymptomsListType } from '../CreateRequestType'
+import { ICreateRequest, ListOfPatientsType } from '../CreateRequestType'
 import './BookingRequest.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
@@ -102,6 +102,7 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
   return (
     <div className="booking-request">
       <Header.RequestPage
+        headerTitle="Requesting The Doctor"
         step={step}
         strokeDasharray="100 0"
         title="Review Your Information Before Requesting"
@@ -126,20 +127,23 @@ export const BookingRequest = ({ setStep, step }: ICreateRequest) => {
         <div>
           {PATIENTS_TYPE.map(
             (type: string) =>
-              !!patientsWithSymptomsList[type as keyof PatientWithSymptomsListType].length && (
+              !!patientsWithSymptomsList[type as keyof ListOfPatientsType].length && (
                 <div className="booking-request__cards-block-wrapper">
                   <div className="booking-request__checkbox-title-wrapper">
                     <Typography.Subtitle2 className="booking-request__checkbox-title">
                       {type[0].toUpperCase() + type.substring(1)}
                     </Typography.Subtitle2>
                   </div>
-                  {patientsWithSymptomsList[type as keyof PatientWithSymptomsListType].map(
-                    (item) => (
-                      <div key={item.uuid} className="booking-request__card-wrapper">
-                        <PersonalCard patient={item} isDefault={true} />
-                      </div>
-                    )
-                  )}
+                  {patientsWithSymptomsList[type as keyof ListOfPatientsType].map((item) => (
+                    <div key={item.uuid} className="booking-request__card-wrapper">
+                      <PersonalCard
+                        patient={item}
+                        isDefault
+                        symptoms={item.symptoms}
+                        comment={item.comment}
+                      />
+                    </div>
+                  ))}
                 </div>
               )
           )}

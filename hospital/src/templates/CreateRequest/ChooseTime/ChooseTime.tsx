@@ -70,6 +70,7 @@ export const ChooseTime = ({ setStep, step }: ICreateRequest) => {
   return (
     <div className="choose-time">
       <Header.RequestPage
+        headerTitle="Requesting The Doctor"
         step={step}
         strokeDasharray="85 15"
         title="Would You Like A Doctor To Come NOW (in About 60 Minutes) Or LATER (You Choose the Date and Time)?"

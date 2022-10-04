@@ -1,3 +1,5 @@
+import { CheckboxValueType } from 'antd/lib/checkbox/Group'
+
 export type PersonalCardType = {
   patient: {
     uuid: string
@@ -7,9 +9,9 @@ export type PersonalCardType = {
     phone_number: string
     email: string
     home_address?: { address_line?: string }
-    symptoms?: CheckboxValueType[]
-    comment?: string
   }
+  comment?: string
+  symptoms?: string[] | CheckboxValueType[]
   isShowEdit?: boolean
   isChecbox?: boolean
   isDefault?: boolean

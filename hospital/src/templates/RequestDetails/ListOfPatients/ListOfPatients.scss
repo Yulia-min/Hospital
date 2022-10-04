@@ -1,0 +1,48 @@
+@import 'src/style/style.scss';
+
+.request-list {
+  padding: 36px 0;
+  height: 300px;
+  background: $primary_80;
+  &__card {
+    background: $white;
+    border: 1px solid $core_30;
+    border-radius: 2px;
+  }
+  &__title {
+    color: $white;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  &__title-wrapper {
+    margin: 0 0 12px 16px;
+  }
+  &__header-wrapper {
+    margin-bottom: 40px;
+  }
+  &__personal-card-wrapper {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(200px, 664px);
+  }
+}
+
+@include media-desktop {
+  .request-list {
+    padding: 24px 16px;
+    &__card {
+      padding: 24px 0;
+    }
+  }
+}
+
+@include media-mobile {
+  .request-list {
+    padding: 24px 16px;
+    &__card {
+      padding: 24px 0;
+      border-radius: 10px;
+    }
+  }
+}

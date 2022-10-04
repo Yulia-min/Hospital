@@ -35,7 +35,7 @@ export type PatientsAddressType = {
   additional_info?: string
 }
 
-export type PatientWithSymptomsListType = {
+export type ListOfPatientsType = {
   family: string[]
   friends: string[]
   other: string[]

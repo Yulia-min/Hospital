@@ -4,13 +4,41 @@ import { ReactComponent as Cross } from 'src/public/Cross.svg'
 import './header.requestPage.scss'
 import { Button, Modal, Stepper } from 'src/atoms'
 import { HeaderType } from './HeaderType'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import cn from 'classnames'
 
-export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }: HeaderType) => {
+export const RequestPage = ({
+  step,
+  strokeDasharray,
+  title,
+  subtitle,
+  onClick,
+  headerTitle,
+  isHeaderFixed,
+  className
+}: HeaderType) => {
+  const navigate = useNavigate()
+  const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
-  const navigate = useNavigate()
+  const handleScroll = () => {
+    if (ref.current) {
+      if (isHeaderFixed && window.scrollY > 300) {
+        ref.current.classList.add('request-header__fixed-header')
+      } else {
+        ref.current.classList.remove('request-header__fixed-header')
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', () => handleScroll)
+    }
+  }, [])
+
   const showConfirm = () => {
     setIsVisible(true)
   }
@@ -25,27 +53,34 @@ export const RequestPage = ({ step, strokeDasharray, title, subtitle, onClick }:
 
   return (
     <>
-      <div className="request-header__wrapper">
+      <div
+        ref={ref}
+        className={cn({ 'request-header__request-details-header': isHeaderFixed }, className)}
+      >
         <div className="request-header request-header--mobile">
-          {step === 1 ? <div /> : <MainArrow onClick={onClick} />}
+          {onClick ? <MainArrow onClick={onClick} /> : <div />}
           <Typography.Headline1 className="request-header__title">
-            Requesting The Doctor
+            {headerTitle}
           </Typography.Headline1>
           <Cross onClick={showConfirm} />
         </div>
         <Typography.Headline6 className="request-header__mobile-title">
-          Requesting The Doctor
+          {headerTitle}
         </Typography.Headline6>
       </div>
-      <div className="request-header__step-wrapper">
-        <Stepper strokeDasharray={strokeDasharray} step={step} />
-        <div className="request-header__step-description">
-          <Typography.Headline6 className="request-header__step-title">
-            {title}
-          </Typography.Headline6>
-          <Typography.Body1 className="request-header__step-subtitle">{subtitle}</Typography.Body1>
+      {step && (
+        <div className="request-header__step-wrapper">
+          <Stepper strokeDasharray={strokeDasharray} step={step} />
+          <div className="request-header__step-description">
+            <Typography.Headline6 className="request-header__step-title">
+              {title}
+            </Typography.Headline6>
+            <Typography.Body1 className="request-header__step-subtitle">
+              {subtitle}
+            </Typography.Body1>
+          </div>
         </div>
-      </div>
+      )}
       <Modal visible={isVisible} onCancel={handleCancel}>
         <Typography.Headline4 className="request-header__modal-title">
           Are you sure you want to close the visit?

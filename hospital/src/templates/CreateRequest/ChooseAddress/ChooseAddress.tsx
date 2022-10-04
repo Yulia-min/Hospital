@@ -74,6 +74,7 @@ export const ChooseAddress = ({ setStep, step }: ICreateRequest) => {
   return (
     <div className="choose-address">
       <Header.RequestPage
+        headerTitle="Requesting The Doctor"
         step={step}
         strokeDasharray="65 35"
         title="Please Tell Us The Address Where You Would Like Medical Care"

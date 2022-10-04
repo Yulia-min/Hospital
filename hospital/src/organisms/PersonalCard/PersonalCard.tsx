@@ -14,7 +14,9 @@ export const PersonalCard = ({
   isChecbox,
   isDefault,
   className,
-  isHomeAddress
+  isHomeAddress,
+  comment,
+  symptoms
 }: PersonalCardType) => {
   const navigate = useNavigate()
 
@@ -45,7 +47,7 @@ export const PersonalCard = ({
                 {patient.first_name} {patient.last_name}
               </Typography.Body1>
               {isShowEdit && (
-                <div className="personal-card__button">
+                <div className="personal-card__button" onClick={editPatientClick(patient.uuid)}>
                   <Edit />
                   <Typography.Button2 className="personal-card__edit">Edit</Typography.Button2>
                 </div>
@@ -58,26 +60,27 @@ export const PersonalCard = ({
               {patient.phone_number}
             </Typography.Body2>
             <Typography.Body2 className="personal-card__email">{patient.email}</Typography.Body2>
+            {isHomeAddress && (
+              <Typography.Body2 className="personal-card__address">
+                {patient.home_address?.address_line}
+              </Typography.Body2>
+            )}
           </div>
         </div>
       </div>
-      {patient.symptoms && (
-        <div className="personal-card__symptom-container">
-          {patient.symptoms?.map((item) => (
-            <React.Fragment key={item}>
-              <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
-            </React.Fragment>
-          ))}
-        </div>
-      )}
-      {patient.comment && (
+      <div className="personal-card__symptom-container">
+        {symptoms?.map((item, index) => (
+          <React.Fragment key={index}>
+            <Chips.Default className="personal-card__symptom" variant="symptom" children={item} />
+          </React.Fragment>
+        ))}
+      </div>
+      {comment && (
         <div className="personal-card__comment-container">
           <Typography.Subtitle2 className="personal-card__comment-title">
             Comment
           </Typography.Subtitle2>
-          <Typography.Body2 className="personal-card__comment-content">
-            {patient.comment}
-          </Typography.Body2>
+          <Typography.Body2 className="personal-card__comment-content">{comment}</Typography.Body2>
         </div>
       )}
     </div>

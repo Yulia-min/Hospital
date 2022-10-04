@@ -106,6 +106,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
       {isMobile ? (
         <div className="choose-symptoms__container">
           <Header.RequestPage
+            headerTitle="Requesting The Doctor"
             step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
@@ -116,7 +117,14 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             <Collapse
               panel={Object.values(patientsWithSymptoms).map((patient) => ({
                 key: patient.uuid,
-                title: <PersonalCard patient={patient} isDefault={true} />,
+                title: (
+                  <PersonalCard
+                    patient={patient}
+                    isDefault
+                    symptoms={patient.symptoms}
+                    comment={patient.comment}
+                  />
+                ),
                 children: symptomsList(patient)
               }))}
             />
@@ -125,6 +133,7 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
       ) : (
         <>
           <Header.RequestPage
+            headerTitle="Requesting The Doctor"
             step={step}
             strokeDasharray="40 60"
             title="What Are The Symptoms?"
@@ -139,7 +148,14 @@ export const ChooseSymptoms = ({ setStep, step }: ICreateRequest) => {
             {Object.values(patientsWithSymptoms).map((patient) => (
               <Tabs.TabPane
                 key={patient.uuid}
-                tab={<PersonalCard patient={patient} isDefault={true} />}
+                tab={
+                  <PersonalCard
+                    patient={patient}
+                    isDefault
+                    symptoms={patient.symptoms}
+                    comment={patient.comment}
+                  />
+                }
               >
                 {symptomsList(patient)}
               </Tabs.TabPane>

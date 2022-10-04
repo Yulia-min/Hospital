@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   svg {
     cursor: pointer;
     path {
@@ -16,10 +15,21 @@
     color: $core_100;
   }
 
+  &__request-details-header {
+    .request-header__title {
+      color: $white;
+    }
+    svg {
+      cursor: pointer;
+      path {
+        fill: $white;
+      }
+    }
+  }
+
   &__mobile-title {
     display: none;
   }
-
   &__step-wrapper {
     display: grid;
     grid-template-columns: 60px minmax(100px, 585px);
@@ -28,32 +38,54 @@
     justify-content: center;
     padding: 40px 0;
   }
-
   &__step-title {
     color: $core_100;
   }
-
   &__step-subtitle {
     color: $core_70;
   }
-
   &__modal-title {
     color: $core_100;
     margin-bottom: 40px;
   }
-
   &__modal-button {
     display: flex;
     justify-content: end;
     gap: 20px;
   }
+  &__fixed-header {
+    z-index: 2;
+    position: fixed;
+    background: $primary_80;
+    height: 120px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    animation: showHeader 1s forwards;
+    .request-header {
+      padding: 40px 0 24px;
+    }
+  }
+}
+
+@keyframes showHeader {
+  0% {
+    transform: translateY(-150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @include media-desktop {
   .request-header {
+    &__request-details-header {
+      .request-header__title {
+        color: $white;
+      }
+    }
     &__title {
       font-size: 30px;
-      color: $core_100;
       display: flex;
       justify-content: center;
     }
@@ -62,9 +94,19 @@
 
 @include media-mobile {
   .request-header {
+    &__fixed-header {
+      .request-header {
+        padding: 36px 15px 0;
+      }
+    }
+    &__request-details-header {
+      .request-header__mobile-title {
+        color: $white;
+      }
+    }
     &__mobile-title {
       display: flex;
-      margin-top: 28px;
+      margin: 28px 0 0 16px;
     }
     &--mobile {
       display: flex;

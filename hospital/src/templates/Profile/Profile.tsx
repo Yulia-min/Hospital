@@ -31,9 +31,9 @@ export const Profile = () => {
               <PersonalCard
                 className="profile__personal-card-container"
                 patient={currentPatient}
-                isShowEdit={true}
-                isDefault={true}
-                isHomeAddress={true}
+                isShowEdit
+                isDefault
+                isHomeAddress
               />
             )}
             <Typography.Button2 className="profile__title profile__payment-title-wrapper">

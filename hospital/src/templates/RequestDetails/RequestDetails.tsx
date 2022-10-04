@@ -2,7 +2,7 @@ import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button } from 'src/atoms'
-import { Header } from 'src/molecules'
+import { CountDown, Header } from 'src/molecules'
 import { MapCard, RequestTicket, RequestTypeCard } from 'src/organisms'
 import { getRequestDetailsInfo } from 'src/redux/cards/actions'
 import { getRequestDetails } from 'src/redux/cards/selectors'
@@ -12,13 +12,17 @@ import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import './RequestDetails.scss'
 import { CoordinatesType } from '../CreateRequest/CreateRequestType'
 import { STATUS_VARIANTS } from 'src/constants'
+import { IRequestDetails } from './RequestDetailsType'
 
-export const RequestDetails = () => {
+export const RequestDetails = ({ setPage }: IRequestDetails) => {
   const dispatch = useAppDispatch()
   const { requestId } = useParams() as { requestId: string }
   const { requestDetails } = useAppSelector(getRequestDetails)
 
   const [coordinates, setCoordinates] = useState<CoordinatesType>({ lat: 0, lng: 0 })
+  const showAllClick = () => {
+    setPage((page: number) => page + 1)
+  }
 
   useEffect(() => {
     requestDetails &&
@@ -29,16 +33,23 @@ export const RequestDetails = () => {
 
   useEffect(() => {
     dispatch(getRequestDetailsInfo(requestId))
-  }, [])
+  }, [requestId])
 
   return (
     <div className="request-details">
-      <Header.RequestDetails />
+      <Header.RequestPage
+        className="request-details__header-wrapper"
+        headerTitle="Request Details"
+        isHeaderFixed
+      />
       <div className="request-details__info-contanier">
         <div className="request-details__time-container">
           <Typography.Subtitle2 className="request-details__time-title">
             Approximate ETA
           </Typography.Subtitle2>
+          {requestDetails?.application_time && (
+            <CountDown endTime={requestDetails?.application_time} />
+          )}
         </div>
         <div className="request-details__ticket-container">
           {requestDetails && (
@@ -58,7 +69,51 @@ export const RequestDetails = () => {
               email={requestDetails.client_user_info.email}
               is_group={requestDetails.is_group}
               status={requestDetails.status as keyof typeof STATUS_VARIANTS}
-              isRequestStatus={true}
+              isRequestStatus
+            />
+          )}
+        </div>
+        <div className="request-details__ticket-container">
+          {requestDetails && (
+            <RequestTicket
+              className="request-details__request-ticket-wrapper"
+              request_type={requestDetails.service_type}
+              date={moment(requestDetails.application_can_start_at).format('DD/MM/YYYY')}
+              time={
+                moment(requestDetails.application_can_start_at).format('HH:mm a') +
+                ' - ' +
+                moment(requestDetails.application_time).format('HH:mm a')
+              }
+              isTime={requestDetails.application_can_start_at}
+              first_name={requestDetails.client_user_info.first_name}
+              last_name={requestDetails.client_user_info.last_name}
+              phone_number={requestDetails.client_user_info.phone_number}
+              email={requestDetails.client_user_info.email}
+              is_group={requestDetails.is_group}
+              status={requestDetails.status as keyof typeof STATUS_VARIANTS}
+              isRequestStatus
+            />
+          )}
+        </div>
+        <div className="request-details__ticket-container">
+          {requestDetails && (
+            <RequestTicket
+              className="request-details__request-ticket-wrapper"
+              request_type={requestDetails.service_type}
+              date={moment(requestDetails.application_can_start_at).format('DD/MM/YYYY')}
+              time={
+                moment(requestDetails.application_can_start_at).format('HH:mm a') +
+                ' - ' +
+                moment(requestDetails.application_time).format('HH:mm a')
+              }
+              isTime={requestDetails.application_can_start_at}
+              first_name={requestDetails.client_user_info.first_name}
+              last_name={requestDetails.client_user_info.last_name}
+              phone_number={requestDetails.client_user_info.phone_number}
+              email={requestDetails.client_user_info.email}
+              is_group={requestDetails.is_group}
+              status={requestDetails.status as keyof typeof STATUS_VARIANTS}
+              isRequestStatus
             />
           )}
         </div>
@@ -80,7 +135,11 @@ export const RequestDetails = () => {
                 </Typography.Button2>
               )}
             </div>
-            <Button.Default variant="text" className="request-details__show-all-button">
+            <Button.Default
+              variant="text"
+              className="request-details__show-all-button"
+              onClick={showAllClick}
+            >
               <Typography.Button2>SHOW ALL</Typography.Button2>
             </Button.Default>
           </div>

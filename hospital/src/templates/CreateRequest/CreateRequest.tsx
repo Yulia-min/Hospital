@@ -101,6 +101,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
     <div className="request-list__wrapper">
       {isMobile ? (
         <Header.RequestPage
+          headerTitle="Requesting The Doctor"
           step={step}
           strokeDasharray="15 85"
           title="Who Needs The Visit?"
@@ -108,6 +109,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
         />
       ) : (
         <Header.RequestPage
+          headerTitle="Requesting The Doctor"
           step={step}
           strokeDasharray="15 85"
           title="Who Needs The Visit?"
@@ -136,7 +138,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
               .filter((patient) => patient.client_patient_relationship === null)
               .map((item) => ({
                 value: item.uuid,
-                label: <PersonalCard patient={item} isShowEdit={true} isChecbox={true} />
+                label: <PersonalCard patient={item} isShowEdit isChecbox />
               }))
           }}
         />
@@ -169,7 +171,7 @@ export const CreateRequest = ({ setStep, step }: ICreateRequest) => {
                         .filter((patient) => patient.client_patient_relationship === type)
                         .map((item) => ({
                           value: item.uuid,
-                          label: <PersonalCard patient={item} isShowEdit={true} isChecbox={true} />
+                          label: <PersonalCard patient={item} isShowEdit isChecbox />
                         }))
                     }}
                   />
