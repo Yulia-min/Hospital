@@ -16,7 +16,10 @@
     margin-bottom: 30px;
   }
   &__time-container {
-    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
     border: 1px solid $core_30;
     border-radius: 2px;
     background: $white;

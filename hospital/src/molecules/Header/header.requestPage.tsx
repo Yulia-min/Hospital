@@ -4,7 +4,7 @@ import { ReactComponent as Cross } from 'src/public/Cross.svg'
 import './header.requestPage.scss'
 import { Button, Modal, Stepper } from 'src/atoms'
 import { HeaderType } from './HeaderType'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 
@@ -19,17 +19,26 @@ export const RequestPage = ({
   className
 }: HeaderType) => {
   const navigate = useNavigate()
+  const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [scroll, setScroll] = useState(0)
+
+  const handleScroll = () => {
+    if (ref.current) {
+      if (isHeaderFixed && window.scrollY > 300) {
+        ref.current.classList.add('request-header__fixed-header')
+      } else {
+        ref.current.classList.remove('request-header__fixed-header')
+      }
+    }
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', () => handleScroll)
+    }
   }, [])
 
-  const handleScroll = () => {
-    setScroll(window.scrollY)
-  }
   const showConfirm = () => {
     setIsVisible(true)
   }
@@ -45,13 +54,8 @@ export const RequestPage = ({
   return (
     <>
       <div
-        className={cn(
-          {
-            'request-header__request-details-header': isHeaderFixed,
-            'request-header__fixed-header': isHeaderFixed && scroll > 300
-          },
-          className
-        )}
+        ref={ref}
+        className={cn({ 'request-header__request-details-header': isHeaderFixed }, className)}
       >
         <div className="request-header request-header--mobile">
           {onClick ? <MainArrow onClick={onClick} /> : <div />}

@@ -1,0 +1,14 @@
+@import 'src/style/style.scss';
+
+.countdown {
+  display: flex;
+  align-items: center;
+
+  &__text {
+    color: $primary_80;
+  }
+
+  &__title-wrapper {
+    margin: 0 0 0 8px;
+  }
+}

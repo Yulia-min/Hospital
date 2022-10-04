@@ -61,9 +61,19 @@
     width: 100%;
     top: 0;
     left: 0;
-    .request-header__wrapper {
-      margin: 28px 0 0 0;
+    animation: showHeader 1s forwards;
+    .request-header {
+      padding: 40px 0 24px;
     }
+  }
+}
+
+@keyframes showHeader {
+  0% {
+    transform: translateY(-150%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -84,6 +94,11 @@
 
 @include media-mobile {
   .request-header {
+    &__fixed-header {
+      .request-header {
+        padding: 36px 15px 0;
+      }
+    }
     &__request-details-header {
       .request-header__mobile-title {
         color: $white;
@@ -91,7 +106,7 @@
     }
     &__mobile-title {
       display: flex;
-      margin-top: 28px;
+      margin: 28px 0 0 16px;
     }
     &--mobile {
       display: flex;
