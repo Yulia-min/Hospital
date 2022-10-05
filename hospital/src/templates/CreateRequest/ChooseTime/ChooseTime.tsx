@@ -56,6 +56,10 @@ export const ChooseTime = ({ setStep, step }: ICreateRequest) => {
   const onSelectChange = (value: string) => {
     setChoosenTime(value)
   }
+  const disabledDateHandler = (current: moment.Moment) => {
+    const customDate = moment().format('DD/MM/YYYY')
+    return current && current < moment(customDate, 'DD/MM/YYYY')
+  }
 
   useEffect(() => {
     patientsAddress.zip_code !== '' &&
@@ -94,6 +98,7 @@ export const ChooseTime = ({ setStep, step }: ICreateRequest) => {
             <div className="choose-time__data-picker-wrapper">
               <DataPicker
                 propsDataPicker={{
+                  disabledDate: disabledDateHandler,
                   onChange: onDataPickerChange,
                   defaultValue: moment()
                 }}

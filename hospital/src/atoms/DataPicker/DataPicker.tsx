@@ -3,13 +3,13 @@ import { DatePicker as DefaultDataPicker, Form } from 'antd'
 import { ReactComponent as Calendar } from 'src/public/Calendar.svg'
 import './DataPicker.scss'
 import { DataPickerType } from './DataPickerType'
-import moment from 'moment'
 
-export const DataPicker = ({ propsItem, className, propsDataPicker }: DataPickerType) => {
-  const disabledDateHandler = (current: moment.Moment) => {
-    const customDate = moment().format('DD/MM/YYYY')
-    return current && current < moment(customDate, 'DD/MM/YYYY')
-  }
+export const DataPicker = ({
+  propsItem,
+  className,
+  propsDataPicker,
+  dropdownClassName
+}: DataPickerType) => {
   return (
     <Form.Item
       colon={false}
@@ -19,8 +19,7 @@ export const DataPicker = ({ propsItem, className, propsDataPicker }: DataPicker
       <DefaultDataPicker
         suffixIcon={<Calendar />}
         allowClear={false}
-        dropdownClassName="popup"
-        disabledDate={disabledDateHandler}
+        dropdownClassName={classNames('popup', dropdownClassName)}
         superPrevIcon={false}
         superNextIcon={false}
         {...propsDataPicker}
