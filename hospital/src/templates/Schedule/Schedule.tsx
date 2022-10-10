@@ -17,6 +17,7 @@ export const Schedule = () => {
   const uuid = localStorage.getItem('uuid') as string
   const [time, setTime] = useState<IDoctor[]>([])
   const [view, setView] = useState<'week'>('week')
+  const [date, setDate] = useState<moment.Moment | null>()
   const [event_date_after, setEvent_date_after] = useState<string>(
     moment().startOf('week').format('YYYY-MM-DDTHH:mm')
   )
@@ -52,16 +53,22 @@ export const Schedule = () => {
   }))
 
   useEffect(() => {
+    if (view === 'week') {
+      setEvent_date_after(moment(date).startOf('week').format('YYYY-MM-DDTHH:mm'))
+      setEvent_date_before(moment(date).endOf('week').format('YYYY-MM-DDTHH:mm'))
+    } else if (view === 'day') {
+      setEvent_date_after(moment(date).startOf('day').format('YYYY-MM-DDTHH:mm'))
+      setEvent_date_before(moment(date).endOf('day').format('YYYY-MM-DDTHH:mm'))
+    }
     getDoctorsSchedule(event_date_after, event_date_before, uuid).then((resp) => setTime(resp.data))
-  }, [event_date_after, event_date_before])
+  }, [event_date_after, event_date_before, view, date])
 
   const onRadioValueChange = ({ target: { value } }: RadioChangeEvent) => {
     setView(value)
   }
 
   const onDataPickerChange: DatePickerProps['onChange'] = (date) => {
-    setEvent_date_after(moment(date).startOf('week').format('YYYY-MM-DDTHH:mm'))
-    setEvent_date_before(moment(date).endOf('week').format('YYYY-MM-DDTHH:mm'))
+    setDate(date)
   }
   const CustomToolbar = ({ onNavigate }: ICustomTooolbar) => {
     const goToBack = () => {
