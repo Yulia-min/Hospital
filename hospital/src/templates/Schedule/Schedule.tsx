@@ -11,13 +11,14 @@ import { DataPicker, Radio } from 'src/atoms'
 import { DatePickerProps, RadioChangeEvent } from 'antd'
 import { CALENDAR_OPTIONS } from 'src/constants'
 import { Typography } from 'src/Typography'
-import { EventType, ICustomTooolbar } from './SheduleType'
+import { EventType, ICustomHeader, ICustomTooolbar, ViewType } from './SheduleType'
+import classNames from 'classnames'
 
 export const Schedule = () => {
   const uuid = localStorage.getItem('uuid') as string
   const [time, setTime] = useState<IDoctor[]>([])
-  const [view, setView] = useState<'week'>('week')
-  const [date, setDate] = useState<moment.Moment | null>()
+  const [view, setView] = useState<ViewType>('week')
+  const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(moment())
   const [event_date_after, setEvent_date_after] = useState<string>(
     moment().startOf('week').format('YYYY-MM-DDTHH:mm')
   )
@@ -54,23 +55,24 @@ export const Schedule = () => {
 
   useEffect(() => {
     if (view === 'week') {
-      setEvent_date_after(moment(date).startOf('week').format('YYYY-MM-DDTHH:mm'))
-      setEvent_date_before(moment(date).endOf('week').format('YYYY-MM-DDTHH:mm'))
+      setEvent_date_after(moment(selectedDate).startOf('week').format('YYYY-MM-DDTHH:mm'))
+      setEvent_date_before(moment(selectedDate).endOf('week').format('YYYY-MM-DDTHH:mm'))
     } else if (view === 'day') {
-      setEvent_date_after(moment(date).startOf('day').format('YYYY-MM-DDTHH:mm'))
-      setEvent_date_before(moment(date).endOf('day').format('YYYY-MM-DDTHH:mm'))
+      setEvent_date_after(moment(selectedDate).startOf('day').format('YYYY-MM-DDTHH:mm'))
+      setEvent_date_before(moment(selectedDate).endOf('day').format('YYYY-MM-DDTHH:mm'))
     }
     getDoctorsSchedule(event_date_after, event_date_before, uuid).then((resp) => setTime(resp.data))
-  }, [event_date_after, event_date_before, view, date])
+  }, [event_date_after, event_date_before, view, selectedDate])
 
   const onRadioValueChange = ({ target: { value } }: RadioChangeEvent) => {
     setView(value)
   }
 
   const onDataPickerChange: DatePickerProps['onChange'] = (date) => {
-    setDate(date)
+    setSelectedDate(date)
   }
-  const CustomToolbar = ({ onNavigate }: ICustomTooolbar) => {
+  const CustomToolbar = (toolbar: ICustomTooolbar) => {
+    const { date, onNavigate } = toolbar
     const goToBack = () => {
       onNavigate('PREV')
     }
@@ -80,13 +82,43 @@ export const Schedule = () => {
     }
 
     return (
-      <div className="shedule-button">
-        <div className="shedule-button__back" onClick={goToBack}>
+      <div
+        className={classNames('schedule-button', {
+          'schedule-button__week-view': view === 'week',
+          'schedule-button__day-view': view === 'day'
+        })}
+      >
+        <div className="schedule-button__back" onClick={goToBack}>
           <Arrow />
         </div>
-        <div className="shedule-button__next" onClick={goToNext}>
+        <Typography.Headline2 className="schedule-button__date">
+          {moment(date).format('dddd DD')}
+        </Typography.Headline2>
+        <div className="schedule-button__next" onClick={goToNext}>
           <Arrow />
         </div>
+      </div>
+    )
+  }
+
+  const CustomHeader = (header: ICustomHeader) => {
+    const { date } = header
+    return (
+      <div className="calendar-header">
+        <Typography.Headline5
+          className={classNames('calendar-header__week-day', {
+            'calendar-header__choosen-week-day': date.getDay() === selectedDate?.day()
+          })}
+        >
+          {moment(date).format('ddd')}
+        </Typography.Headline5>
+        <Typography.Headline5
+          className={classNames('calendar-header__date', {
+            'calendar-header__choosen-date': date.getDay() === selectedDate?.day()
+          })}
+        >
+          {moment(date).format('DD')}
+        </Typography.Headline5>
       </div>
     )
   }
@@ -122,7 +154,10 @@ export const Schedule = () => {
             startAccessor="start"
             endAccessor="end"
             components={{
-              toolbar: CustomToolbar
+              toolbar: CustomToolbar,
+              week: {
+                header: CustomHeader
+              }
             }}
           />
         </div>

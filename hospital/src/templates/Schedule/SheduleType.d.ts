@@ -6,6 +6,16 @@ export type EventType = {
   }
 }
 
+export type NavigateAction = 'PREV' | 'NEXT' | 'TODAY' | 'DATE'
+
 export interface ICustomTooolbar {
-  onNavigate: (action: any) => void
+  onNavigate: (navigate: NavigateAction, date?: Date) => void
+  date: Date
+}
+
+export type ViewType = 'week' | 'day'
+
+export interface ICustomHeader {
+  date: Date
+  label: string
 }
