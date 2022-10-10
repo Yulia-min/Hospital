@@ -165,7 +165,7 @@
     justify-content: space-between;
     margin-bottom: 20px;
   }
-  &__patinets-count-wrapper {
+  &__patients-count {
     display: flex;
     align-items: center;
     gap: 2px;
@@ -173,6 +173,15 @@
   &__patient-name {
     display: flex;
     align-items: flex-end;
+  }
+  &__patients-group {
+    .event__patients-count {
+      display: none;
+    }
+    .event__status-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
 
@@ -247,7 +256,7 @@
     color: $core_70;
   }
   &__date {
-    color: #5e6878;
+    color: $core_70;
   }
   &__choosen-week-day {
     color: $primary_80;

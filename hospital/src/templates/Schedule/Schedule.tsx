@@ -4,7 +4,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import { ReactComponent as Group } from 'src/public/Group.svg'
 import { ReactComponent as Arrow } from 'src/public/CollapseArrow.svg'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getDoctorsSchedule } from 'src/api/Schedule/Schedule'
 import { IDoctor } from 'src/redux/types/doctorsTypes'
 import { DataPicker, Radio } from 'src/atoms'
@@ -19,26 +19,26 @@ export const Schedule = () => {
   const [time, setTime] = useState<IDoctor[]>([])
   const [view, setView] = useState<View>('week')
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(moment())
-  const [event_date_after, setEvent_date_after] = useState<string>(
+  const [eventDateAfter, setEventDateAfter] = useState<string>(
     moment().startOf('week').format('YYYY-MM-DDTHH:mm')
   )
-  const [event_date_before, setEvent_date_before] = useState<string>(
+  const [eventDateBefore, setEventDateBefore] = useState<string>(
     moment().endOf('week').format('YYYY-MM-DDTHH:mm')
   )
 
   const localizer = momentLocalizer(moment)
 
   const Event = ({ item }: EventType) => (
-    <div className="event">
+    <div
+      className={classNames('event', {
+        'event__patients-group': item.requests_in_group < 1
+      })}
+    >
       <div className="event__status-wrapper">
-        {item.requests_in_group > 1 ? (
-          <div className="event__patinets-count-wrapper">
-            <Group />
-            <div className="event__patinets">({item.requests_in_group})</div>
-          </div>
-        ) : (
-          <div />
-        )}
+        <div className="event__patients-count">
+          <Group />
+          <div className="event__patinets">({item.requests_in_group})</div>
+        </div>
         <Typography.Body2 className="event__status">{item.service_request_status}</Typography.Body2>
       </div>
       <Typography.Subtitle2 className="event__patient-name">
@@ -55,17 +55,17 @@ export const Schedule = () => {
 
   useEffect(() => {
     if (view === 'week') {
-      setEvent_date_after(moment(selectedDate).startOf('week').format('YYYY-MM-DDTHH:mm'))
-      setEvent_date_before(moment(selectedDate).endOf('week').format('YYYY-MM-DDTHH:mm'))
+      setEventDateAfter(moment(selectedDate).startOf('week').format('YYYY-MM-DDTHH:mm'))
+      setEventDateBefore(moment(selectedDate).endOf('week').format('YYYY-MM-DDTHH:mm'))
     } else if (view === 'day') {
-      setEvent_date_after(moment(selectedDate).startOf('day').format('YYYY-MM-DDTHH:mm'))
-      setEvent_date_before(moment(selectedDate).endOf('day').format('YYYY-MM-DDTHH:mm'))
+      setEventDateAfter(moment(selectedDate).startOf('day').format('YYYY-MM-DDTHH:mm'))
+      setEventDateBefore(moment(selectedDate).endOf('day').format('YYYY-MM-DDTHH:mm'))
     }
   }, [view, selectedDate])
 
   useEffect(() => {
-    getDoctorsSchedule(event_date_after, event_date_before, uuid).then((resp) => setTime(resp.data))
-  }, [event_date_after, event_date_before])
+    getDoctorsSchedule(eventDateAfter, eventDateBefore, uuid).then((resp) => setTime(resp.data))
+  }, [eventDateAfter, eventDateBefore])
 
   const onRadioValueChange = ({ target: { value } }: RadioChangeEvent) => {
     setView(value)
@@ -157,6 +157,9 @@ export const Schedule = () => {
             events={eventsList}
             startAccessor="start"
             endAccessor="end"
+            onNavigate={(date) => {
+              setSelectedDate(moment(date))
+            }}
             components={{
               toolbar: CustomToolbar,
               week: {
