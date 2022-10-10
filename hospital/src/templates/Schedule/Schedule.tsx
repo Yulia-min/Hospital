@@ -11,13 +11,13 @@ import { DataPicker, Radio } from 'src/atoms'
 import { DatePickerProps, RadioChangeEvent } from 'antd'
 import { CALENDAR_OPTIONS } from 'src/constants'
 import { Typography } from 'src/Typography'
-import { EventType, ICustomHeader, ICustomTooolbar, ViewType } from './SheduleType'
+import { EventType, ICustomHeader, ICustomTooolbar, View } from './SheduleType'
 import classNames from 'classnames'
 
 export const Schedule = () => {
   const uuid = localStorage.getItem('uuid') as string
   const [time, setTime] = useState<IDoctor[]>([])
-  const [view, setView] = useState<ViewType>('week')
+  const [view, setView] = useState<View>('week')
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(moment())
   const [event_date_after, setEvent_date_after] = useState<string>(
     moment().startOf('week').format('YYYY-MM-DDTHH:mm')
@@ -61,8 +61,11 @@ export const Schedule = () => {
       setEvent_date_after(moment(selectedDate).startOf('day').format('YYYY-MM-DDTHH:mm'))
       setEvent_date_before(moment(selectedDate).endOf('day').format('YYYY-MM-DDTHH:mm'))
     }
+  }, [view, selectedDate])
+
+  useEffect(() => {
     getDoctorsSchedule(event_date_after, event_date_before, uuid).then((resp) => setTime(resp.data))
-  }, [event_date_after, event_date_before, view, selectedDate])
+  }, [event_date_after, event_date_before])
 
   const onRadioValueChange = ({ target: { value } }: RadioChangeEvent) => {
     setView(value)
@@ -72,7 +75,7 @@ export const Schedule = () => {
     setSelectedDate(date)
   }
   const CustomToolbar = (toolbar: ICustomTooolbar) => {
-    const { date, onNavigate } = toolbar
+    const { date, onNavigate, view } = toolbar
     const goToBack = () => {
       onNavigate('PREV')
     }
@@ -145,6 +148,7 @@ export const Schedule = () => {
             />
           </div>
           <Calendar
+            date={selectedDate?.toDate()}
             defaultView="week"
             view={view}
             views={{ day: true, week: true }}
