@@ -20,6 +20,7 @@
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-auth-code-input": "^3.2.1",
+    "react-big-calendar": "^1.5.0",
     "react-dom": "^18.2.0",
     "react-input-mask": "^2.0.4",
     "react-moment": "^1.1.2",
@@ -67,6 +68,7 @@
   },
   "devDependencies": {
     "@types/google-map-react": "^2.1.7",
+    "@types/react-big-calendar": "^0.38.2",
     "@types/react-input-mask": "^3.0.1",
     "@types/react-places-autocomplete": "^7.2.9",
     "@types/react-virtualized": "^9.21.21",

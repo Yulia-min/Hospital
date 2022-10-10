@@ -11,3 +11,4 @@ export {
 export { Profile } from './Profile'
 export { EditProfile } from './EditProfile'
 export { RequestDetails, ListOfPatients } from './RequestDetails'
+export { Schedule } from './Schedule'

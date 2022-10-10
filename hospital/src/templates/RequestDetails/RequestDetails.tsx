@@ -73,50 +73,6 @@ export const RequestDetails = ({ setPage }: IRequestDetails) => {
             />
           )}
         </div>
-        <div className="request-details__ticket-container">
-          {requestDetails && (
-            <RequestTicket
-              className="request-details__request-ticket-wrapper"
-              request_type={requestDetails.service_type}
-              date={moment(requestDetails.application_can_start_at).format('DD/MM/YYYY')}
-              time={
-                moment(requestDetails.application_can_start_at).format('HH:mm a') +
-                ' - ' +
-                moment(requestDetails.application_time).format('HH:mm a')
-              }
-              isTime={requestDetails.application_can_start_at}
-              first_name={requestDetails.client_user_info.first_name}
-              last_name={requestDetails.client_user_info.last_name}
-              phone_number={requestDetails.client_user_info.phone_number}
-              email={requestDetails.client_user_info.email}
-              is_group={requestDetails.is_group}
-              status={requestDetails.status as keyof typeof STATUS_VARIANTS}
-              isRequestStatus
-            />
-          )}
-        </div>
-        <div className="request-details__ticket-container">
-          {requestDetails && (
-            <RequestTicket
-              className="request-details__request-ticket-wrapper"
-              request_type={requestDetails.service_type}
-              date={moment(requestDetails.application_can_start_at).format('DD/MM/YYYY')}
-              time={
-                moment(requestDetails.application_can_start_at).format('HH:mm a') +
-                ' - ' +
-                moment(requestDetails.application_time).format('HH:mm a')
-              }
-              isTime={requestDetails.application_can_start_at}
-              first_name={requestDetails.client_user_info.first_name}
-              last_name={requestDetails.client_user_info.last_name}
-              phone_number={requestDetails.client_user_info.phone_number}
-              email={requestDetails.client_user_info.email}
-              is_group={requestDetails.is_group}
-              status={requestDetails.status as keyof typeof STATUS_VARIANTS}
-              isRequestStatus
-            />
-          )}
-        </div>
         <div className="request-details__patients-container">
           <Typography.Subtitle2 className="request-details__patients-title">
             Patients
