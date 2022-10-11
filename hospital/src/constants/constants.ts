@@ -14,3 +14,13 @@ export const REQUEST_TYPE = [
   { label: 'My Request', value: 'my' },
   { label: 'All Request', value: 'all' }
 ]
+
+export const VIEW = {
+  WEEK: 'week',
+  DAY: 'day'
+}
+
+export const REQUEST = {
+  MY: 'my',
+  ALL: 'all'
+}

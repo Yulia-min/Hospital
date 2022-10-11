@@ -9,7 +9,7 @@ import { getDoctorsSchedule } from 'src/api/Schedule/Schedule'
 import { IDoctor } from 'src/redux/types/doctorsTypes'
 import { DataPicker, Radio } from 'src/atoms'
 import { DatePickerProps, RadioChangeEvent } from 'antd'
-import { CALENDAR_OPTIONS, REQUEST_TYPE } from 'src/constants'
+import { CALENDAR_OPTIONS, REQUEST, REQUEST_TYPE, VIEW } from 'src/constants'
 import { Typography } from 'src/Typography'
 import { EventPropGetter, EventType, ICustomHeader, ICustomTooolbar, View } from './SheduleType'
 import classNames from 'classnames'
@@ -18,7 +18,7 @@ export const Schedule = () => {
   const uuid = localStorage.getItem('uuid') as string
   const [time, setTime] = useState<IDoctor[]>([])
   const [view, setView] = useState<View>('week')
-  const [requestType, setRequestType] = useState<string>('my')
+  const [requestType, setRequestType] = useState<string>(REQUEST.MY)
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(moment())
   const [eventDateAfter, setEventDateAfter] = useState<string>(
     moment().startOf('week').format('YYYY-MM-DDTHH:mm')
@@ -32,7 +32,7 @@ export const Schedule = () => {
   const Event = ({ item }: EventType) => (
     <div
       className={classNames('event', {
-        'event__all-request': requestType === 'all',
+        'event__all-request': requestType === REQUEST.ALL,
         'event__patients-group': item.requests_in_group < 1
       })}
     >
@@ -55,21 +55,24 @@ export const Schedule = () => {
   }))
 
   useEffect(() => {
-    if (view === 'week') {
+    if (view === VIEW.WEEK) {
       setEventDateAfter(moment(selectedDate).startOf('week').format('YYYY-MM-DDTHH:mm'))
       setEventDateBefore(moment(selectedDate).endOf('week').format('YYYY-MM-DDTHH:mm'))
-    } else if (view === 'day') {
+    } else if (view === VIEW.DAY) {
       setEventDateAfter(moment(selectedDate).startOf('day').format('YYYY-MM-DDTHH:mm'))
       setEventDateBefore(moment(selectedDate).endOf('day').format('YYYY-MM-DDTHH:mm'))
     }
   }, [view, selectedDate])
 
   useEffect(() => {
-    if (requestType === 'my') {
-      getDoctorsSchedule(eventDateAfter, eventDateBefore, uuid).then((resp) => setTime(resp.data))
-    } else if (requestType === 'all') {
-      getDoctorsSchedule(eventDateAfter, eventDateBefore).then((resp) => setTime(resp.data))
+    let getData = {
+      event_date_after: eventDateAfter,
+      event_date_before: eventDateBefore
     }
+    if (requestType === REQUEST.MY) {
+      getData = { ...getData, ...{ doctors: uuid } }
+    }
+    getDoctorsSchedule(getData).then((resp) => setTime(resp.data))
   }, [eventDateAfter, eventDateBefore, requestType])
 
   const onRadioValueChange = ({ target: { value } }: RadioChangeEvent) => {
@@ -92,8 +95,8 @@ export const Schedule = () => {
     return (
       <div
         className={classNames('schedule-button', {
-          'schedule-button__week-view': view === 'week',
-          'schedule-button__day-view': view === 'day'
+          'schedule-button__week-view': view === VIEW.WEEK,
+          'schedule-button__day-view': view === VIEW.DAY
         })}
       >
         <div className="schedule-button__back" onClick={goToBack}>
@@ -138,7 +141,7 @@ export const Schedule = () => {
       className: 'another-request'
     }),
     ...(event.title.props.item.doctor_uuid === uuid &&
-      requestType === 'all' && {
+      requestType === REQUEST.ALL && {
         className: 'all-request'
       })
   })
@@ -155,7 +158,7 @@ export const Schedule = () => {
           <Radio
             className="schedule__request-type"
             propsRadio={{
-              defaultValue: 'my',
+              defaultValue: REQUEST.MY,
               onChange: onRequestTypeChange,
               options: REQUEST_TYPE
             }}
@@ -167,7 +170,7 @@ export const Schedule = () => {
             <Radio
               className="schedule__radio"
               propsRadio={{
-                defaultValue: 'week',
+                defaultValue: VIEW.WEEK,
                 onChange: onRadioValueChange,
                 optionType: 'button',
                 options: CALENDAR_OPTIONS
@@ -176,7 +179,6 @@ export const Schedule = () => {
           </div>
           <Calendar
             date={selectedDate?.toDate()}
-            defaultView="week"
             view={view}
             views={{ day: true, week: true }}
             eventPropGetter={eventPropGetter}
