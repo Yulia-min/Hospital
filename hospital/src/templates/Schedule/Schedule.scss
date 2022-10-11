@@ -29,6 +29,9 @@
     }
   }
   .rbc-time-header {
+    :nth-child(0) {
+      width: 90px;
+    }
     :first-child {
       margin: 0;
     }
@@ -41,6 +44,10 @@
   }
   .rbc-day-slot .rbc-time-slot {
     border-top: 1px solid $core_30;
+  }
+  .rbc-time-header-gutter {
+    max-width: 78px !important;
+    width: 100% !important;
   }
   .rbc-timeslot-group {
     min-height: 64px;
@@ -65,12 +72,15 @@
     border-top: none;
   }
   .rbc-label {
-    margin-right: 18px;
-    padding: 0 3px;
+    :first-child {
+      margin: 0;
+    }
+    margin-right: 8px;
+    padding: 0px;
     font-family: 'Avenir';
     font-size: 16px;
     line-height: 20px;
-    color: #5e6878;
+    color: $core_70;
   }
   .rbc-time-content > .rbc-time-gutter {
     border-right: 1px solid $core_30;
@@ -86,10 +96,8 @@
     background: none;
   }
   .rbc-header {
+    padding: 0;
     border-bottom: none;
-  }
-  .rbc-time-view .rbc-row {
-    min-height: 64px;
   }
   .rbc-event-label {
     display: none;
@@ -113,6 +121,9 @@
     }
     .ant-picker-panel-container {
       box-shadow: none;
+    }
+    .ant-picker-panel {
+      border: none;
     }
   }
   &__radio-button-container {
@@ -156,6 +167,32 @@
       background: none;
     }
   }
+  &__request-type {
+    margin-top: 220px;
+    .ant-radio-group {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+    }
+  }
+  .another-request {
+    background: $gold_light;
+    border: 1px solid $gold_light;
+    border-radius: 2px;
+  }
+  .event__all-request {
+    color: $white;
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
+  .all-request {
+    border: 1px solid $primary_30;
+    border: none;
+    background: $primary_30;
+  }
 }
 
 .event {
@@ -163,11 +200,11 @@
   &__status-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
   }
   &__patients-count {
     display: flex;
-    align-items: center;
     gap: 2px;
   }
   &__patient-name {
@@ -208,6 +245,8 @@
     grid-template-columns: 110px 1fr 110px;
     .schedule-button__date {
       color: $core_100;
+      font-family: 'Google Sans';
+      font-size: 28px;
       padding-left: 20px;
     }
     .schedule-button__back {
@@ -253,23 +292,28 @@
 
 .calendar-header {
   &__week-day {
+    text-transform: uppercase;
+    font-family: 'Google Sans';
+    font-size: 16px;
+    line-height: 20px;
     color: $core_70;
   }
   &__date {
+    margin-top: 16px;
+    font-family: 'Avenir';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
     color: $core_70;
   }
   &__choosen-week-day {
     color: $primary_80;
   }
   &__choosen-date {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
+    padding: 10px 10px 8px;
     background: $primary_80;
     color: $white;
     border-radius: 100%;
-    margin-bottom: 6px;
+    margin: 8px 0 6px;
   }
 }

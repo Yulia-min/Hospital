@@ -19,4 +19,10 @@
   .ant-radio-checked::after {
     border: 2px solid $primary_80;
   }
+  .ant-radio-wrapper {
+    font-family: 'Avenir';
+    font-size: 18px;
+    line-height: 24px;
+    color: $core_100;
+  }
 }
