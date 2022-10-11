@@ -1,3 +1,5 @@
+import { IDoctor } from 'src/redux/types/doctorsTypes'
+
 export type EventType = {
   item: {
     service_request_status: string
@@ -18,4 +20,14 @@ export interface ICustomTooolbar {
 export interface ICustomHeader {
   date: Date
   label: string
+}
+
+export type EventPropGetter = {
+  title: {
+    props: {
+      item: IDoctor
+    }
+  }
+  start: Date
+  end: Date
 }

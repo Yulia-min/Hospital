@@ -7,7 +7,7 @@ const fetcher = new Fetcher()
 export const getDoctorsSchedule = (
   event_date_after: string,
   event_date_before: string,
-  doctors: string
+  doctors?: string
 ) =>
   fetcher.requestToReceive<{}, IDoctor[]>({
     url: 'service-requests/calendar/events/',

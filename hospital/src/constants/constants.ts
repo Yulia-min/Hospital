@@ -9,3 +9,8 @@ export const CALENDAR_OPTIONS = [
   { label: 'Week View', value: 'week' },
   { label: 'Day View', value: 'day' }
 ]
+
+export const REQUEST_TYPE = [
+  { label: 'My Request', value: 'my' },
+  { label: 'All Request', value: 'all' }
+]

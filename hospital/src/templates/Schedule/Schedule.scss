@@ -70,7 +70,7 @@
     font-family: 'Avenir';
     font-size: 16px;
     line-height: 20px;
-    color: #5e6878;
+    color: $core_70;
   }
   .rbc-time-content > .rbc-time-gutter {
     border-right: 1px solid $core_30;
@@ -114,6 +114,9 @@
     .ant-picker-panel-container {
       box-shadow: none;
     }
+    .ant-picker-panel {
+      border: none;
+    }
   }
   &__radio-button-container {
     display: flex;
@@ -155,6 +158,32 @@
     .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover::before {
       background: none;
     }
+  }
+  &__request-type {
+    margin-top: 220px;
+    .ant-radio-group {
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+    }
+  }
+  .another-request {
+    background: $gold_light;
+    border: 1px solid $gold_light;
+    border-radius: 2px;
+  }
+  .event__all-request {
+    color: $white;
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
+  .all-request {
+    border: 1px solid $primary_30;
+    border: none;
+    background: $primary_30;
   }
 }
 

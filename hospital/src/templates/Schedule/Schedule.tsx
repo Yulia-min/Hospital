@@ -4,20 +4,21 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import { ReactComponent as Group } from 'src/public/Group.svg'
 import { ReactComponent as Arrow } from 'src/public/CollapseArrow.svg'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getDoctorsSchedule } from 'src/api/Schedule/Schedule'
 import { IDoctor } from 'src/redux/types/doctorsTypes'
 import { DataPicker, Radio } from 'src/atoms'
 import { DatePickerProps, RadioChangeEvent } from 'antd'
-import { CALENDAR_OPTIONS } from 'src/constants'
+import { CALENDAR_OPTIONS, REQUEST_TYPE } from 'src/constants'
 import { Typography } from 'src/Typography'
-import { EventType, ICustomHeader, ICustomTooolbar, View } from './SheduleType'
+import { EventPropGetter, EventType, ICustomHeader, ICustomTooolbar, View } from './SheduleType'
 import classNames from 'classnames'
 
 export const Schedule = () => {
   const uuid = localStorage.getItem('uuid') as string
   const [time, setTime] = useState<IDoctor[]>([])
   const [view, setView] = useState<View>('week')
+  const [requestType, setRequestType] = useState<string>('my')
   const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(moment())
   const [eventDateAfter, setEventDateAfter] = useState<string>(
     moment().startOf('week').format('YYYY-MM-DDTHH:mm')
@@ -31,6 +32,7 @@ export const Schedule = () => {
   const Event = ({ item }: EventType) => (
     <div
       className={classNames('event', {
+        'event__all-request': requestType === 'all',
         'event__patients-group': item.requests_in_group < 1
       })}
     >
@@ -46,7 +48,6 @@ export const Schedule = () => {
       </Typography.Subtitle2>
     </div>
   )
-
   const eventsList = time.map((item) => ({
     start: moment(item.application_can_start_at).toDate(),
     end: moment(item.application_time).toDate(),
@@ -64,8 +65,12 @@ export const Schedule = () => {
   }, [view, selectedDate])
 
   useEffect(() => {
-    getDoctorsSchedule(eventDateAfter, eventDateBefore, uuid).then((resp) => setTime(resp.data))
-  }, [eventDateAfter, eventDateBefore])
+    if (requestType === 'my') {
+      getDoctorsSchedule(eventDateAfter, eventDateBefore, uuid).then((resp) => setTime(resp.data))
+    } else if (requestType === 'all') {
+      getDoctorsSchedule(eventDateAfter, eventDateBefore).then((resp) => setTime(resp.data))
+    }
+  }, [eventDateAfter, eventDateBefore, requestType])
 
   const onRadioValueChange = ({ target: { value } }: RadioChangeEvent) => {
     setView(value)
@@ -126,14 +131,38 @@ export const Schedule = () => {
     )
   }
 
+  const onRequestTypeChange = ({ target: { value } }: RadioChangeEvent) => {
+    setRequestType(value)
+  }
+
+  const eventPropGetter = (event: EventPropGetter) => ({
+    ...(event.title.props.item.doctor_uuid !== uuid && {
+      className: 'another-request'
+    }),
+    ...(event.title.props.item.doctor_uuid === uuid &&
+      requestType === 'all' && {
+        className: 'all-request'
+      })
+  })
+
   return (
     <div className="schedule">
       <Header.VisitsPage />
       <div className="schedule__wrapper">
-        <DataPicker
-          dropdownClassName="schedule__data-picker-popup"
-          propsDataPicker={{ onChange: onDataPickerChange, open: true }}
-        />
+        <div>
+          <DataPicker
+            dropdownClassName="schedule__data-picker-popup"
+            propsDataPicker={{ onChange: onDataPickerChange, open: true }}
+          />
+          <Radio
+            className="schedule__request-type"
+            propsRadio={{
+              defaultValue: 'my',
+              onChange: onRequestTypeChange,
+              options: REQUEST_TYPE
+            }}
+          />
+        </div>
         <div>
           <div className="schedule__radio-button-container">
             <Typography.Headline3>Schedule</Typography.Headline3>
@@ -152,11 +181,15 @@ export const Schedule = () => {
             defaultView="week"
             view={view}
             views={{ day: true, week: true }}
+            eventPropGetter={eventPropGetter}
             className="shedule__calendar"
             localizer={localizer}
             events={eventsList}
             startAccessor="start"
             endAccessor="end"
+            onView={(view) => {
+              setView(view)
+            }}
             onNavigate={(date) => {
               setSelectedDate(moment(date))
             }}

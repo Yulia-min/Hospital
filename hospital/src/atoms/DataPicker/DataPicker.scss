@@ -84,4 +84,31 @@
     border: none;
     min-width: 0;
   }
+  .ant-picker-header-view button {
+    font-family: 'Avenir';
+    font-weight: 800;
+    font-size: 16px;
+    color: $core_70;
+  }
+  .ant-picker-content th {
+    font-family: 'Avenir';
+    font-size: 12px;
+    line-height: 16px;
+    color: $core_70;
+  }
+  .ant-picker-cell-in-view.ant-picker-cell-in-view {
+    font-family: 'Google Sans';
+    font-size: 12px;
+    line-height: 20px;
+    color: $core_100;
+  }
+  .ant-picker-cell {
+    font-family: 'Google Sans';
+    font-size: 12px;
+    line-height: 20px;
+    color: $core_70;
+  }
+  .ant-picker-cell-disabled.ant-picker-cell-disabled {
+    color: $core_70;
+  }
 }
