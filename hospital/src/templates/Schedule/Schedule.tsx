@@ -99,9 +99,7 @@ export const Schedule = () => {
         <div className="schedule-button__back" onClick={goToBack}>
           <Arrow />
         </div>
-        <Typography.Headline2 className="schedule-button__date">
-          {moment(date).format('dddd DD')}
-        </Typography.Headline2>
+        <div className="schedule-button__date">{moment(date).format('dddd DD')}</div>
         <div className="schedule-button__next" onClick={goToNext}>
           <Arrow />
         </div>
@@ -113,20 +111,20 @@ export const Schedule = () => {
     const { date } = header
     return (
       <div className="calendar-header">
-        <Typography.Headline5
+        <div
           className={classNames('calendar-header__week-day', {
             'calendar-header__choosen-week-day': date.getDay() === selectedDate?.day()
           })}
         >
           {moment(date).format('ddd')}
-        </Typography.Headline5>
-        <Typography.Headline5
+        </div>
+        <div
           className={classNames('calendar-header__date', {
             'calendar-header__choosen-date': date.getDay() === selectedDate?.day()
           })}
         >
           {moment(date).format('DD')}
-        </Typography.Headline5>
+        </div>
       </div>
     )
   }
